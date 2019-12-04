@@ -1,5 +1,5 @@
 <template>
-  <div :id="identifier" 
+  <div
     :style="{ 
       width: typeof width === 'number' ? `${width}px` : width, 
       height: typeof height === 'number' ? `${height}px` : height 
@@ -11,8 +11,6 @@
 <script>
 import AMap from 'AMap'
 import EventsMixin from '../mixins/events'
-
-const mapId = 0
 
 export default {
   mixins: [EventsMixin],
@@ -70,14 +68,12 @@ export default {
       validator(value) {
         return ['2D', '3D'].indexOf(value) !== -1
       }
-    },
-    mapId: { type: Number, default: 0 }
+    }
   },
   data() {
     return {
       target: null,
       timer: null,
-      identifier: `amap-vid-${mapId}`,
       events: [
         'click',
         'dbclick',
@@ -115,7 +111,7 @@ export default {
         options[key] = this.$props[key]
       }
     }
-    this.target = new AMap.Map(this.identifier, options)
+    this.target = new AMap.Map(this.$el, options)
     this.target.on('complete', () => {
       this.updateBounds()
     })
@@ -172,9 +168,6 @@ export default {
         bounds = this.target.getBounds()
       } else {
         let arrayBounds = this.target.getBounds()
-        // let northEast = arrayBounds.toBounds().getNorthEast()
-        // let southWest = arrayBounds.toBounds().getSouthWest()
-        // bounds = new AMap.Bounds(southWest, northEast)
         bounds = arrayBounds.toBounds()
       }
       this.$emit('update:bounds', bounds)

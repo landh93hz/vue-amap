@@ -3,8 +3,9 @@
     <amap-map width="300px" height="300px" :center="position" :mapId="1">
       <amap-marker :position="position"></amap-marker>
     </amap-map>
-    <!-- <amap-map width="300px" height="300px" :mapId="3">
-    </amap-map> -->
+    <amap-map width="300px" height="300px" :mapId="3">
+      
+    </amap-map>
   </div>
 </template>
 
