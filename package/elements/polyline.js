@@ -4,7 +4,7 @@ import AMap from 'AMap'
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'MapPolyline',
+  name: 'amap-polyline',
   mixins: [EventMixin, ElementMixin],
   data() {
     return {

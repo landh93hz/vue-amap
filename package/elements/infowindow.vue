@@ -10,7 +10,7 @@ import EventMixin from '../mixins/events'
 import AMap from 'AMap'
 
 export default {
-  name: 'InfoWindow',
+  name: 'amap-infowindow',
   mixins: [ElementMixin, EventMixin],
   props: {
     isCustom: Boolean,

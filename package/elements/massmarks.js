@@ -4,7 +4,7 @@ import EventMixin from '../mixins/events'
 import ElementMixin from '../mixins/element'
 
 export default Vue.extend({
-  name: 'MassMarks',
+  name: 'amap-massmarks',
   mixins: [ElementMixin, EventMixin],
   render() {
     return this.$slots.default

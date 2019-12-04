@@ -4,7 +4,7 @@ import AMap from 'AMap'
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'MapPolygon',
+  name: 'amap-polygon',
   mixins: [ElementMixin, EventMixin],
   render() {
     return this.$slots.default

@@ -11,7 +11,7 @@ import ElementMixin from '../mixins/element'
 import EventMixin from '../mixins/events'
 
 export default {
-  name: 'MapMarker',
+  name: 'amap-marker',
   mixins: [ElementMixin, EventMixin],
   props: {
     topWhenClick: Boolean,

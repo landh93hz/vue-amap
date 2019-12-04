@@ -14,7 +14,7 @@ import EventsMixin from '../mixins/events'
 
 export default {
   mixins: [EventsMixin],
-  name: 'amap',
+  name: 'amap-map',
   provide() {
     return { getMap: this.getMap }
   },
