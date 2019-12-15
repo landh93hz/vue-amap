@@ -1,7 +1,7 @@
 <template>
   <div class="hidden-box" ref="hiddenBox">
-    <slot :data="extData" name="content"></slot>
-    <slot :data="extData" name="label"></slot>
+    <slot name="content"></slot>
+    <slot name="label"></slot>
   </div>
 </template>
 
@@ -30,6 +30,8 @@ export default {
     shadow: AMap.Icon,
     content: [ String, HTMLElement ],
     label: [ Object, String],
+    labelOffset: Object,
+    labelDirection: String,
     extData: Object,
     position: AMap.LngLat
   },
@@ -76,6 +78,53 @@ export default {
       let $label = document.createElement('div')
       $label.textContent = label
       this.target && this.target.setLabel({ content: $label.outerHTML })
+    }
+    this.renderSlot()
+  },
+  methods: {
+    renderSlot() {
+      const { content, label } = this
+      if (content)  {
+        return this.target.setContent(content)
+      }
+      if (label) {
+        const labelObj = label
+        if (typeof label === 'string') {
+          labelObj = {
+            offset: this.labelOffset || new AMap.Pixel(20, 20),
+            content: label,
+            direction: this.labelDirection || 'right'
+          }
+        }
+        return this.target.setLabel(labelObj)
+      }
+      const { content: contentNodes, label: labelNodes } = this.$slots
+      // console.log(this.$slots)
+      if (contentNodes) {
+        if (contentNodes.length > 1) {
+          throw new Error('multi content slots in single marker')
+        }
+        const node = contentNodes[0]
+        const elm = node.elm
+        if (elm) {
+          return this.target.setContent(elm)
+        }
+      }
+      if (labelNodes) {
+        if (labelNodes.length > 1) {
+          throw new Error('multi label slots in single marker')
+        }
+        const node = labelNodes[0]
+        const elm = node.elm.outerHTML
+        if (elm) {
+          const labelObj = {
+            offset: this.labelOffset || new AMap.Pixel(20, 20),
+            content: elm,
+            direction: this.labelDirection || 'right'
+          }
+          return this.target.setLabel(labelObj)
+        }
+      }
     }
   }
 }
