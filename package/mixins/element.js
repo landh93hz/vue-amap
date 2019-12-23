@@ -44,7 +44,7 @@ export default {
     mapGetter(map) {
       if (this.target && this.target.setMap) {
         if (!this.visible) this.target.hide()
-        // if (this.target instanceof AMap.InfoWindow) return
+        if (this.target.CLASS_NAME === 'AMAp.InfoWindow') return
         this.target.setMap(map)
       }
     }

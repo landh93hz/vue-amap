@@ -69,19 +69,20 @@ export default {
     }
   },
   created() {
+    
+  },
+  mounted() {
     amapLoader.then(AMap => {
       this.target = new AMap.Marker(this.options)
       this.visible || this.target.hide()
+      let { label } = this
+      if (typeof label === 'string') {
+        let $label = document.createElement('div')
+        $label.textContent = label
+        this.target && this.target.setLabel({ content: $label.outerHTML })
+      }
+      this.renderSlot()
     })
-  },
-  mounted() {
-    let { label } = this
-    if (typeof label === 'string') {
-      let $label = document.createElement('div')
-      $label.textContent = label
-      this.target && this.target.setLabel({ content: $label.outerHTML })
-    }
-    this.renderSlot()
   },
   methods: {
     renderSlot() {
@@ -101,7 +102,7 @@ export default {
         return this.target.setLabel(labelObj)
       }
       const { content: contentNodes, label: labelNodes } = this.$slots
-      // console.log(this.$slots)
+
       if (contentNodes) {
         if (contentNodes.length > 1) {
           throw new Error('multi content slots in single marker')

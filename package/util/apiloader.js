@@ -15,22 +15,29 @@
  * @param {Object} options 
  */
 function lazyLoadApi(name, url, options) {
-  const $script = document.createElement('script')
-  let src = url + '?'
-  let params = ''
-  for (let key in options) {
-    params += `${key}=${options[key]}&`
-  }
-  params.slice(0, params.length - 1)
   
-  $script.src = src + params
-  document.head.append($script)
   return new Promise((resolve, reject) => {
-    $script.onload = function() {
-      if (window[name]) {
-        resolve(window[name])
-      } else {
-        reject(undefined)
+    // 如果在html文件中手动添加了script标签，则直接返回window对象上的属性
+    if (window[name]) {
+      resolve(window[name])
+      console.log(`${name} has been loaded`)
+    } else {
+      const $script = document.createElement('script')
+      let src = url + '?'
+      let params = ''
+      for (let key in options) {
+        params += `${key}=${options[key]}&`
+      }
+      params.slice(0, params.length - 1)
+      
+      $script.src = src + params
+      document.head.append($script)
+      $script.onload = function() {
+        if (window[name]) {
+          resolve(window[name])
+        } else {
+          reject(undefined)
+        }
       }
     }
   })
