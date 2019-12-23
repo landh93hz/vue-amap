@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import AMap from 'AMap'
+import { amapLoader } from '../util/apiloader'
 import EventMixin from '../mixins/events'
 import ElementMixin from '../mixins/element'
 
@@ -21,7 +21,7 @@ export default Vue.extend({
       type: [Object, Array, Function],
       required: true
     }
-  },
+  },  
   data() {
     return {
       options: {},
@@ -42,8 +42,10 @@ export default Vue.extend({
     this.options.style = this.pointStyle
     delete this.options.pointStyle
     delete this.options.data
-    this.target = new AMap.MassMarks(this.data, this.options)
-    this.visible || this.target.hide()
+    amapLoader.then(AMap => {
+      this.target = new AMap.MassMarks(this.data, this.options)
+      this.visible || this.target.hide()
+    })
   },
   watch: {
     data(val) {

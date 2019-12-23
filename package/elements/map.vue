@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import AMap from 'AMap'
+import { amapLoader } from '../util/apiloader'
 import EventsMixin from '../mixins/events'
 
 export default {
@@ -111,10 +111,13 @@ export default {
         options[key] = this.$props[key]
       }
     }
-    this.target = new AMap.Map(this.$el, options)
-    this.target.on('complete', () => {
-      this.updateBounds()
+    amapLoader.then(AMap => {
+      this.target = new AMap.Map(this.$el, options)
+      this.target.on('complete', () => {
+        this.updateBounds()
+      })
     })
+    
   },
   watch: {
     rotation(val) {

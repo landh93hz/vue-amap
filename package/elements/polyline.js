@@ -1,7 +1,7 @@
 import EventMixin from '../mixins/events'
 import ElementMixin from '../mixins/element'
-import AMap from 'AMap'
 import Vue from 'vue'
+import { amapLoader } from '../util/apiloader'
 
 export default Vue.extend({
   name: 'amap-polyline',
@@ -61,7 +61,9 @@ export default Vue.extend({
     }
   },
   created() {
-    this.target = new AMap.Polyline(this.options)
+    amapLoader.then(AMap => {
+      this.target = new AMap.Polyline(this.options)
+    })
   },
   render() {
     return this.$slots.default

@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import AMap from 'AMap'
 import ElementMixin from '../mixins/element'
 import EventMixin from '../mixins/events'
+import { amapLoader } from '../util/apiloader'
 
 export default {
   name: 'amap-marker',
@@ -21,19 +21,19 @@ export default {
     autoRotation: Boolean,
     anchor: String,
     offset: Object,
-    icon: AMap.Icon,
+    icon: Object,
     draggable: Boolean,
     zIndex: Number,
     angle: Number,
     animation: String,
     title: String,
-    shadow: AMap.Icon,
+    shadow: Object,
     content: [ String, HTMLElement ],
     label: [ Object, String],
     labelOffset: Object,
     labelDirection: String,
     extData: Object,
-    position: AMap.LngLat
+    position: Object
   },
   data() {
     return {
@@ -69,8 +69,10 @@ export default {
     }
   },
   created() {
-    this.target = new AMap.Marker(this.options)
-    this.visible || this.target.hide()
+    amapLoader.then(AMap => {
+      this.target = new AMap.Marker(this.options)
+      this.visible || this.target.hide()
+    })
   },
   mounted() {
     let { label } = this
@@ -91,7 +93,7 @@ export default {
         const labelObj = label
         if (typeof label === 'string') {
           labelObj = {
-            offset: this.labelOffset || new AMap.Pixel(20, 20),
+            offset: this.labelOffset,
             content: label,
             direction: this.labelDirection || 'right'
           }
@@ -118,7 +120,7 @@ export default {
         const elm = node.elm.outerHTML
         if (elm) {
           const labelObj = {
-            offset: this.labelOffset || new AMap.Pixel(20, 20),
+            offset: this.labelOffset,
             content: elm,
             direction: this.labelDirection || 'right'
           }

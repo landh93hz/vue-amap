@@ -7,7 +7,7 @@
 <script>
 import ElementMixin from '../mixins/element'
 import EventMixin from '../mixins/events'
-import AMap from 'AMap'
+import { amapLoader } from '../util/apiloader'
 
 export default {
   name: 'amap-infowindow',
@@ -17,10 +17,10 @@ export default {
     autoMove: Boolean,
     closeWhenClickMap: { type: Boolean, default: true },
     content: [String, HTMLDivElement],
-    size: AMap.Size,
+    size: Object,
     anchor: String,
-    offset: AMap.Pixel,
-    position: { type: AMap.LngLat, required: true },
+    offset: Object,
+    position: { type: Object, required: true },
     showShadow: Boolean,
     data: [String, Number, Object]
   },
@@ -53,11 +53,14 @@ export default {
     }
   },
   created() {
-    this.target = new AMap.InfoWindow(this.options)
-    this.getMap((map) => {
-      this.visible
-        ? this.target.open(map, this.position)
-        : this.target.close()
+    amapLoader.then(AMap => {
+      this.target = new AMap.InfoWindow(this.options)
+      
+      this.getMap((map) => {
+        this.visible
+          ? this.target.open(map, this.position)
+          : this.target.close()
+      })
     })
   },
   mounted() {

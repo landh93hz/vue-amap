@@ -1,7 +1,7 @@
 import ElementMixin from '../mixins/element'
 import EventMixin from '../mixins/events'
-import AMap from 'AMap'
 import Vue from 'vue'
+import { amapLoader } from '../util/apiloader'
 
 export default Vue.extend({
   name: 'amap-polygon',
@@ -45,7 +45,9 @@ export default Vue.extend({
     }
   },
   created() {
-    this.target = new AMap.Polygon(this.options)
+    amapLoader.then(AMap => {
+      this.target = new AMap.Polygon(this.options)
+    })
   },
   methods: {
     dragend() {
