@@ -53,7 +53,7 @@ export default {
     zoom: { type: Number, default: 13 },
     pitch: { type: Number, default: 0 },
     rotation: { type: Number, default: 0 },
-    center: { type: Object },
+    center: { type: [Object, Array] },
     bounds: { type: Object },
     crs: {
       type: String,

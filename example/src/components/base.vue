@@ -1,9 +1,11 @@
 <template>
-  <div style="height: 100vh">
+  <div style="height: 100vh;">
     <el-header width="100vw" height="8vh">Header</el-header>
     <el-container height="92vh">
-      <el-aside width="15vw">Aside</el-aside>
-      <el-container width="85vw">
+      <el-aside width="20vw">
+        <m-aside></m-aside>
+      </el-aside>
+      <el-container width="80vw">
         <router-view></router-view>
       </el-container>
     </el-container>
@@ -11,8 +13,8 @@
 </template>
 
 <script>
-
+import mAside from './aside'
 export default {
-
+  components: { mAside }
 }
 </script>
