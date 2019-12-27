@@ -1,8 +1,7 @@
 <template>
   <div class="page">
     <div class="map-container">
-      <amap-map 
-        width="70vw"
+      <amap-map
         :center="center" 
         :zoom="zoom" 
         :resizeEnable="resizeEnable" 
@@ -44,20 +43,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.page {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-
-  .map-container {
-    flex: 1;
-    height: 100%;
-  }
-
-  .code-container {
-    width: 300px;
-  }
-}
-</style>

@@ -1,24 +1,27 @@
 <template>
   <div>
     <el-menu default-active="start" @select="openMenu">
-      <span v-for="route in routes" :key="route.name">
-        
-        <el-submenu v-if="Array.isArray(route.meta.items)" :index="route.name">
-          <template slot="title">
-            {{ route.meta.title }}
-          </template>
-          <el-menu-item-group>
-            <el-menu-item 
-              v-for="child in route.meta.items" 
-              :key="child.path" 
-              :index="`${route.name}:${child.props || ''}`">
-              {{ child.title }}
-            </el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-menu-item v-else :index="route.path">
-          {{ route.meta.title }}
-        </el-menu-item>
+      <span v-for="group in menuGroups" :key="group.title">
+        <div v-if="!group.routes">
+          <el-menu-item :index="group.name">
+            {{ group.meta.title }}
+          </el-menu-item>
+        </div>
+        <el-menu-item-group v-else>
+          <template slot="title">{{ group.title }}</template>
+          <el-submenu v-for="route in group.routes" :key="route.path" :index="`${route.name}`">
+            <template slot="title">{{ route.meta.title }}</template>
+            <el-menu-item-group >
+              <el-menu-item 
+                v-for="item in route.meta.items" 
+                :key="item.title" 
+                :index="`${route.name}:${item.props || ''}`"
+                >
+                {{ item.title }}
+              </el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+        </el-menu-item-group>
       </span>
     </el-menu>
   </div>
@@ -28,7 +31,10 @@
 import menuGroups from '../router/index'
 
 const routes = menuGroups.reduce((prev, curr) => {
-  return [...prev, ...curr.routes]
+  if (curr.routes) 
+    return [...prev, ...curr.routes]
+  else
+    return [...prev, curr]
 }, [])
 
 export default {

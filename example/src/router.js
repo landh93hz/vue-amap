@@ -1,10 +1,12 @@
 import VueRouter from 'vue-router'
 import base from './components/base.vue'
-import start from './views/start.vue'
 import menuGroups from './router/index'
 
 const routes = menuGroups.reduce((prev, curr) => {
-  return [...prev, ...curr.routes]
+  if (curr.routes) 
+    return [...prev, ...curr.routes]
+  else
+    return [...prev, curr]
 }, [])
 
 export const router = new VueRouter({
@@ -16,17 +18,7 @@ export const router = new VueRouter({
     {
       path: '/',
       component: base,
-      children: [
-        {
-          path: 'start',
-          name: 'start',
-          component: start,
-          meta: {
-            title: '起步'
-          }
-        },
-        ...routes
-      ]
+      children: routes
     }
   ]
 })

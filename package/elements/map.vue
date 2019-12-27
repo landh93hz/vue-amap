@@ -116,6 +116,14 @@ export default {
       }
     }
     amapLoader.then(AMap => {
+      let center
+      if (Array.isArray(this.center)) {
+        center = this.center
+      } else {
+        const { lng, lat } = this.center
+        center = new AMap.LngLat(lng, lat)
+      }
+      options.center = center
       this.target = new AMap.Map(this.$el, options)
       this.target.on('complete', () => {
         this.updateBounds()
@@ -161,6 +169,7 @@ export default {
       this.updateBounds()
     },
     moveend() {
+      this.$emit('update:center', this.target.getCenter())
       this.updateBounds()
     },
     getMap(getter) {

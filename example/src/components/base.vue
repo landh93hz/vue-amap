@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="base">
     <div class="header">
       header
     </div>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.page {
+.base {
   height: 100vh;
   display: flex;
   flex-direction: column;
