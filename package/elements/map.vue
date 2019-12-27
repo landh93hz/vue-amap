@@ -21,11 +21,11 @@ export default {
   props: {
     height: {
       type: [Number, String],
-      default: 800
+      default: '100%'
     },
     width: {
       type: [Number, String],
-      default: 1000
+      default: '100%'
     },
     layers: { type: Array },
     zooms: { type: Array },
@@ -103,7 +103,11 @@ export default {
       ]
     }
   },
+  created() {
+    console.log('created')
+  },
   mounted() {
+    console.log('mounted')
     let keys = Object.keys(this.$props)
     let options = {}
     for (let key of keys) {
@@ -128,6 +132,9 @@ export default {
     },
     zoom(val) {
       this.target && this.zoomEnable && this.target.setZoom(val)
+    },
+    lang(val) {
+      this.target && this.target.setLang(val)
     }
   },
   methods: {
@@ -175,6 +182,15 @@ export default {
       }
       this.$emit('update:bounds', bounds)
     }
+  },
+  beforeDestroy() {
+    console.log('before destroy')
+  },
+  destroyed() {
+    console.log('destroyed')
+  },
+  deactivated() {
+    console.log('deactivated')
   }
 }
 </script>
