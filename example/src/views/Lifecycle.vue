@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <div style="width: 100%; height: 100%">
+  <div class="page">
+    <div class="map-container">
       <amap-map 
+        width="70vw"
         :center="center" 
         :zoom="zoom" 
         :resizeEnable="resizeEnable" 
         @complete="handleComplete">
       </amap-map>
     </div>
-    
-    <div>
-      {{ phase }}
+    <div class="code-container">
+
     </div>
   </div>
 </template>
@@ -40,8 +40,24 @@ export default {
     }
   },
   beforeDestroy() {
-    this.map && this.map.destroy()
-    console.log('销毁地图')
+
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.page {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+
+  .map-container {
+    flex: 1;
+    height: 100%;
+  }
+
+  .code-container {
+    width: 300px;
+  }
+}
+</style>

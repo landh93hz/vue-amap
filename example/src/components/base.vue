@@ -1,14 +1,16 @@
 <template>
-  <div style="height: 100vh;">
-    <el-header width="100vw" height="8vh">Header</el-header>
-    <el-container height="92vh">
-      <el-aside width="20vw">
+  <div class="page">
+    <div class="header">
+      header
+    </div>
+    <div class="container">
+      <div class="side">
         <m-aside></m-aside>
-      </el-aside>
-      <el-container width="80vw">
+      </div>
+      <div class="main">
         <router-view></router-view>
-      </el-container>
-    </el-container>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -18,3 +20,30 @@ export default {
   components: { mAside }
 }
 </script>
+
+<style lang="scss" scoped>
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    height: 80px;
+  }
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  height: 100%;
+
+  .side {
+    width: 220px;
+    overflow: auto;
+  }
+
+  .main {
+    flex: 1;
+  }
+}
+</style>
