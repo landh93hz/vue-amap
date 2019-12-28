@@ -55,6 +55,26 @@ const propertyRoutes = [
           props: 'map-bounds',
           title: '地图显示范围'
         },
+        {
+          props: 'map-moving',
+          title: '地图平移'
+        },
+        {
+          props: 'map-status',
+          title: '交互控制'
+        },
+        {
+          props: 'click-to-get-lnglat',
+          title: '获取鼠标点击经纬度'
+        },
+        {
+          props: 'hotspot',
+          title: '地图的热点'
+        },
+        {
+          props: 'mouse-style',
+          title: '设置鼠标样式'
+        }
       ]
     },
   }

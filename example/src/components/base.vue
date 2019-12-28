@@ -11,6 +11,9 @@
         <router-view></router-view>
       </div>
     </div>
+    <div class="footer">
+      footer
+    </div>
   </div>
 </template>
 
@@ -31,7 +34,6 @@ export default {
     height: 80px;
   }
 }
-
 .container {
   display: flex;
   flex: 1;
@@ -45,5 +47,9 @@ export default {
   .main {
     flex: 1;
   }
+}
+.footer {
+  height: 140px;
+  width: 100%;
 }
 </style>

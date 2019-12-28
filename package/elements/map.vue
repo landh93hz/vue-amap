@@ -55,6 +55,8 @@ export default {
     rotation: { type: Number, default: 0 },
     center: { type: [Object, Array] },
     bounds: { type: Object },
+    city: { type: String },
+    limitBounds: { type: Boolean },
     crs: {
       type: String,
       default: 'EPSG3857',
@@ -125,8 +127,12 @@ export default {
       }
       options.center = center
       this.target = new AMap.Map(this.$el, options)
+      if (this.city) {
+        this.target.setCity(city)
+      }
       this.target.on('complete', () => {
         this.updateBounds()
+        this.updateCity()
       })
     })
     
@@ -143,6 +149,17 @@ export default {
     },
     lang(val) {
       this.target && this.target.setLang(val)
+    },
+    city(val) {
+      this.target && this.target.setCity(val)
+    },
+    limitBounds(val) {
+      if (!this.bounds) {
+        throw new Error('Make sure to set bounds when limitBounds is true')
+      }
+      val 
+        ? this.target.setLimitBounds(this.bounds) 
+        : this.target.clearLimitBounds()
     }
   },
   methods: {
@@ -171,6 +188,7 @@ export default {
     moveend() {
       this.$emit('update:center', this.target.getCenter())
       this.updateBounds()
+      this.updateCity()
     },
     getMap(getter) {
       if (this.target) {
@@ -190,6 +208,13 @@ export default {
         bounds = arrayBounds.toBounds()
       }
       this.$emit('update:bounds', bounds)
+    },
+    updateCity() {
+      this.target.getCity((info) => {
+        const { city } = info
+        this.$emit('update:city', city)
+        this.$emit('getCity', info)
+      })
     }
   },
   beforeDestroy() {
