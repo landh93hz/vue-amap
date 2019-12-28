@@ -75,8 +75,11 @@
       <div class="property-box" v-if="property === 'map-moving'">
         
       </div>
-      <div class="property-box" v-if="property === 'map-status'">
-
+      <div class="property-box status-box" v-if="property === 'map-status'">
+        <p>地图状态</p>
+        <el-checkbox v-for="key in Object.keys(status)" :key="key" v-model="status[key]">
+          {{ key }}
+        </el-checkbox>
       </div>
     </div>
     <div class="code-container">
@@ -113,7 +116,16 @@ export default {
         district: ''
       },
       bounds: undefined,
-      limitBounds: false
+      limitBounds: false,
+      status: {
+        showIndoorMap: false,
+        resizeEnable : true,
+        dragEnable: false,
+        keyboardEnable: false,
+        doubleClickZoom: false,
+        zoomEnable: false,
+        rotateEnable:  false
+      }
     }
   },
   watch: {
@@ -170,60 +182,13 @@ export default {
     }
   }  
 }
-.lang-selector {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 16px 20px;
-  width: 140px;
-
-  p {
-    margin: 4px 0;
-    font-size: 14px;
-  }
-}
-.center-zoom {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 16px 20px;
-}
-.el-radio-group {
+.status-box {
   display: flex;
   flex-direction: column;
 
-  .el-radio {
-    margin: 14px 0;
-  }
-}
-.district {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 14px 20px;
-  width: 360px;
-
-  p {
+  .el-checkbox {
     margin: 4px 0;
   }
 
-  .el-input {
-    margin: 0 4px;
-  }
-
-  table {
-    width: 60%;
-    margin: 10px 0;
-    td {
-      text-align: center;
-      width: 50%;
-    }
-  }
 }
 </style>
