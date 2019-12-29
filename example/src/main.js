@@ -4,6 +4,7 @@ import { router } from './router'
 import AmapVue from 'amap'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import './css/style.css'
 import VueRouter from 'vue-router'
 
 const options = {

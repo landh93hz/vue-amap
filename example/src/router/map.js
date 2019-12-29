@@ -72,7 +72,7 @@ const propertyRoutes = [
           title: '地图的热点'
         },
         {
-          props: 'mouse-style',
+          props: 'cursor-style',
           title: '设置鼠标样式'
         }
       ]
@@ -80,10 +80,72 @@ const propertyRoutes = [
   }
 ]
 
+const overlayRoutes = [
+  {
+    path: 'map-components/:overlay',
+    name: 'map-components',
+    component: () => import('../views/MapComponents.vue'),
+    props: true,
+    meta: {
+      title: '覆盖物与图层管理',
+      items: [
+        {
+          props: 'map-overlays',
+          title: '覆盖物的添加与移除'
+        },
+        {
+          props: 'map-layers',
+          title: '图层的添加与移除'
+        },
+        {
+          props: 'function-control',
+          title: '地图控件'
+        }
+      ]
+    }
+  }
+]
+
+const mapStyleRoutes = [
+  {
+    path: 'map-style/:customStyle',
+    name: 'map-style',
+    component: () => import('../views/MapStyle.vue'),
+    props: true,
+    meta: {
+      title: '自定义地图样式',
+      items: [
+        {
+          props: 'custom-style',
+          title: '自定义地图'
+        },
+        {
+          props: 'building-style',
+          title: '设定楼块样式'
+        },
+        {
+          props: 'theme-style',
+          title: '标准主题样式'
+        },
+        {
+          props: 'map-content',
+          title: '地图显示要素'
+        },
+        {
+          props: 'map-showlabel',
+          title: '隐藏文字标注'
+        }
+      ]
+    }
+  }
+]
+
 export const mapGroup = {
   title: '地图',
   routes: [
     ...lifecycleRoutes,
-    ...propertyRoutes
+    ...propertyRoutes,
+    ...overlayRoutes,
+    ...mapStyleRoutes
   ]
 }

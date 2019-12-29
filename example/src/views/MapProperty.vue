@@ -7,12 +7,14 @@
         :zoom.sync="zoom"
         :city="cityInfo.city"
         :lang="lang"
-        :status="status"
+        :mapStatus="mapStatus"
         :bounds.sync="bounds"
         :limitBounds="limitBounds"
+        :defaultCursor="defaultCursor"
+        @click="clickLngLat = $event.lnglat"
         @getCity="cityInfo = $event">
       </amap-map>
-      <div class="property-box" v-if="property === 'map-lang'">
+      <div class="control-box" v-if="property === 'map-lang'">
         <p>底图语言切换</p>
         <el-radio-group v-model="lang">
           <el-radio v-for="language in languages" :key="language.lang" :label="language.lang">
@@ -20,7 +22,7 @@
           </el-radio>
         </el-radio-group>
       </div>
-      <div class="property-box" v-if="property === 'center-zoom'">
+      <div class="control-box" v-if="property === 'center-zoom'">
         <div>
           当前中心点
           <input  type="text" :value="center.lng">
@@ -34,7 +36,7 @@
           设置
         </el-button>
       </div>
-      <div class="property-box" v-if="property === 'district'">
+      <div class="control-box" v-if="property === 'district'">
         <p>当前所在行政区信息</p>
         <table>
           <tr>
@@ -59,7 +61,7 @@
           <el-button type="primary" :round="true" @click="cityInfo.city = cityName">设置</el-button>
         </div>
       </div>
-      <div class="property-box" v-if="property === 'map-bounds'">
+      <div class="control-box" v-if="property === 'map-bounds'">
         <p>
           当前地图显示范围(Bounds):
         </p>
@@ -73,14 +75,27 @@
           {{ limitBounds ? '取消限制' : '限制显示范围' }}
         </el-button>
       </div>
-      <div class="property-box" v-if="property === 'map-moving'">
+      <div class="control-box" v-if="property === 'map-moving'">
         
       </div>
-      <div class="property-box status-box" v-if="property === 'map-status'">
+      <div class="control-box status-box" v-if="property === 'map-status'">
         <p>地图状态</p>
-        <el-checkbox v-for="key in Object.keys(status)" :key="key" v-model="status[key]">
+        <el-checkbox v-for="key in Object.keys(mapStatus)" :key="key" v-model="mapStatus[key]">
           {{ key }}
         </el-checkbox>
+      </div>
+      <div class="control-box" v-if="property === 'click-to-get-lnglat'">
+        <p>鼠标点击获取经纬度</p>
+        <div class="click-lnglat">
+          {{ clickLngLat ? clickLngLat.toString() : '' }}
+        </div>
+      </div>
+      <div class="control-box" v-if="property === 'cursor-style'">
+        <el-radio-group v-model="defaultCursor">
+          <el-radio v-for="cursor in Object.keys(cursorStyle)" :key="cursor" :label="cursor">
+            <i :class="['iconfont', cursorStyle[cursor]]"></i>
+          </el-radio>
+        </el-radio-group>
       </div>
     </div>
     <div class="code-container">
@@ -103,7 +118,7 @@ export default {
       resizeEnable: true,
       zoom: 13,
       center: {lng: 121.498586, lat: 31.239637},
-      lang: 'en',
+      lang: 'zh_cn',
       languages: [
         { lang: 'en', desc: '英文底图' },
         { lang: 'zh_en', desc: '中英文对照' },
@@ -118,14 +133,22 @@ export default {
       },
       bounds: undefined,
       limitBounds: false,
-      status: {
+      mapStatus: {
         showIndoorMap: false,
         resizeEnable : true,
-        dragEnable: false,
-        keyboardEnable: false,
+        dragEnable: true,
+        keyboardEnable: true,
         doubleClickZoom: false,
-        zoomEnable: false,
+        zoomEnable: true,
         rotateEnable:  false
+      },
+      clickLngLat: undefined,
+      defaultCursor: 'default',
+      cursorStyle: {
+        default: 'iconCursor',
+        pointer: 'icon-Hand-Cursor',
+        move: 'iconmove',
+        crosshair: 'iconplus'
       }
     }
   },
@@ -134,6 +157,11 @@ export default {
       switch(old) {
         case 'map-bounds': {
           this.limitBounds = false
+          break
+        }
+        case 'click-to-get-lnglat': {
+          this.clickLngLat = undefined
+          break
         }
       }
     }
@@ -147,42 +175,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.property-box {
-  position: absolute;
-  bottom: 30px;
-  right: 30px;
-  background-color: #fff;
-  border-radius: 12px;
-  padding: 16px 20px;
+.el-radio-group {
+  display: flex;
+  flex-direction: column;
 
-  p {
-    margin: 4px 0;
-    font-size: 14px;
+  .el-radio {
+    margin: 14px 0;
   }
-
-  .el-radio-group {
-    display: flex;
-    flex-direction: column;
-
-    .el-radio {
-      margin: 14px 0;
-    }
-  }
-
-  .el-input {
-    margin: 0 4px;
-  }
-
-  table {
-    width: 60%;
-    margin: 10px 0;
-
-    td {
-      width: 50%;
-      text-align: center;
-    }
-  }  
 }
+
+.el-input {
+  margin: 0 4px;
+}
+
+table {
+  width: 60%;
+  margin: 10px 0;
+
+  td {
+    width: 50%;
+    text-align: center;
+  }
+} 
 .status-box {
   display: flex;
   flex-direction: column;
@@ -191,5 +205,18 @@ export default {
     margin: 4px 0;
   }
 
+}
+.click-lnglat {
+  min-width: 180px;
+  height: 30px;
+  line-height: 30px;
+  text-indent: 4px;
+  font-size: 14px;
+  border: 1px solid rgba(52, 152, 219, 1.0);
+  border-radius: 8px;
+}
+.iconfont {
+  font-size: 20px;
+  color: #000;
 }
 </style>
