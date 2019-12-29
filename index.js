@@ -1,12 +1,26 @@
 import {
   AmapMap,
-  AmapMarker
+  AmapMarker,
+  AmapPolyline,
+  AmapPolygon,
+  AMapRoadnet,
+  AMapSatellite,
+  AMapTilelayer,
+  AMapTraffic
 } from './package/index'
 
 import { amapLoader } from './package/util/apiloader'
 
-// const amapLoader = new ApiLoader()
-// const locaLoader = new ApiLoader()
+const components = [
+  AmapMap,
+  AmapMarker,
+  AmapPolyline,
+  AmapPolygon,
+  AMapRoadnet,
+  AMapSatellite,
+  AMapTilelayer,
+  AMapTraffic
+]
 
 export default {
   install(vm, options={}) {
@@ -15,10 +29,8 @@ export default {
 
     amapLoader.init(amapUrl, options)
 
-
-    vm.component(AmapMap.name, AmapMap)
-    vm.component(AmapMarker.name, AmapMarker)
-    // vm.component(AmapPolygon.name, AmapPolygon)
-    // vm.component(AmapPolyline.name, AmapPolyline)
+    components.forEach(comp => {
+      vm.component(comp.name, comp)
+    })
   }
 }

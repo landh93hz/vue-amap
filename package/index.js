@@ -1,12 +1,12 @@
 import AmapMap from './elements/map.vue'
 import AmapMarker from './elements/marker.vue'
-import AmapPolyline from './elements/polyline'
+import AmapPolyline from './elements/polyline.js'
 import InfoWindow from './elements/infowindow.vue'
-import MassMarks from './elements/massmarks'
-import AmapPolygon from './elements/polygon'
+import MassMarks from './elements/massmarks.vue'
+import AmapPolygon from './elements/polygon.js'
 // import LocaHeatmap from './loca/heatmap'
-// import layerFactory from './layer/factory'
 import MapBounds from './widgets/bounds.vue'
+import { AMapRoadnet, AMapSatellite, AMapTilelayer, AMapTraffic } from './layer/index'
 
 
 export { 
@@ -16,5 +16,9 @@ export {
   MassMarks,
   InfoWindow,
   AmapPolygon,
-  MapBounds
+  MapBounds,
+  AMapRoadnet,
+  AMapSatellite,
+  AMapTilelayer,
+  AMapTraffic
 }
