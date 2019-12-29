@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-menu default-active="start" @select="openMenu">
+    <el-menu :default-active="$route.path" :unique-opened="true" @select="openMenu">
       <span v-for="group in menuGroups" :key="group.title">
         <div v-if="!group.routes">
-          <el-menu-item :index="group.name">
+          <el-menu-item :index="`/${group.name}`">
             {{ group.meta.title }}
           </el-menu-item>
         </div>
@@ -15,7 +15,7 @@
               <el-menu-item 
                 v-for="item in route.meta.items" 
                 :key="item.title" 
-                :index="`${route.name}:${item.props || ''}`"
+                :index="`/${route.name}/${item.props || ''}`"
                 >
                 {{ item.title }}
               </el-menu-item>
@@ -46,10 +46,7 @@ export default {
     return { routes, menuGroups }
   },
   methods: {
-    openMenu(index) {
-      let [path, params] = index.split(':')
-      params = params || ''
-      path = `/${path}/${params}`
+    openMenu(path) {
       if (path !== this.$route.path) {
         this.$router.push({ path })
       }

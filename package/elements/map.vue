@@ -57,6 +57,7 @@ export default {
     bounds: { type: Object },
     city: { type: String },
     limitBounds: { type: Boolean },
+    status: { type: Object },
     crs: {
       type: String,
       default: 'EPSG3857',
@@ -160,6 +161,21 @@ export default {
       val 
         ? this.target.setLimitBounds(this.bounds) 
         : this.target.clearLimitBounds()
+    },
+    status: {
+      deep: true,
+      handler(val, old) {
+        const keys = Object.keys(val)
+        const status = {}
+        for (let key in keys) {
+          if (typeof(val[key]) !== 'boolean') continue
+          if (val[key] === old[key]) continue
+          status[key] = val[key]
+        }
+        if (Object.keys(status).length > 0) {
+          this.target.setStatus(status)
+        }
+      }
     }
   },
   methods: {

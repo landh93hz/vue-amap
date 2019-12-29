@@ -1,3 +1,5 @@
+import { throttle } from '../util/debounce'
+
 export default {
   data() {
     return {
@@ -26,14 +28,13 @@ export default {
       }
     },
     initEvents() {
-      // console.log(this.events.includes('click'), this.target.CLASS_NAME)
-      // this.target.on('click', (event) => {
-      //   console.log(event)
-      // })
       for (let eventName of this.events) {
         let handler = (event) => {
           this.$emit(eventName, event)
         }
+        // 如果在组件中的具有与`eventName`名称相同的`method`，
+        // 则需要同时执行组件的同名方法并发送`eventName`事件
+        // 通过`descriptor`获取与`eventName`的同名方法
         let descriptor = Object.getOwnPropertyDescriptor(this, eventName)
         if (descriptor && typeof descriptor.value === 'function') {
           handler = (event) => {
@@ -41,6 +42,7 @@ export default {
             this.$emit(eventName, event)
           }
         }
+        handler = throttle(handler, 200)
         this.handleMap[eventName] = handler
         this.target.on(eventName, handler)
       }

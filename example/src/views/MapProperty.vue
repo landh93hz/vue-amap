@@ -7,6 +7,7 @@
         :zoom.sync="zoom"
         :city="cityInfo.city"
         :lang="lang"
+        :status="status"
         :bounds.sync="bounds"
         :limitBounds="limitBounds"
         @getCity="cityInfo = $event">
