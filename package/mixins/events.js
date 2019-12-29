@@ -42,7 +42,10 @@ export default {
             this.$emit(eventName, event)
           }
         }
-        handler = throttle(handler, 200)
+        // 对`mousemove`节流
+        if (eventName === 'mousemove') {
+          handler = throttle(handler, 500)
+        }        
         this.handleMap[eventName] = handler
         this.target.on(eventName, handler)
       }

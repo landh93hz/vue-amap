@@ -1,9 +1,10 @@
+
 import ElementMixin from '../mixins/element'
 import EventMixin from '../mixins/events'
 import Vue from 'vue'
 import { amapLoader } from '../util/apiloader'
 
-export default Vue.extend({
+export default {
   name: 'amap-polygon',
   mixins: [ElementMixin, EventMixin],
   render() {
@@ -54,4 +55,4 @@ export default Vue.extend({
       this.target && this.draggable && this.$emit('update:path', this.target.getPath())
     }
   }
-})
+}

@@ -1,9 +1,9 @@
+
 import EventMixin from '../mixins/events'
 import ElementMixin from '../mixins/element'
-import Vue from 'vue'
 import { amapLoader } from '../util/apiloader'
 
-export default Vue.extend({
+export default {
   name: 'amap-polyline',
   mixins: [EventMixin, ElementMixin],
   data() {
@@ -68,4 +68,4 @@ export default Vue.extend({
   render() {
     return this.$slots.default
   }
-})
+}

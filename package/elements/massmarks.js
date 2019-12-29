@@ -1,9 +1,9 @@
-import Vue from 'vue'
+
 import { amapLoader } from '../util/apiloader'
 import EventMixin from '../mixins/events'
 import ElementMixin from '../mixins/element'
 
-export default Vue.extend({
+export default {
   name: 'amap-massmarks',
   mixins: [ElementMixin, EventMixin],
   render() {
@@ -52,5 +52,4 @@ export default Vue.extend({
       this.target && this.target.setData(val)
     }
   }
-  
-})
+}

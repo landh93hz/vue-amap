@@ -57,7 +57,8 @@ export default {
     bounds: { type: Object },
     city: { type: String },
     limitBounds: { type: Boolean },
-    status: { type: Object },
+    mapStatus: { type: Object },
+    defaultCursor: { type: String },
     crs: {
       type: String,
       default: 'EPSG3857',
@@ -107,10 +108,8 @@ export default {
     }
   },
   created() {
-    console.log('created')
   },
   mounted() {
-    console.log('mounted')
     let keys = Object.keys(this.$props)
     let options = {}
     for (let key of keys) {
@@ -122,7 +121,7 @@ export default {
       let center
       if (Array.isArray(this.center)) {
         center = this.center
-      } else {
+      } else if( this.center ) {
         const { lng, lat } = this.center
         center = new AMap.LngLat(lng, lat)
       }
@@ -162,12 +161,14 @@ export default {
         ? this.target.setLimitBounds(this.bounds) 
         : this.target.clearLimitBounds()
     },
-    status: {
+    mapStatus: {
       deep: true,
+      immediate: false,
       handler(val, old) {
         const keys = Object.keys(val)
         const status = {}
         for (let key in keys) {
+          // console.log('new', val[key], 'old', old[key], 'prop', this.mapStatus[key])
           if (typeof(val[key]) !== 'boolean') continue
           if (val[key] === old[key]) continue
           status[key] = val[key]
@@ -176,6 +177,9 @@ export default {
           this.target.setStatus(status)
         }
       }
+    },
+    defaultCursor(val) {
+      this.target && this.target.setDefaultCursor(val)
     }
   },
   methods: {
@@ -234,13 +238,10 @@ export default {
     }
   },
   beforeDestroy() {
-    console.log('before destroy')
   },
   destroyed() {
-    console.log('destroyed')
   },
   deactivated() {
-    console.log('deactivated')
   }
 }
 </script>
