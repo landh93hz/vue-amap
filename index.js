@@ -6,7 +6,12 @@ import {
   AMapRoadnet,
   AMapSatellite,
   AMapTilelayer,
-  AMapTraffic
+  AMapTraffic,
+  AMapControlBar,
+  AMapMapType,
+  AMapScale, 
+  AMapToolBar, 
+  AMapOverView
 } from './package/index'
 
 import { amapLoader } from './package/util/apiloader'
@@ -19,7 +24,12 @@ const components = [
   AMapRoadnet,
   AMapSatellite,
   AMapTilelayer,
-  AMapTraffic
+  AMapTraffic,
+  AMapControlBar,
+  AMapMapType,
+  AMapScale, 
+  AMapToolBar, 
+  AMapOverView
 ]
 
 export default {

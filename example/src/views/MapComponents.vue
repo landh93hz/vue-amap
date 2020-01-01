@@ -20,7 +20,14 @@
           <amap-satellite :visible="checkedLayers.includes('satellite')"></amap-satellite>
           <amap-roadnet :visible="checkedLayers.includes('roadnet')"></amap-roadnet>
           <amap-traffic :visible="checkedLayers.includes('traffic')"></amap-traffic>
-        </div>   
+        </div>
+        <div v-if="overlay === 'function-control'">
+          <amap-controlbar :visible="checkedControls.includes('controlbar')"></amap-controlbar>
+          <amap-maptype :visible="checkedControls.includes('maptype')"></amap-maptype>
+          <amap-overview :visible="checkedControls.includes('overview')"></amap-overview>
+          <amap-scale :visible="checkedControls.includes('scale')"></amap-scale>
+          <amap-toolbar :visible="checkedControls.includes('toolbar')"></amap-toolbar>
+        </div>
       </amap-map>
       <div class="control-box" v-if="overlay === 'map-overlays'">
         <p>添加/删除覆盖物</p>
@@ -37,6 +44,14 @@
             :key="layer.title" 
             :label="layer.title">
             {{ layer.label }}
+          </el-checkbox>
+        </el-checkbox-group>
+      </div>
+      <div class="control-box" v-if="overlay === 'function-control'">
+        <p>添加地图控件</p>
+        <el-checkbox-group v-model="checkedControls">
+          <el-checkbox v-for="control in controls" :key="control.title" :label="control.title">
+            {{ control.label }}
           </el-checkbox>
         </el-checkbox-group>
       </div>
@@ -79,7 +94,15 @@ export default {
         { title: 'roadnet', label: '路网图层'},
         { title: 'traffic', label: '交通图层' }
       ],
-      checkedLayers: []
+      checkedLayers: [],
+      controls: [
+        { title: 'controlbar', label: '地图控件' },
+        { title: 'maptype', label: '切换图层' },
+        { title: 'overview', label: '鹰眼插件' },
+        { title: 'scale', label: '比例尺' },
+        { title: 'toolbar', label: '工具条插件' }
+      ],
+      checkedControls: []
     }
   },
   methods: {
