@@ -1,7 +1,7 @@
 /**
  * 以group为分组标准，每一group中按照功能进行导航，而在每一个功能中，
  * 可以传入不同的功能选项
- * 
+ *
  */
 
 const lifecycleRoutes = [
@@ -28,7 +28,7 @@ const lifecycleRoutes = [
       ]
     }
   }
-]
+];
 
 const propertyRoutes = [
   {
@@ -76,9 +76,9 @@ const propertyRoutes = [
           title: '设置鼠标样式'
         }
       ]
-    },
+    }
   }
-]
+];
 
 const overlayRoutes = [
   {
@@ -104,7 +104,7 @@ const overlayRoutes = [
       ]
     }
   }
-]
+];
 
 const mapStyleRoutes = [
   {
@@ -138,7 +138,7 @@ const mapStyleRoutes = [
       ]
     }
   }
-]
+];
 
 export const mapGroup = {
   title: '地图',
@@ -148,4 +148,4 @@ export const mapGroup = {
     ...overlayRoutes,
     ...mapStyleRoutes
   ]
-}
+};

@@ -1,13 +1,13 @@
 
-import { amapLoader } from '../util/apiloader'
-import EventMixin from '../mixins/events'
-import ElementMixin from '../mixins/element'
+import { amapLoader } from '../util/apiloader';
+import EventMixin from '../mixins/events';
+import ElementMixin from '../mixins/element';
 
 export default {
   name: 'amap-massmarks',
   mixins: [ElementMixin, EventMixin],
   render() {
-    return this.$slots.default
+    return this.$slots.default;
   },
   props: {
     zIndex: Number,
@@ -36,20 +36,20 @@ export default {
         'touchstart',
         'touchend'
       ]
-    }
+    };
   },
   created() {
-    this.options.style = this.pointStyle
-    delete this.options.pointStyle
-    delete this.options.data
+    this.options.style = this.pointStyle;
+    delete this.options.pointStyle;
+    delete this.options.data;
     amapLoader.then(AMap => {
-      this.target = new AMap.MassMarks(this.data, this.options)
-      this.visible || this.target.hide()
-    })
+      this.target = new AMap.MassMarks(this.data, this.options);
+      this.visible || this.target.hide();
+    });
   },
   watch: {
     data(val) {
-      this.target && this.target.setData(val)
+      this.target && this.target.setData(val);
     }
   }
-}
+};

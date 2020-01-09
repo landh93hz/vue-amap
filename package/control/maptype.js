@@ -1,5 +1,5 @@
-import ControlMixin from '../mixins/control'
-import EventMixin from '../mixins/events'
+import ControlMixin from '../mixins/control';
+import EventMixin from '../mixins/events';
 
 export default {
   name: 'amap-maptype',
@@ -7,11 +7,11 @@ export default {
   data() {
     return {
       key: 'MapType'
-    }
+    };
   },
   props: {
     defaultType: Number,
     showTraffic: Boolean,
     showRoad: Boolean
   }
-}
+};

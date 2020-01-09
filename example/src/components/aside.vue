@@ -28,29 +28,29 @@
 </template>
 
 <script>
-import menuGroups from '../router/index'
+import menuGroups from '../router/index';
 
 const routes = menuGroups.reduce((prev, curr) => {
   if (curr.routes) 
-    return [...prev, ...curr.routes]
+    return [...prev, ...curr.routes];
   else
-    return [...prev, curr]
-}, [])
+    return [...prev, curr];
+}, []);
 
 export default {
   created() {
-    const { routes } = this.$router.options
-    this.routes = routes[1].children
+    const { routes } = this.$router.options;
+    this.routes = routes[1].children;
   },
   data() {
-    return { routes, menuGroups }
+    return { routes, menuGroups };
   },
   methods: {
     openMenu(path) {
       if (path !== this.$route.path) {
-        this.$router.push({ path })
+        this.$router.push({ path });
       }
     }
   }
-}
+};
 </script>

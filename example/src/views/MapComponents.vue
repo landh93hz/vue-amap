@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import AMap from 'AMap'
+import AMap from 'AMap';
 
 export default {
   props: {
@@ -71,28 +71,28 @@ export default {
     return {
       map: undefined,
       marker: undefined,
-      position: new AMap.LngLat(121.499358,31.240171),
+      position: new AMap.LngLat(121.499358, 31.240171),
       path: [
-        new AMap.LngLat(121.535579,31.250004), 
-        new AMap.LngLat(121.520473,31.247656),
-        new AMap.LngLat(121.503135,31.245748),        
-        new AMap.LngLat(121.49438,31.242666),
-        new AMap.LngLat(121.494209,31.234887)
+        new AMap.LngLat(121.535579, 31.250004), 
+        new AMap.LngLat(121.520473, 31.247656),
+        new AMap.LngLat(121.503135, 31.245748),        
+        new AMap.LngLat(121.49438, 31.242666),
+        new AMap.LngLat(121.494209, 31.234887)
       ],
       boundaries: [
-        new AMap.LngLat(121.460391,31.270695), 
-        new AMap.LngLat(121.475154,31.228282),
-        new AMap.LngLat(121.49026,31.21184),
-        new AMap.LngLat(121.552917,31.216098),
-        new AMap.LngLat(121.583301,31.241345),
-        new AMap.LngLat(121.55841,31.270841),
-        new AMap.LngLat(121.501247,31.282432),
+        new AMap.LngLat(121.460391, 31.270695), 
+        new AMap.LngLat(121.475154, 31.228282),
+        new AMap.LngLat(121.49026, 31.21184),
+        new AMap.LngLat(121.552917, 31.216098),
+        new AMap.LngLat(121.583301, 31.241345),
+        new AMap.LngLat(121.55841, 31.270841),
+        new AMap.LngLat(121.501247, 31.282432),
       ],
       overlays: ['marker', 'polyline', 'polygon', 'circle'],
       checkedOverlays: [],
       layers: [
         { title: 'satellite', label: '卫星图层' }, 
-        { title: 'roadnet', label: '路网图层'},
+        { title: 'roadnet', label: '路网图层' },
         { title: 'traffic', label: '交通图层' }
       ],
       checkedLayers: [],
@@ -104,11 +104,11 @@ export default {
         { title: 'toolbar', label: '工具条插件' }
       ],
       checkedControls: []
-    }
+    };
   },
   methods: {
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

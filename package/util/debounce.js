@@ -4,35 +4,40 @@
  * @param {Number} duration 
  * @returns {Function} 防抖
  */
-function debounce(func, duration=200) {
-  let timer
-  return function(...args) {
+function debounce(func, duration = 200) {
+  let timer;
+  return function debouncedFunc(...args) {
     if (timer) {
-      clearTimeout(timer)
-      timer = null
+      clearTimeout(timer);
+      timer = null;
     }
     timer = setTimeout(() => {
-      func.call(this, ...args)
-      clearTimeout(timer)
-      timer = null
-    }, duration)
-  }
+      func.call(this, ...args);
+      clearTimeout(timer);
+      timer = null;
+    }, duration);
+  };
 }
 
-function throttle(func, duration=500) {
-  let timer
-  return function(...args) {
+/**
+ * 节流
+ * @param {Function} func 
+ * @param {Number} duration 
+ */
+function throttle(func, duration = 500) {
+  let timer;
+  return function throttleFunc(...args) {
     if (!timer) {
       timer = setTimeout(() => {
-        func.call(this, ...args)
-        clearTimeout(timer)
-        timer = null
-      }, duration)
+        func.call(this, ...args);
+        clearTimeout(timer);
+        timer = null;
+      }, duration);
     }
-  }
+  };
 }
 
-export { debounce, throttle }
+export { debounce, throttle };
 
 // export default debounce
 

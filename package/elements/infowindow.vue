@@ -5,9 +5,9 @@
 </template>
 
 <script>
-import ElementMixin from '../mixins/element'
-import EventMixin from '../mixins/events'
-import { amapLoader } from '../util/apiloader'
+import ElementMixin from '../mixins/element';
+import EventMixin from '../mixins/events';
+import { amapLoader } from '../util/apiloader';
 
 export default {
   name: 'amap-infowindow',
@@ -33,45 +33,45 @@ export default {
         'change',
         'close'
       ]
-    }
+    };
   },
   watch: {
     position(val) {
-      this.target && this.target.setPosition(val)
+      this.target && this.target.setPosition(val);
     },
     visible(val) {
       if (!this.target) {
-        return
+        return;
       }
       if (val) {
         this.getMap(map => {
-          !this.target.getIsOpen() && this.target.open(map, this.position)
-        })
+          !this.target.getIsOpen() && this.target.open(map, this.position);
+        });
       } else {
-        this.target.getIsOpen() && this.target.close()
+        this.target.getIsOpen() && this.target.close();
       }
     }
   },
   created() {
     amapLoader.then(AMap => {
-      this.target = new AMap.InfoWindow(this.options)
+      this.target = new AMap.InfoWindow(this.options);
       
-      this.getMap((map) => {
+      this.getMap(map => {
         this.visible
           ? this.target.open(map, this.position)
-          : this.target.close()
-      })
-    })
+          : this.target.close();
+      });
+    });
   },
   mounted() {
-    let $el = this.$refs.hiddenBox
+    const $el = this.$refs.hiddenBox;
     if (!$el.firstChild) {
-      return
+      return;
     }
-    let $content = $el.firstChild
-    this.target.setContent($content)
+    const $content = $el.firstChild;
+    this.target.setContent($content);
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

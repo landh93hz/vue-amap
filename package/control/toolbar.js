@@ -1,5 +1,5 @@
-import ControlMixin from '../mixins/control'
-import EventMixin from '../mixins/events'
+import ControlMixin from '../mixins/control';
+import EventMixin from '../mixins/events';
 
 export default {
   name: 'amap-toolbar',
@@ -25,20 +25,20 @@ export default {
         'location',
         'zoomchanged'
       ]
-    }
+    };
   },
   watch: {
     ruler(val) {
-      this.target && val ? this.target.showRuler : this.target.hideRuler
+      this.target && val ? this.target.showRuler : this.target.hideRuler;
     },
     offset(val) {
-      this.target && this.target.setOffset(val)
+      this.target && this.target.setOffset(val);
     },
     direction(val) {
-      this.target && val ? this.target.showDirection() : this.target.hideDirection()
+      this.target && val ? this.target.showDirection() : this.target.hideDirection();
     },
     locate(val) {
-      this.target && val ? this.target.showLocation() : this.target.hideLocation()
+      this.target && val ? this.target.showLocation() : this.target.hideLocation();
     }
   }
-}
+};

@@ -1,7 +1,7 @@
 
-import EventMixin from '../mixins/events'
-import ElementMixin from '../mixins/element'
-import { amapLoader } from '../util/apiloader'
+import EventMixin from '../mixins/events';
+import ElementMixin from '../mixins/element';
+import { amapLoader } from '../util/apiloader';
 
 export default {
   name: 'amap-polyline',
@@ -25,7 +25,7 @@ export default {
         'touchmove',
         'touchend'
       ],
-    }
+    };
   },
   props: {
     zIndex: Number,
@@ -41,7 +41,7 @@ export default {
       type: String,
       default: 'solid',
       validator(value) {
-        return ['solid', 'dashed'].indexOf(value) !== -1
+        return ['solid', 'dashed'].indexOf(value) !== -1;
       }
     },
     strokeDasharray: Array,
@@ -57,15 +57,15 @@ export default {
   },
   watch: {
     path(val) {
-      this.target && this.target.setPath(val)
+      this.target && this.target.setPath(val);
     }
   },
   created() {
     amapLoader.then(AMap => {
-      this.target = new AMap.Polyline(this.options)
-    })
+      this.target = new AMap.Polyline(this.options);
+    });
   },
   render() {
-    return this.$slots.default
+    return this.$slots.default;
   }
-}
+};

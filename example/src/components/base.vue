@@ -18,10 +18,10 @@
 </template>
 
 <script>
-import mAside from './aside'
+import mAside from './aside';
 export default {
   components: { mAside }
-}
+};
 </script>
 
 <style lang="scss" scoped>

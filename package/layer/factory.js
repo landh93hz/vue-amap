@@ -1,5 +1,5 @@
-import ElementMixin from '../mixins/element'
-import EventMixin from '../mixins/events'
+import ElementMixin from '../mixins/element';
+import EventMixin from '../mixins/events';
 
 // 如何异步的获取Ctor，同时不影响component的创建？
 
@@ -10,47 +10,47 @@ import EventMixin from '../mixins/events'
  * @param {String} name 
  * @param {Object} props 
  */
-function layerFactory(Ctor, name, props={}) {
+function layerFactory(Ctor, name, props = {}) {
   const baseProps = {
     zIndex: Number,
     opacity: Number,
     zooms: Array,
     detectRetina: Boolean
-  }
-  props = {...baseProps, ...props}
+  };
+  props = { ...baseProps, ...props };
   return {
     name,
     props,
     mixins: [ElementMixin, EventMixin],
     render() {
-      return this.$slots.default
+      return this.$slots.default;
     },
     data() {
       return {
         options: {},
         target: null
-      }
+      };
     },
     created() {
       if (Ctor instanceof Promise || Ctor.then) {
         Ctor.then(ctor => {
-          this.createTarget(ctor)
-        })
+          this.createTarget(ctor);
+        });
       }
       else if (typeof Ctor === 'function') {
-        this.createTarget(Ctor)
+        this.createTarget(Ctor);
       }
     },
     methods: {
       createTarget(Func) {
         if (typeof Func !== 'function') {
-          throw new TypeError(`Ctor must be a constructor or Promise instance of constructor`)
+          throw new TypeError('Ctor must be a constructor or Promise instance of constructor');
         }
-        this.target = new Func(this.options)
-        !this.visible && this.target.hide()
+        this.target = new Func(this.options);
+        !this.visible && this.target.hide();
       }
     }
-  }
+  };
 }
 
-export default layerFactory
+export default layerFactory;

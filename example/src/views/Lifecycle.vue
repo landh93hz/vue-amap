@@ -15,9 +15,6 @@
 </template>
 
 <script>
-import AMAp from 'AMap'
-
-console.log(AMap)
 
 export default {
   props: {
@@ -28,22 +25,23 @@ export default {
   },
   data() {
     return {
-      center:  [116.397428, 39.90923], // 初始化地图中心点
+      // 初始化地图中心点
+      center: [116.397428, 39.90923],
       zoom: 11,
       resizeEnable: true,
       map: null
-    }
+    };
   },
   methods: {
     handleComplete(map) {
-      this.map = map
+      this.map = map;
       if (this.phase === 'load-map') {
-        console.log('地图加载完成')
+        console.log('地图加载完成');
       }
     }
   },
   beforeDestroy() {
 
   }
-}
+};
 </script>

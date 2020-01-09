@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import ElementMixin from '../mixins/element'
-import EventMixin from '../mixins/events'
-import { amapLoader } from '../util/apiloader'
+import ElementMixin from '../mixins/element';
+import EventMixin from '../mixins/events';
+import { amapLoader } from '../util/apiloader';
 
 export default {
   name: 'amap-marker',
@@ -28,8 +28,8 @@ export default {
     animation: String,
     title: String,
     shadow: Object,
-    content: [ String, HTMLElement ],
-    label: [ Object, String],
+    content: [String, HTMLElement],
+    label: [Object, String],
     labelOffset: Object,
     labelDirection: String,
     extData: Object,
@@ -56,16 +56,16 @@ export default {
         'touchmove',
         'touchend'
       ]
-    }
+    };
   },
   watch: {
     position(val) {
-      this.target && this.target.setPosition(val)
+      this.target && this.target.setPosition(val);
     },
     label(val) {
-      let $label = document.createElement('div')
-      $label.textContent = val
-      this.target && this.target.setLabel({ content: $label.outerHTML })
+      const $label = document.createElement('div');
+      $label.textContent = val;
+      this.target && this.target.setLabel({ content: $label.outerHTML });
     }
   },
   created() {
@@ -73,64 +73,64 @@ export default {
   },
   mounted() {
     amapLoader.then(AMap => {
-      this.target = new AMap.Marker(this.options)
-      this.visible || this.target.hide()
-      let { label } = this
+      this.target = new AMap.Marker(this.options);
+      this.visible || this.target.hide();
+      const { label } = this;
       if (typeof label === 'string') {
-        let $label = document.createElement('div')
-        $label.textContent = label
-        this.target && this.target.setLabel({ content: $label.outerHTML })
+        const $label = document.createElement('div');
+        $label.textContent = label;
+        this.target && this.target.setLabel({ content: $label.outerHTML });
       }
-      this.renderSlot()
-    })
+      this.renderSlot();
+    });
   },
   methods: {
     renderSlot() {
-      const { content, label } = this
+      const { content, label } = this;
       if (content)  {
-        return this.target.setContent(content)
+        return this.target.setContent(content);
       }
       if (label) {
-        const labelObj = label
+        let labelObj = label;
         if (typeof label === 'string') {
           labelObj = {
             offset: this.labelOffset,
             content: label,
             direction: this.labelDirection || 'right'
-          }
+          };
         }
-        return this.target.setLabel(labelObj)
+        return this.target.setLabel(labelObj);
       }
-      const { content: contentNodes, label: labelNodes } = this.$slots
+      const { content: contentNodes, label: labelNodes } = this.$slots;
 
       if (contentNodes) {
         if (contentNodes.length > 1) {
-          throw new Error('multi content slots in single marker')
+          throw new Error('multi content slots in single marker');
         }
-        const node = contentNodes[0]
-        const elm = node.elm
+        const node = contentNodes[0];
+        const elm = node.elm;
         if (elm) {
-          return this.target.setContent(elm)
+          return this.target.setContent(elm);
         }
       }
       if (labelNodes) {
         if (labelNodes.length > 1) {
-          throw new Error('multi label slots in single marker')
+          throw new Error('multi label slots in single marker');
         }
-        const node = labelNodes[0]
-        const elm = node.elm.outerHTML
+        const node = labelNodes[0];
+        const elm = node.elm.outerHTML;
         if (elm) {
           const labelObj = {
             offset: this.labelOffset,
             content: elm,
             direction: this.labelDirection || 'right'
-          }
-          return this.target.setLabel(labelObj)
+          };
+          return this.target.setLabel(labelObj);
         }
       }
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

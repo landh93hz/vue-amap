@@ -1,5 +1,5 @@
-import ControlMixin from '../mixins/control'
-import EventMixin from '../mixins/events'
+import ControlMixin from '../mixins/control';
+import EventMixin from '../mixins/events';
 
 
 export default {
@@ -18,11 +18,11 @@ export default {
         'open',
         'close'
       ]
-    }
+    };
   },
   watch: {
     isOpen(val) {
-      val ? this.target.open() : this.target.close()
+      val ? this.target.open() : this.target.close();
     }
   }
-}
+};

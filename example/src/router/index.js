@@ -1,4 +1,4 @@
-import { mapGroup } from './map'
+import { mapGroup } from './map';
 
 
 const start = {
@@ -8,9 +8,9 @@ const start = {
   meta: {
     title: '起步'
   }
-}
+};
 
 export default [
   start,
   mapGroup
-]
+];

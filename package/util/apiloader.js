@@ -19,27 +19,27 @@ function lazyLoadApi(name, url, options) {
   return new Promise((resolve, reject) => {
     // 如果在html文件中手动添加了script标签，则直接返回window对象上的属性
     if (window[name]) {
-      resolve(window[name])
+      resolve(window[name]);
     } else {
-      const $script = document.createElement('script')
-      let src = url + '?'
-      let params = ''
-      for (let key in options) {
-        params += `${key}=${options[key]}&`
+      const $script = document.createElement('script');
+      const src = url + '?';
+      let params = '';
+      for (const key in options) {
+        params += `${key}=${options[key]}&`;
       }
-      params.slice(0, params.length - 1)
+      params.slice(0, params.length - 1);
       
-      $script.src = src + params
-      document.head.append($script)
-      $script.onload = function() {
+      $script.src = src + params;
+      document.head.append($script);
+      $script.onload = function onload() {
         if (window[name]) {
-          resolve(window[name])
+          resolve(window[name]);
         } else {
-          reject(undefined)
+          reject(undefined);
         }
-      }
+      };
     }
-  })
+  });
 }
 
 
@@ -49,12 +49,12 @@ class ApiLoader {
     this.callbacks = {
       resolve: [],
       reject: []
-    }
-    this._status = 'pending'
-    this.value = null
-    this.reason = ''
-    this.installed = false
-    this.name = name
+    };
+    this._status = 'pending';
+    this.value = null;
+    this.reason = '';
+    this.installed = false;
+    this.name = name;
   }
   
   /**
@@ -65,62 +65,62 @@ class ApiLoader {
    */
   init(url, options) {
     if (this.installed) {
-      throw new Error(`Reapted loading API of ${this.name}`)
+      throw new Error(`Reapted loading API of ${this.name}`);
     }
-    const lazyLoader = lazyLoadApi(this.name, url, options)
+    const lazyLoader = lazyLoadApi(this.name, url, options);
     lazyLoader.then((...value) => {
-      this.value = value
-      this.status = 'resolved'
-      this.installed = true
+      this.value = value;
+      this.status = 'resolved';
+      this.installed = true;
     }).catch(() => {
-      this.reason = `Failed to load ${name} API at given ${url}`
-      this.status = 'rejected'
-    })
+      this.reason = `Failed to load ${name} API at given ${url}`;
+      this.status = 'rejected';
+    });
   }
 
   get status() {
-    return this._status
+    return this._status;
   }
 
   set status(newStat) {
     if (this.status !== 'pending') return;
 
-    this._status = newStat
+    this._status = newStat;
     if (this.status === 'resolved') {
-      while(this.callbacks.resolve.length > 0) {
-        const onFullfill = this.callbacks.resolve.shift()
-        onFullfill(...this.value)
+      while (this.callbacks.resolve.length > 0) {
+        const onFullfill = this.callbacks.resolve.shift();
+        onFullfill(...this.value);
       }
     } else {
-      while(this.callbacks.reject.length > 0) {
-        const onReject = this.callbacks.reject.shift()
-        onReject(this.reason)
+      while (this.callbacks.reject.length > 0) {
+        const onReject = this.callbacks.reject.shift();
+        onReject(this.reason);
       }
     }
   }
 
   then(resolve, reject) {
-    switch(this.status) {
+    switch (this.status) {
       case 'pending': {
         if (resolve && typeof(resolve) === 'function') {
-          this.callbacks.resolve.push(resolve)
+          this.callbacks.resolve.push(resolve);
         }
         if (reject && typeof(reject) === 'function') {
-          this.callbacks.reject.push(reject)
+          this.callbacks.reject.push(reject);
         }
-        break
+        break;
       }
       case 'resolved': {
-        resolve(...this.value)
-        break
+        resolve(...this.value);
+        break;
       }
       case 'rejected': {
-        reject(this.reason)
-        break
+        reject(this.reason);
+        break;
       }
     }
   }
 }
 
-export const amapLoader = new ApiLoader('AMap')
-export const locaLoader = new ApiLoader()
+export const amapLoader = new ApiLoader('AMap');
+export const locaLoader = new ApiLoader();

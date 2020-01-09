@@ -1,14 +1,13 @@
 
-import ElementMixin from '../mixins/element'
-import EventMixin from '../mixins/events'
-import Vue from 'vue'
-import { amapLoader } from '../util/apiloader'
+import ElementMixin from '../mixins/element';
+import EventMixin from '../mixins/events';
+import { amapLoader } from '../util/apiloader';
 
 export default {
   name: 'amap-polygon',
   mixins: [ElementMixin, EventMixin],
   render() {
-    return this.$slots.default
+    return this.$slots.default;
   },
   props: {
     zIndex: Number,
@@ -43,16 +42,16 @@ export default {
         'touchmove',
         'touchend'
       ]
-    }
+    };
   },
   created() {
     amapLoader.then(AMap => {
-      this.target = new AMap.Polygon(this.options)
-    })
+      this.target = new AMap.Polygon(this.options);
+    });
   },
   methods: {
     dragend() {
-      this.target && this.draggable && this.$emit('update:path', this.target.getPath())
+      this.target && this.draggable && this.$emit('update:path', this.target.getPath());
     }
   }
-}
+};

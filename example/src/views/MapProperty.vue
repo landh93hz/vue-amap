@@ -117,7 +117,7 @@ export default {
     return {
       resizeEnable: true,
       zoom: 13,
-      center: {lng: 121.498586, lat: 31.239637},
+      center: { lng: 121.498586, lat: 31.239637 },
       lang: 'zh_cn',
       languages: [
         { lang: 'en', desc: '英文底图' },
@@ -135,12 +135,12 @@ export default {
       limitBounds: false,
       mapStatus: {
         showIndoorMap: false,
-        resizeEnable : true,
+        resizeEnable: true,
         dragEnable: true,
         keyboardEnable: true,
         doubleClickZoom: false,
         zoomEnable: true,
-        rotateEnable:  false
+        rotateEnable: false
       },
       clickLngLat: undefined,
       defaultCursor: 'default',
@@ -150,18 +150,18 @@ export default {
         move: 'iconmove',
         crosshair: 'iconplus'
       }
-    }
+    };
   },
   watch: {
     property(val, old) {
-      switch(old) {
+      switch (old) {
         case 'map-bounds': {
-          this.limitBounds = false
-          break
+          this.limitBounds = false;
+          break;
         }
         case 'click-to-get-lnglat': {
-          this.clickLngLat = undefined
-          break
+          this.clickLngLat = undefined;
+          break;
         }
       }
     }
@@ -171,7 +171,7 @@ export default {
 
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>

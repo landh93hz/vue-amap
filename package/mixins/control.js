@@ -1,4 +1,4 @@
-import { amapLoader } from '../util/apiloader'
+import { amapLoader } from '../util/apiloader';
 
 export default {
   props: {
@@ -10,77 +10,77 @@ export default {
       target: null,
       options: null,
       key: ''
-    }
+    };
   },
   watch: {
     visible(val) {
       if (this.target) {
-        val ? this.showTarget() : this.hideTarget()
+        val ? this.showTarget() : this.hideTarget();
       }
     }
   },
   created() {
-    !this.options && (this.options = {})
-    const keys = Object.keys(this.$props)
-    for (let key of keys) {
+    !this.options && (this.options = {});
+    const keys = Object.keys(this.$props);
+    for (const key of keys) {
       if (key === 'visible') {
-        continue
+        continue;
       }
       if (this.$props[key] !== undefined) {
-        this.options[key] = this.$props[key]
+        this.options[key] = this.$props[key];
       }
     }
 
-    const name = this.key
+    const name = this.key;
     amapLoader.then(AMap => {
-      const Ctor = AMap[name]
-      if (!Ctor) throw new Error(`${name} is a plugin, you have to add it before invoked`)
-      this.createTarget(Ctor)
-    })
+      const Ctor = AMap[name];
+      if (!Ctor) throw new Error(`${name} is a plugin, you have to add it before invoked`);
+      this.createTarget(Ctor);
+    });
   },
   beforeMount() {
-    this.getMap(this.mapGetter)
+    this.getMap(this.mapGetter);
   },
   render() {
-    return this.$slots.default
+    return this.$slots.default;
   },
   methods: {
     createTarget(Ctor) {
-      this.target = new Ctor(this.options)
+      this.target = new Ctor(this.options);
     },
     mapGetter(map) {
       setTimeout(() => {
         if (this.target) {
-          map.addControl(this.target)
-          this.visible || this.hideTarget()
+          map.addControl(this.target);
+          this.visible || this.hideTarget();
         }
-      }, 0)
+      }, 0);
     },
     addControl(map) {
-      this.target && map.addControl(this.target)
+      this.target && map.addControl(this.target);
     },
     removeControl(map) {
-      this.target && map && map.removeControl(this.target)
+      this.target && map && map.removeControl(this.target);
     },
     showTarget() {
       // 部分控件没有`show`,`hide`方法，因此通过`addControl`与`removeControl`
       // 的方法实现显示与隐藏
       try {
-        this.target.show()
-      } catch(_) {
-        this.getMap(this.addControl)
+        this.target.show();
+      } catch (_) {
+        this.getMap(this.addControl);
       }
     },
     hideTarget() {
       try {
-        this.target.hide()
-      } catch(_) {
-        this.getMap(this.removeControl)
+        this.target.hide();
+      } catch (_) {
+        this.getMap(this.removeControl);
       }
     }
   },
   beforeDestroy() {
-    this.getMap(this.removeControl)
-    this.target = null
+    this.getMap(this.removeControl);
+    this.target = null;
   }
-}
+};
