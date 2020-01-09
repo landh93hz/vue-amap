@@ -20,7 +20,6 @@ function lazyLoadApi(name, url, options) {
     // 如果在html文件中手动添加了script标签，则直接返回window对象上的属性
     if (window[name]) {
       resolve(window[name])
-      console.log(`${name} has been loaded`)
     } else {
       const $script = document.createElement('script')
       let src = url + '?'

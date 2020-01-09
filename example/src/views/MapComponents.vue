@@ -22,6 +22,7 @@
           <amap-traffic :visible="checkedLayers.includes('traffic')"></amap-traffic>
         </div>
         <div v-if="overlay === 'function-control'">
+          <!-- TODO: 控件的移除存在bug -->
           <amap-controlbar :visible="checkedControls.includes('controlbar')"></amap-controlbar>
           <amap-maptype :visible="checkedControls.includes('maptype')"></amap-maptype>
           <amap-overview :visible="checkedControls.includes('overview')"></amap-overview>

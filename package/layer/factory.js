@@ -11,7 +11,7 @@ import EventMixin from '../mixins/events'
  * @param {Object} props 
  */
 function layerFactory(Ctor, name, props={}) {
-  let baseProps = {
+  const baseProps = {
     zIndex: Number,
     opacity: Number,
     zooms: Array,

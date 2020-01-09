@@ -59,6 +59,7 @@ export default {
     limitBounds: { type: Boolean },
     mapStatus: { type: Object },
     defaultCursor: { type: String },
+    showLabel: { type: Boolean, default: true },
     crs: {
       type: String,
       default: 'EPSG3857',
@@ -180,6 +181,12 @@ export default {
     },
     defaultCursor(val) {
       this.target && this.target.setDefaultCursor(val)
+    },
+    features(val) {
+      this.target && this.target.setFeatures(val)
+    },
+    mapStyle(val) {
+      this.target && this.target.setMapStyle(val)
     }
   },
   methods: {

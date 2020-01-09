@@ -15,6 +15,10 @@
 </template>
 
 <script>
+import AMAp from 'AMap'
+
+console.log(AMap)
+
 export default {
   props: {
     phase: {

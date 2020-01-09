@@ -6,7 +6,7 @@ import MassMarks from './elements/massmarks'
 import AmapPolygon from './elements/polygon.js'
 // import LocaHeatmap from './loca/heatmap'
 import MapBounds from './widgets/bounds.vue'
-import { AMapRoadnet, AMapSatellite, AMapTilelayer, AMapTraffic } from './layer/index'
+import { AMapRoadnet, AMapSatellite, AMapTilelayer, AMapTraffic, AMapBuildings } from './layer/index'
 import { AMapControlBar, AMapMapType, AMapScale, AMapToolBar, AMapOverView } from './control/index'
 
 
@@ -26,5 +26,6 @@ export {
   AMapMapType,
   AMapScale, 
   AMapToolBar, 
-  AMapOverView
+  AMapOverView,
+  AMapBuildings
 }

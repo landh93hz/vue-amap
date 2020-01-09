@@ -56,23 +56,26 @@ export default {
         }
       }, 0)
     },
+    addControl(map) {
+      this.target && map.addControl(this.target)
+    },
     removeControl(map) {
-      map.removeControl(this.target)
+      this.target && map && map.removeControl(this.target)
     },
     showTarget() {
-      // 部分控件的`show`,`hide`方法无法使用，因此通过`addControl`与`removeControl`
-      // 的方法实现隐藏控件
+      // 部分控件没有`show`,`hide`方法，因此通过`addControl`与`removeControl`
+      // 的方法实现显示与隐藏
       try {
         this.target.show()
       } catch(_) {
-        this.getMap(map => map.addControl(this.target))
+        this.getMap(this.addControl)
       }
     },
     hideTarget() {
       try {
         this.target.hide()
       } catch(_) {
-        this.getMap(map => map.removeControl(this.target))
+        this.getMap(this.removeControl)
       }
     }
   },

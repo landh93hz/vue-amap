@@ -11,7 +11,8 @@ import {
   AMapMapType,
   AMapScale, 
   AMapToolBar, 
-  AMapOverView
+  AMapOverView,
+  AMapBuildings
 } from './package/index'
 
 import { amapLoader } from './package/util/apiloader'
@@ -29,7 +30,8 @@ const components = [
   AMapMapType,
   AMapScale, 
   AMapToolBar, 
-  AMapOverView
+  AMapOverView,
+  AMapBuildings
 ]
 
 export default {
