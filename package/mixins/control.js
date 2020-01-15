@@ -60,7 +60,13 @@ export default {
       this.target && map.addControl(this.target);
     },
     removeControl(map) {
-      this.target && map && map.removeControl(this.target);
+      /* eslint-disable */
+      try {
+        this.target && map && map.removeControl(this.target);
+      } catch (_) {
+
+      };
+      /* eslint-enable */
     },
     showTarget() {
       // 部分控件没有`show`,`hide`方法，因此通过`addControl`与`removeControl`
@@ -79,7 +85,7 @@ export default {
       }
     }
   },
-  beforeDestroy() {
+  destroyed() {
     this.getMap(this.removeControl);
     this.target = null;
   }

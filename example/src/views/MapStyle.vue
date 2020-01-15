@@ -2,18 +2,19 @@
   <div class="page">
     <div class="map-container">
       <!-- 自定义地图 -->
-      <amap-map :mapStyle="mapStyle" v-if="customStyle === 'custom-style'"></amap-map>
+      <amap-map :mapStyle="mapStyle" v-if="customStyle === 'custom-style'" key="custom-style"></amap-map>
       <!-- 设定楼块样式 -->
       <amap-map
         v-if="customStyle === 'building-style'"
         :center="center"
         :features="['bg', 'point', 'road']"
-        :viewMode="viewMode"
+        viewMode="3D"
         :mapStyle="mapStyle"
         :zoom="zoom"
         :pitch="pitch"
         :showIndoorMap="showIndoorMap"
-        :showLabel="showLabel">
+        :showLabel="showLabel"
+        key="building-style">
         <!-- 地图控件 -->
         <amap-scale></amap-scale>
         <amap-tilelayer></amap-tilelayer>
@@ -36,7 +37,8 @@
       <!-- 标准主题样式 -->
       <amap-map 
         v-if="customStyle === 'theme-style'" 
-        :mapStyle="`amap://styles/${checkedTheme}`">
+        :mapStyle="`amap://styles/${checkedTheme}`"
+        key="theme-style">
         <div class="control-box" style="zIndex: 100;">
           <p>官方默认自定义样式</p>
           <el-radio-group v-model="checkedTheme">
@@ -48,7 +50,7 @@
         </div>
       </amap-map>
       <!-- 地图显示要素 -->
-      <amap-map v-if="customStyle === 'map-content'" :features="checkedFeatures">
+      <amap-map v-if="customStyle === 'map-content'" :features="checkedFeatures" key="map-component">
         <div class="control-box" style="zIndex: 200">
           <p>设置地图显示要素</p>
           <el-checkbox-group v-model="checkedFeatures">
@@ -62,7 +64,7 @@
         </div>
       </amap-map>
       <!-- 隐藏文字标注 -->
-      <amap-map v-if="customStyle === 'map-showlabel'" :showLabel="false"></amap-map>
+      <amap-map v-if="customStyle === 'map-showlabel'" :showLabel="false" key="map-showlabel"></amap-map>
     </div>
   </div>
 </template>
@@ -96,7 +98,6 @@ export default {
     return {
       mapStyle: 'amap://styles/f7b0e9609b477edc562be623a767c834',
       center: [116.472268, 39.995693],
-      viewMode: '3D',
       zoom: 17,
       pitch: 50,
       showIndoorMap: false,

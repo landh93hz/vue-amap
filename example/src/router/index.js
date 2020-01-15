@@ -1,4 +1,5 @@
 import { mapGroup } from './map';
+import { axisGroup } from './axis';
 
 
 const start = {
@@ -12,5 +13,6 @@ const start = {
 
 export default [
   start,
-  mapGroup
+  mapGroup,
+  axisGroup
 ];
