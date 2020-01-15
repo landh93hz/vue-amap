@@ -59,7 +59,6 @@ class ApiLoader {
   
   /**
    * 
-   * @param {String} name 
    * @param {String} url 
    * @param {Object} options 
    */

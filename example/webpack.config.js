@@ -1,6 +1,6 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { VueLoaderPlugin } = require('vue-loader')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   entry: path.join(__dirname, '../example/src/main.js'),
@@ -53,4 +53,4 @@ module.exports = {
       template: path.join(__dirname, './public/index.html')
     })
   ]
-}
+};

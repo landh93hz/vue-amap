@@ -13,9 +13,9 @@ import {
   AMapToolBar, 
   AMapOverView,
   AMapBuildings
-} from './package/index'
+} from './package/index';
 
-import { amapLoader } from './package/util/apiloader'
+import { amapLoader } from './package/util/apiloader';
 
 const components = [
   AmapMap,
@@ -32,17 +32,17 @@ const components = [
   AMapToolBar, 
   AMapOverView,
   AMapBuildings
-]
+];
 
 export default {
-  install(vm, options={}) {
+  install(vm, options = {}) {
     
-    const amapUrl = 'https://webapi.amap.com/maps'
+    const AMAP_URL = 'https://webapi.amap.com/maps';
 
-    amapLoader.init(amapUrl, options)
+    amapLoader.init(AMAP_URL, options);
 
     components.forEach(comp => {
-      vm.component(comp.name, comp)
-    })
+      vm.component(comp.name, comp);
+    });
   }
-}
+};
