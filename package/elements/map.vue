@@ -232,7 +232,9 @@ export default {
         bounds = this.target.getBounds();
       } else {
         const arrayBounds = this.target.getBounds();
-        bounds = arrayBounds.toBounds();
+        if (arrayBounds.CLASS_NAME === 'AMap.ArrayBounds') {
+          bounds = arrayBounds.toBounds();
+        }
       }
       this.$emit('update:bounds', bounds);
     },
@@ -247,6 +249,8 @@ export default {
   beforeDestroy() {
   },
   destroyed() {
+    this.target.destroy();
+    this.target = null;
   },
   deactivated() {
   }

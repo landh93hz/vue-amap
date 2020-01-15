@@ -11,9 +11,6 @@
         <router-view></router-view>
       </div>
     </div>
-    <div class="footer">
-      footer
-    </div>
   </div>
 </template>
 
@@ -25,13 +22,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .base {
   height: 100vh;
   display: flex;
   flex-direction: column;
 
   .header {
-    height: 80px;
+    height: 6vh;
   }
 }
 .container {
@@ -41,6 +39,7 @@ export default {
 
   .side {
     width: 220px;
+    height: 94vh;
     overflow: auto;
   }
 

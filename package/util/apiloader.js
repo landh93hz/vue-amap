@@ -23,6 +23,26 @@ function lazyLoadApi(name, url, options) {
     } else {
       const $script = document.createElement('script');
       const src = url + '?';
+      let { plugins } = options;
+      if (plugins) {
+        delete options.plugins;
+        if (Array.isArray(plugins)) {
+          plugins = plugins.map(item => {
+            if (typeof item === 'string') {
+              if (item.split('.').length === 1) {
+                return `AMap.${item}`;
+              }
+              return item;
+            } else {
+              throw new Error('member of plugins must be string');
+            }
+          });
+          options.plugin = plugins.join(',');
+        }
+        if (typeof plugins === 'string') {
+          options.plugin = plugins;
+        }
+      }
       let params = '';
       for (const key in options) {
         params += `${key}=${options[key]}&`;

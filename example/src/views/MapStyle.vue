@@ -34,8 +34,10 @@
         </amap-polygon>
       </amap-map>
       <!-- 标准主题样式 -->
-      <amap-map v-if="customStyle === 'theme-style'">
-        <div class="control-box">
+      <amap-map 
+        v-if="customStyle === 'theme-style'" 
+        :mapStyle="`amap://styles/${checkedTheme}`">
+        <div class="control-box" style="zIndex: 100;">
           <p>官方默认自定义样式</p>
           <el-radio-group v-model="checkedTheme">
             <el-radio v-for="theme in themes" :key="theme.label" :label="theme.label">
@@ -69,6 +71,26 @@
 export default {
   props: {
     customStyle: String
+  },
+  watch: {
+    customStyle(val, old) {
+      switch (old) {
+        case 'map-content':
+          this.checkedFeatures = ['bg', 'road', 'building', 'point'];
+          break;
+      
+        default:
+          break;
+      }
+      switch (val) {
+        case 'map-content':
+          this.checkedFeatures = ['bg', 'point'];
+          break;
+      
+        default:
+          break;
+      }
+    }
   },
   data() {
     return {

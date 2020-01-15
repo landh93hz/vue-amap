@@ -1,4 +1,4 @@
-import { throttle } from '../util/debounce';
+// import { throttle } from '../util/debounce';
 
 export default {
   data() {
@@ -43,9 +43,9 @@ export default {
           };
         }
         // 对`mousemove`节流
-        if (eventName === 'mousemove') {
-          handler = throttle(handler, 500);
-        }        
+        // if (eventName === 'mousemove') {
+        //   handler = throttle(handler, 500);
+        // }        
         this.handleMap[eventName] = handler;
         this.target.on(eventName, handler);
       }
