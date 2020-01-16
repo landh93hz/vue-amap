@@ -1,9 +1,9 @@
 import { action } from '@storybook/addon-actions';
 
 
-const mapTemplate = '<amap-map height="70vh" @click="onClick" @complete="onComplete" @rightclick="onRightClick"></amap-map>';
+const mapTemplate = '<amap-map height="90vh" @click="onClick" @complete="onComplete" @rightclick="onRightClick"></amap-map>';
 
-const methods = {
+const actionsData = {
   onComplete: action('onComplete'),
   onClick: action('onClick'),
   onRightClick: action('onRightClick')
@@ -19,7 +19,7 @@ export const map = () => ({
       center: [120, 30]
     };
   },
-  methods
+  methods: actionsData
 });
 
-export default { title: 'Map' };
+export default { title: 'Map', excludeStories: /.*Data$/ };

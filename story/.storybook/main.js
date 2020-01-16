@@ -10,5 +10,8 @@ module.exports = {
     };
     return config;
   },
-  addons: ['@storybook/addon-actions/register']
+  addons: [
+    '@storybook/addon-actions/register',
+    '@storybook/addon-storysource'
+  ]
 };
