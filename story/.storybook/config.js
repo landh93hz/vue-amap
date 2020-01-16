@@ -18,5 +18,8 @@ const options = {
 };
 
 Vue.use(VueAMap, options);
+Vue.prototype.toJSON = function() {
+  return `Vue Instance-${Date.now()}`;
+};
 
 configure(require.context('../stories', true, /\.stories\.js$/), module)
