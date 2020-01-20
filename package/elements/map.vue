@@ -197,8 +197,8 @@ export default {
       }
       if (!this.timer) {
         this.timer = setInterval(() => {
-          this.$emit('update:pitch', this.target.getPitch());
-          this.$emit('update:rotation', this.target.getRotation());
+          this.$emit('update:pitch', this.target && this.target.getPitch());
+          this.$emit('update:rotation', this.target && this.target.getRotation());
         }, 100);
       }
     },

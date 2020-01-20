@@ -58,6 +58,30 @@ export default {
   watch: {
     path(val) {
       this.target && this.target.setPath(val);
+    },
+    polylineOptions: {
+      deep: true,
+      immediate: false,
+      handler(val) {
+        this.target && this.target.setOptions(val);
+      }
+    }
+  },
+  computed: {
+    polylineOptions() {
+      return {
+        showDir: this.showDir || false,
+        strokeColor: this.strokeColor || 'green',
+        strokeOpacity: this.strokeOpacity || 1,
+        strokeWeight: this.strokeWeight || 2,
+        draggable: this.draggable || false,
+        lineJoin: this.lineJoin || 'miter',
+        lineCap: this.lineCap || 'butt',
+        strokeDasharray: this.strokeDasharray || [],
+        strokeStyle: this.strokeStyle || 'solid',
+        isOutline: this.isOutline || false,
+        borderWeight: this.borderWeight || 0
+      };
     }
   },
   created() {
