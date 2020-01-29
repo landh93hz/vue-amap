@@ -34,7 +34,11 @@ const otherToAMap = {
     items: [
       {
         props: 'other',
-        title: '其他坐标<->高德坐标'
+        title: '其他坐标->高德坐标'
+      },
+      {
+        props: 'other-batch',
+        title: '其他坐标->高德坐标(批量)'
       }
     ]
   }
