@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
+const packageConfig = require('../webpack.config');
 
 module.exports = {
   entry: path.join(__dirname, '../example/src/main.js'),
@@ -39,8 +40,8 @@ module.exports = {
   resolve: {
     extensions: ['.vue', '.js', '.json', '.css'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': path.resolve('./src')
+      '@': path.resolve('./src'),
+      ...packageConfig.resolve.alias
     },
   },
   externals: {

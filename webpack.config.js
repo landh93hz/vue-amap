@@ -25,7 +25,11 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      '@mixin': path.resolve(__dirname, './package/mixins'),
+      '@elements': path.resolve(__dirname, './package/elements'),
+      '@shared': path.resolve(__dirname, './package/shared'),
+      '@layer': path.resolve(__dirname, './package/layer')
     }
   },
   plugins: [
