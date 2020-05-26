@@ -68,9 +68,6 @@ export default {
       this.target && this.target.setLabel({ content: $label.outerHTML });
     }
   },
-  created() {
-    
-  },
   mounted() {
     amapLoader.then(AMap => {
       this.target = new AMap.Marker(this.options);
@@ -107,8 +104,7 @@ export default {
         if (contentNodes.length > 1) {
           throw new Error('multi content slots in single marker');
         }
-        const node = contentNodes[0];
-        const elm = node.elm;
+        const elm = this.$refs['hiddenBox'].firstElementChild;
         if (elm) {
           return this.target.setContent(elm);
         }
@@ -117,8 +113,7 @@ export default {
         if (labelNodes.length > 1) {
           throw new Error('multi label slots in single marker');
         }
-        const node = labelNodes[0];
-        const elm = node.elm.outerHTML;
+        const elm = this.$refs['hiddenBox'].firstElementChild;
         if (elm) {
           const labelObj = {
             offset: this.labelOffset,
