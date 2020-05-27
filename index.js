@@ -14,7 +14,8 @@ import {
   AMapOverView,
   AMapBuildings,
   MassMarks,
-  InfoWindow
+  InfoWindow,
+  LocaHeatmap
 } from './package/index';
 
 import { amapLoader } from './package/util/apiloader';
@@ -35,8 +36,10 @@ const components = [
   AMapOverView,
   AMapBuildings,
   MassMarks,
-  InfoWindow
+  InfoWindow,
+  LocaHeatmap
 ];
+
 
 export default {
   install(vm, options = {}) {

@@ -1,10 +1,9 @@
-import Vue from 'vue';
 import Loca from 'Loca';
 import EventMixin from '../mixins/events';
 import ElementMixin from '../mixins/element';
 
-export default Vue.extend({
-  name: 'LocaHeatMap',
+export default {
+  name: 'loca-heatmap',
   mixins: [EventMixin, ElementMixin],
   render() {
     return this.$slots.default;
@@ -19,7 +18,8 @@ export default Vue.extend({
     radius: { type: Number, required: true },
     color: { type: Object, required: true },
     opacity: { type: Array, default: () => [0, 1] },
-    points: { type: Array, required: true }
+    points: { type: Array, required: true },
+    visible: { type: Boolean, default: true }
   },
   data() {
     return {
@@ -51,9 +51,9 @@ export default Vue.extend({
   },
   methods: {
     delayedRender() {
-      console.log(this.target);
       if (this.target.getMap()) {
         this.target.render();
+        this.visible ? this.target.show() : this.target.hide();
       } else {
         setTimeout(this.delayedRender, 50);
       }
@@ -68,4 +68,4 @@ export default Vue.extend({
   mounted() {
     this.delayedRender();
   }
-});
+};
