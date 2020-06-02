@@ -39,6 +39,7 @@ export default {
   beforeDestroy() {
     this.target && this.target.setMap(null);
     this.target = null;
+    this.$emit('destroy');
   },
   methods: {
     mapGetter(map) {
