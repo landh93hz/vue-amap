@@ -35,7 +35,7 @@ export default {
     rotateEnable: { type: Boolean, default: true },
     resizeEnable: { type: Boolean, default: true },
     showIndoorMap: { type: Boolean, default: true },
-    expandZoomRange: { type: Boolean, default: false },
+    expandZoomRange: { type: Boolean, default: true },
     draggable: { type: Boolean, default: true },
     zoomEnable: { type: Boolean, default: true },
     doubleClickZoom: { type: Boolean, default: true },
@@ -141,12 +141,15 @@ export default {
   watch: {
     rotation(val) {
       this.target && this.target.setRotation(val);
+      this.updateBounds();
     },
     pitch(val) {
       this.target && this.pitchEnable && this.target.setPitch(val);
+      this.updateBounds();
     },
     zoom(val) {
       this.target && this.zoomEnable && this.target.setZoom(val);
+      this.updateBounds();
     },
     lang(val) {
       this.target && this.target.setLang(val);
