@@ -132,7 +132,7 @@ export default {
         this.target.setCity(this.city);
       }
       this.target.on('complete', () => {
-        this.updateBounds();
+        // this.updateBounds();
         this.updateCity();
       });
     });
