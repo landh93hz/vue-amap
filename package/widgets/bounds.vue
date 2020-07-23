@@ -24,7 +24,6 @@ export default {
       return this.bounds;
     },
     setBounds(bounds) {
-      console.log(bounds);
       this.bounds = bounds;
     }
   }
