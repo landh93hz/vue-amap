@@ -23,6 +23,29 @@ export default {
     strokeDasharray: Array,
     path: { type: Array, required: true }
   },
+  watch: {
+    path(val) {
+      this.target && this.target.setPath(val);
+    },
+    polygonOptions: {
+      deep: true,
+      immediate: false,
+      handler(val) {
+        this.target && this.target.setOptions(val);
+      }
+    }
+  },
+  computed: {
+    polygonOptions() {
+      return {
+        strokeColor: this.strokeColor || 'green',
+        fillColor: this.fillColor,
+        fillOpacity: this.fillOpacity,
+        strokeStyle: this.strokeStyle,
+        strokeWeight: this.strokeWeight,
+      };
+    }
+  },
   data() {
     return {
       target: null,
