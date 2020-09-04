@@ -30,7 +30,7 @@ export default {
     layers: { type: Array },
     zooms: { type: Array },
     lang: { type: String },
-    animateEnable: { type: Boolean },
+    animateEnable: { type: Boolean, default: true },
     isHotspot: { type: Boolean, default: false },
     rotateEnable: { type: Boolean, default: true },
     resizeEnable: { type: Boolean, default: true },
