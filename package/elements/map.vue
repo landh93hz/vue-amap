@@ -36,7 +36,7 @@ export default {
     resizeEnable: { type: Boolean, default: true },
     showIndoorMap: { type: Boolean, default: true },
     expandZoomRange: { type: Boolean, default: true },
-    draggable: { type: Boolean, default: true },
+    dragEnable: { type: Boolean, default: true },
     zoomEnable: { type: Boolean, default: true },
     doubleClickZoom: { type: Boolean, default: true },
     keyboardEnable: { type: Boolean, default: true },
