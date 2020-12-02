@@ -142,4 +142,4 @@ class ApiLoader {
 }
 
 export const amapLoader = new ApiLoader('AMap');
-export const locaLoader = new ApiLoader();
+export const locaLoader = new ApiLoader('Loca');

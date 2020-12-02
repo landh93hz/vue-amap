@@ -1,6 +1,6 @@
-import Loca from 'Loca';
 import EventMixin from '../mixins/events';
 import ElementMixin from '../mixins/element';
+import { locaLoader } from '../util/apiloader';
 
 export default {
   name: 'loca-heatmap',
@@ -60,10 +60,12 @@ export default {
     }
   },
   created() {
-    const layer = new Loca.HeatmapLayer({});
-    layer.setData(this.points, this.dataOptions);
-    layer.setOptions({ style: this.styleOptions });
-    this.target = layer;
+    locaLoader.then(Loca => {
+      const layer = new Loca.HeatmapLayer({});
+      layer.setData(this.points, this.dataOptions);
+      layer.setOptions({ style: this.styleOptions });
+      this.target = layer;
+    });
   },
   mounted() {
     this.delayedRender();
