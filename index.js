@@ -18,7 +18,7 @@ import {
   LocaHeatmap
 } from './package/index';
 
-import { amapLoader } from './package/util/apiloader';
+import { amapLoader, locaLoader } from './package/util/apiloader';
 
 const components = [
   AmapMap,
@@ -40,6 +40,10 @@ const components = [
   LocaHeatmap
 ];
 
+const locaComponents = [
+  LocaHeatmap
+];
+
 
 export default {
   install(vm, options = {}) {
@@ -51,5 +55,17 @@ export default {
     components.forEach(comp => {
       vm.component(comp.name, comp);
     });
+
+    if (options.enableLoca) {
+      const LOCA_URL = 'https://webapi.amap.com/loca';
+      const locaOptions = {
+        key: options.key,
+        v: '1.3.0'
+      };
+      locaLoader.init(LOCA_URL, locaOptions);
+      locaComponents.forEach(comp => {
+        vm.component(comp.name, comp);
+      });
+    }
   }
 };
