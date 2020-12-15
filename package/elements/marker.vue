@@ -21,7 +21,7 @@ export default {
     autoRotation: Boolean,
     anchor: String,
     offset: Object,
-    icon: Object,
+    icon: [Object, String],
     draggable: Boolean,
     zIndex: Number,
     angle: Number,

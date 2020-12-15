@@ -8,7 +8,7 @@ import './css/style.css';
 import VueRouter from 'vue-router';
 
 const options = {
-  key: '99416a9c9b1e31a0d57f2733ac4e8983',
+  key: '你的Key',
   v: '1.4.15',
   plugins: [
     'AMap.Geocoder', 
