@@ -141,5 +141,32 @@ class ApiLoader {
   }
 }
 
-export const amapLoader = new ApiLoader('AMap');
-export const locaLoader = new ApiLoader('Loca');
+
+function createLoader(name) {
+  const installed = false;
+  let resolveHandler, rejectHandler;
+  async function init(url, options) {
+    if (installed) {
+      throw new Error(`Reapted loading API of ${this.name}`);
+    }
+    try {
+      const api = await lazyLoadApi(name, url, options);
+      resolveHandler && resolveHandler(api);
+    } catch (err) {
+      rejectHandler && rejectHandler(`Failed to load ${name} API at given ${url}`);
+      throw new Error(`${err}`);
+    }
+  }
+
+  const promise = new Promise((resolve, reject) => {
+    resolveHandler = resolve;
+    rejectHandler = reject;
+  });
+
+  promise.init = init;
+
+  return promise;
+}
+
+export const amapLoader = createLoader('AMap');
+export const locaLoader = createLoader('Loca');
