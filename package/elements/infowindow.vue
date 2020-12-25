@@ -60,16 +60,19 @@ export default {
         this.visible
           ? this.target.open(map, this.position)
           : this.target.close();
+        this.renderContent();
       });
     });
   },
-  mounted() {
-    const $el = this.$refs.hiddenBox;
-    if (!$el.firstChild) {
-      return;
+  methods: {
+    renderContent() {
+      const $el = this.$refs.hiddenBox;
+      if (!$el.firstChild) {
+        return;
+      }
+      const $content = $el.firstChild;
+      this.target.setContent($content);
     }
-    const $content = $el.firstChild;
-    this.target.setContent($content);
   }
 };
 </script>
