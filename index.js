@@ -69,3 +69,8 @@ export default {
     }
   }
 };
+
+export {
+  amapLoader,
+  locaLoader
+};
