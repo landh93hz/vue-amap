@@ -1,18 +1,20 @@
-
 import EventMixin from '../mixins/events';
 import ElementMixin from '../mixins/element';
 import { amapLoader } from '../util/apiloader';
 
 export default {
-  name: 'amap-polyline',
-  mixins: [EventMixin, ElementMixin],
-  data() {
+  name: 'amap-rectangle',
+  mixins: [ElementMixin, EventMixin],
+  render() {
+    return this.$slots.default;
+  },
+  data(){
     return {
       target: null,
       options: {},
       events: [
         'click',
-        'dblclick',
+        'dbclick',
         'rightclick',
         'hide',
         'show',
@@ -24,19 +26,19 @@ export default {
         'touchstart',
         'touchmove',
         'touchend'
-      ],
+      ]
     };
   },
   props: {
     zIndex: Number,
+    bounds: Object,
     bubble: Boolean,
     cursor: String,
-    geodesic: Boolean,
-    isOutline: Boolean,
-    outlineColor: String,
     strokeColor: String,
     strokeOpacity: String,
     strokeWeight: Number,
+    fillColor: String,
+    fillOpacity: String,
     strokeStyle: {
       type: String,
       default: 'solid',
@@ -44,26 +46,14 @@ export default {
         return ['solid', 'dashed'].indexOf(value) !== -1;
       }
     },
-    strokeDasharray: Array,
-    lineJoin: String,
-    lineCap: String,
-    draggable: Boolean,
-    showDir: Boolean,
     extData: Object,
-    path: {
-      type: Array,
-      required: true
-    },
-    isEditor: {
-      type: Boolean,
-      default: false
-    }
+    strokeDasharray: Array
   },
   watch: {
-    path(val) {
-      this.target && this.target.setPath(val);
+    bounds(val) {
+      this.target && this.target.setBounds(val);
     },
-    polylineOptions: {
+    rectangleOptions: {
       deep: true,
       immediate: false,
       handler(val) {
@@ -72,31 +62,20 @@ export default {
     }
   },
   computed: {
-    polylineOptions() {
+    rectangleOptions() {
       return {
-        showDir: this.showDir || false,
         strokeColor: this.strokeColor || 'green',
         strokeOpacity: this.strokeOpacity || 1,
         strokeWeight: this.strokeWeight || 2,
-        draggable: this.draggable || false,
-        lineJoin: this.lineJoin || 'miter',
-        lineCap: this.lineCap || 'butt',
         strokeDasharray: this.strokeDasharray || [],
         strokeStyle: this.strokeStyle || 'solid',
-        isOutline: this.isOutline || false,
-        borderWeight: this.borderWeight || 0
       };
     }
   },
-  created() {
+  created () {
     amapLoader.then(AMap => {
-      this.target = new AMap.Polyline(this.options);
-      if (this.isEditor) {
-        this.$parent.createPolyEditor(this.target);
-      }
+      this.target = new AMap.Rectangle(this.options);
     });
   },
-  render() {
-    return this.$slots.default;
-  }
+ 
 };

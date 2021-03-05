@@ -7,14 +7,25 @@
             :position="position"
             v-if="checkedOverlays.includes('marker')">
           </amap-marker>
-          <amap-polyline 
-            :path="path"
-            v-if="checkedOverlays.includes('polyline')">
-          </amap-polyline>
+          <amap-polyeditor >
+            <amap-polyline
+              isEditor
+              :path="path"
+              v-if="checkedOverlays.includes('polyline')">
+            </amap-polyline>
+          </amap-polyeditor>
+          <amap-polyeditor >
           <amap-polygon 
             :path="boundaries" 
+            isEditor
             v-if="checkedOverlays.includes('polygon')">
           </amap-polygon>
+          </amap-polyeditor>
+          <amap-rectangle 
+            :bounds="bounds"
+            @click="xxxclick"
+             v-if="checkedOverlays.includes('rectangle')" >
+          </amap-rectangle>
         </div>
         <div v-if="overlay === 'map-layers'">
           <amap-satellite :visible="checkedLayers.includes('satellite')"></amap-satellite>
@@ -71,7 +82,10 @@ export default {
     return {
       map: undefined,
       marker: undefined,
+      isEditor: false,
+      editorObject: undefined,
       position: new AMap.LngLat(121.499358, 31.240171),
+      bounds: new AMap.Bounds(new AMap.LngLat(121.460391, 31.270695), new AMap.LngLat(121.501247, 31.282432)),
       path: [
         new AMap.LngLat(121.535579, 31.250004), 
         new AMap.LngLat(121.520473, 31.247656),
@@ -88,7 +102,7 @@ export default {
         new AMap.LngLat(121.55841, 31.270841),
         new AMap.LngLat(121.501247, 31.282432),
       ],
-      overlays: ['marker', 'polyline', 'polygon', 'circle'],
+      overlays: ['marker', 'polyline', 'polygon', 'circle', 'rectangle'],
       checkedOverlays: [],
       layers: [
         { title: 'satellite', label: '卫星图层' }, 
@@ -107,6 +121,9 @@ export default {
     };
   },
   methods: {
+    xxxclick() {
+      console.log('xxx被点击了');
+    }
   }
 };
 </script>

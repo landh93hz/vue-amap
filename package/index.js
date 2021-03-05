@@ -8,6 +8,8 @@ import LocaHeatmap from './loca/heatmap';
 import MapBounds from './widgets/bounds.vue';
 import { AMapRoadnet, AMapSatellite, AMapTilelayer, AMapTraffic, AMapBuildings } from './layer/index';
 import { AMapControlBar, AMapMapType, AMapScale, AMapToolBar, AMapOverView } from './control/index';
+import AmapPolyEditor from './plugins/polyeditor.vue';
+import AmapRectangle from './elements/rectangle.js';
 
 
 export { 
@@ -28,5 +30,7 @@ export {
   AMapToolBar, 
   AMapOverView,
   AMapBuildings,
-  LocaHeatmap
+  LocaHeatmap,
+  AmapPolyEditor,
+  AmapRectangle
 };

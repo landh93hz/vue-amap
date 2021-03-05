@@ -21,7 +21,11 @@ export default {
     draggable: Boolean,
     extData: [Number, String, Object],
     strokeDasharray: Array,
-    path: { type: Array, required: true }
+    path: { type: Array, required: true },
+    isEditor: {
+      type: Boolean,
+      default: false
+    }
   },
   watch: {
     path(val) {
@@ -70,6 +74,9 @@ export default {
   created() {
     amapLoader.then(AMap => {
       this.target = new AMap.Polygon(this.options);
+      if (this.isEditor) {
+        this.$parent.createPolyEditor(this.target);
+      }
     });
   },
   methods: {
