@@ -50,7 +50,7 @@ module.exports = {
   plugins: [
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, './img/index.html')
+      template: path.join(__dirname, './public/index.html')
     })
   ]
 };
