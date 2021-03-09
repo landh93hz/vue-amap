@@ -51,6 +51,7 @@ export default {
 | `fillOpacity`     | `Number`                   | 多边形填充透明度，取值范围[0,1]，0表示完全透明，1表示不透明 |
 | `draggable`       | `Boolean`                  | 设置多边形是否可拖拽移动                                    |
 | `extData`         | `Number | String | Object` | 用户自定义属性                                              |
+| `isEditor`        | `Boolean`                  | 是否开启编辑功能， 默认：`false`                             |
 
 #### 事件 Events
 

@@ -54,6 +54,7 @@ export default {
 | `draggable`       | `Boolean` | 设置折线是否可拖拽移动                                |
 | `showDir`         | `Boolean` | 是否延路径显示白色方向箭头                            |
 | `extData`         | `Object`  | 用户自定义属性                                        |
+| `isEditor`        | `Boolean`                  | 是否开启编辑功能， 默认：`false`                             |
 
 #### 事件 Events
 
