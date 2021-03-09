@@ -12,7 +12,8 @@ const options = {
     'OverView',
     'MapType',
     'ToolBar',
-    'ControlBar'
+    'ControlBar',
+    'AMap.PolyEditor'
   ]
 };
 // Vue.use(AmapVue, options);
@@ -22,7 +23,6 @@ export default async ({
 }) => {
   // Vue.use(VueAmap, options)
   if (!isServer) {
-    console.log(123);
     import('../../../dist/vue-amap').then(module => {
       const VueAmap = module.default
       Vue.use(VueAmap, options);

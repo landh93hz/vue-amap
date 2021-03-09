@@ -42,6 +42,9 @@ module.exports = {
           '/components/amap-polygon',
           '/components/amap-massmarks',
           '/components/amap-infowindow',
+          '/components/amap-rectangle',
+
+
         ]
       },
       {
@@ -65,6 +68,7 @@ module.exports = {
           '/components/amap-scale',
           '/components/amap-toolbar',
           '/components/amap-overview',
+          '/components/amap-overlays-editor',
         ]
       },
     ]
