@@ -18,7 +18,8 @@ import {
   LocaHeatmap,
   AmapPolyEditor,
   AmapRectangle,
-  AmapRectangleEditor
+  AmapRectangleEditor,
+  AmapCircle
 } from './package/index';
 
 import { amapLoader, locaLoader } from './package/util/apiloader';
@@ -43,6 +44,7 @@ const components = [
   AmapPolyEditor,
   AmapRectangle,
   AmapRectangleEditor,
+  AmapCircle,
   LocaHeatmap
 ];
 

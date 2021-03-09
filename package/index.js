@@ -11,6 +11,7 @@ import { AMapControlBar, AMapMapType, AMapScale, AMapToolBar, AMapOverView } fro
 import AmapPolyEditor from './plugins/polyeditor.vue';
 import AmapRectangle from './elements/rectangle.js';
 import AmapRectangleEditor from './plugins/rectangle-editor.vue';
+import AmapCircle from './elements/circle';
 
 
 export { 
@@ -34,5 +35,6 @@ export {
   LocaHeatmap,
   AmapPolyEditor,
   AmapRectangle,
-  AmapRectangleEditor
+  AmapRectangleEditor,
+  AmapCircle
 };
