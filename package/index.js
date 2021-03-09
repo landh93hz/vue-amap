@@ -10,6 +10,7 @@ import { AMapRoadnet, AMapSatellite, AMapTilelayer, AMapTraffic, AMapBuildings }
 import { AMapControlBar, AMapMapType, AMapScale, AMapToolBar, AMapOverView } from './control/index';
 import AmapPolyEditor from './plugins/polyeditor.vue';
 import AmapRectangle from './elements/rectangle.js';
+import AmapRectangleEditor from './plugins/rectangle-editor.vue';
 
 
 export { 
@@ -32,5 +33,6 @@ export {
   AMapBuildings,
   LocaHeatmap,
   AmapPolyEditor,
-  AmapRectangle
+  AmapRectangle,
+  AmapRectangleEditor
 };

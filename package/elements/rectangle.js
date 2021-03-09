@@ -47,7 +47,11 @@ export default {
       }
     },
     extData: Object,
-    strokeDasharray: Array
+    strokeDasharray: Array,
+    isEditor: {
+      type: Boolean,
+      default: false
+    }
   },
   watch: {
     bounds(val) {
@@ -75,6 +79,9 @@ export default {
   created () {
     amapLoader.then(AMap => {
       this.target = new AMap.Rectangle(this.options);
+      if (this.isEditor) {
+        this.$parent.createRectangleEditor(this.target);
+      }
     });
   },
  

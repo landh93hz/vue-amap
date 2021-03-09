@@ -9,7 +9,6 @@
           </amap-marker>
           <amap-polyeditor >
             <amap-polyline
-              isEditor
               :path="path"
               v-if="checkedOverlays.includes('polyline')">
             </amap-polyline>
@@ -17,13 +16,11 @@
           <amap-polyeditor >
           <amap-polygon 
             :path="boundaries" 
-            isEditor
             v-if="checkedOverlays.includes('polygon')">
           </amap-polygon>
           </amap-polyeditor>
           <amap-rectangle 
             :bounds="bounds"
-            @click="xxxclick"
              v-if="checkedOverlays.includes('rectangle')" >
           </amap-rectangle>
         </div>
@@ -39,6 +36,15 @@
           <amap-overview :visible="checkedControls.includes('overview')"></amap-overview>
           <amap-scale :visible="checkedControls.includes('scale')"></amap-scale>
           <amap-toolbar :visible="checkedControls.includes('toolbar')"></amap-toolbar>
+        </div>
+         <div v-if="overlay === 'overlays-edit'">
+          <amap-rectangle-editor >
+            <amap-rectangle 
+            :bounds="bounds"
+            isEditor
+             >
+          </amap-rectangle>
+          </amap-rectangle-editor>
         </div>
       </amap-map>
       <div class="control-box" v-if="overlay === 'map-overlays'">
@@ -121,9 +127,7 @@ export default {
     };
   },
   methods: {
-    xxxclick() {
-      console.log('xxx被点击了');
-    }
+    
   }
 };
 </script>
