@@ -79,6 +79,12 @@ export default {
   },
   created () {
     amapLoader.then(AMap => {
+      if (this.fillOpacity){
+        this.options['fillOpacity'] = parseFloat(this.fillOpacity);
+      }
+      if (this.strokeOpacity){
+         this.options['strokeOpacity'] = parseFloat(this.strokeOpacity);
+      }
       this.target = new AMap.Circle(this.options);
       if (this.isEditor) {
         // code
