@@ -3,7 +3,7 @@ title: 点标记
 ---
 # AmapMarker 点标记
 #### 基本用法
-![点标记](../img/mark.png)
+::: demo
 ```vue
 <div class="map-container">
   <amap-map :center="{lng: 121.498586, lat: 31.239637}">
@@ -26,10 +26,10 @@ export default {
 }
 </style>
 ```
+:::
 
 #### 使用图片自定义点标记
-![](../img/mark1.png)
-
+::: demo
 ```vue
 
 <div class='map-container'>
@@ -57,6 +57,7 @@ export default {
 }
 </style>
 ```
+:::
 
 #### 属性  Attributes
 

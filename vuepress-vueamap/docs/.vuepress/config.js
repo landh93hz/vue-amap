@@ -43,6 +43,9 @@ module.exports = {
           '/components/amap-massmarks',
           '/components/amap-infowindow',
           '/components/amap-rectangle',
+          '/components/amap-circle',
+          '/components/amap-circle-marker',
+
 
 
         ]

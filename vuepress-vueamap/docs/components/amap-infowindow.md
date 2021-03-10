@@ -3,7 +3,7 @@ title: 信息窗体
 ---
 # AmapInfoWindow 信息窗体
 #### 基本用法
-![信息窗体](../img/info.png)
+::: demo
 ```vue
 <div class="map-container">
   <amap-map :center="{lng: 121.498586, lat: 31.239637}">
@@ -16,7 +16,13 @@ title: 信息窗体
 export default {
     data(){
         return {
-          position: new AMap.LngLat(121.499358, 31.240171)
+          // position: new AMap.LngLat(121.499358, 31.240171)
+          position: {
+            "Q": 31.240171,
+            "R": 121.49935800000003,
+            "lng": 121.499358,
+            "lat": 31.240171
+          }
         };
     },
 }
@@ -28,6 +34,7 @@ export default {
 }
 </style>
 ```
+:::
 #### 属性  Attributes
 
 | 参数                | 类型                      | 说明                                                         |

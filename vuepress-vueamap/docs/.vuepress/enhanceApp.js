@@ -13,7 +13,8 @@ const options = {
     'MapType',
     'ToolBar',
     'ControlBar',
-    'AMap.PolyEditor'
+    'AMap.PolyEditor',
+    'AMap.RectangleEditor'
   ]
 };
 // Vue.use(AmapVue, options);
@@ -23,8 +24,9 @@ export default async ({
 }) => {
   // Vue.use(VueAmap, options)
   if (!isServer) {
-    import('../../../dist/vue-amap').then(module => {
+    import('../../../dist/vue-amap').then( module => {
       const VueAmap = module.default
+      // Vue.AMap= await module.amapLoader.then()
       Vue.use(VueAmap, options);
     })
   }
