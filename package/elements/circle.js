@@ -87,7 +87,7 @@ export default {
       }
       this.target = new AMap.Circle(this.options);
       if (this.isEditor) {
-        // code
+        this.$parent.createCircleEditor(this.target);
       }
     });
   },
