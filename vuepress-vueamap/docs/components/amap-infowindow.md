@@ -17,12 +17,7 @@ export default {
     data(){
         return {
           // position: new AMap.LngLat(121.499358, 31.240171)
-          position: {
-            "Q": 31.240171,
-            "R": 121.49935800000003,
-            "lng": 121.499358,
-            "lat": 31.240171
-          }
+          position: [121.499358, 31.240171]
         };
     },
 }

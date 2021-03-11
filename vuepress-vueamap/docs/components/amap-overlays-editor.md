@@ -54,7 +54,7 @@ export default {
 export default {
   data(){
     return {
-      bounds: new AMap.Bounds(new AMap.LngLat(121.460391, 31.270695), new AMap.LngLat(121.501247, 31.282432))
+      bounds: [[121.460391, 31.270695], [121.501247, 31.282432]]
     };
   }
 }

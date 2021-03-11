@@ -14,7 +14,7 @@ title: 点标记
 export default {
     data(){
         return {
-          position: new AMap.LngLat(121.499358, 31.240171),
+          position: [121.499358, 31.240171],
         };
     },
 }
@@ -45,7 +45,7 @@ export default {
 export default {
   data() {
     return {
-      position: new AMap.LngLat(121.499358, 31.240171),
+      position: [121.499358, 31.240171],
     };
   }
 }

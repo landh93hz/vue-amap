@@ -1,7 +1,7 @@
 ---
 title: 圆点标记
 ---
-# AmapCircleMarker 点标记
+# AmapCircleMarker 圆点标记
 #### 基本用法
 ::: demo
 ```vue
@@ -19,7 +19,7 @@ title: 圆点标记
 export default {
     data(){
         return {
-          center: new AMap.LngLat(121.499358, 31.240171),
+          center: [121.499358, 31.240171],
         };
     },
 }

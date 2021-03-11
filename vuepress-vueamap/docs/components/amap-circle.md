@@ -21,7 +21,7 @@ title: 圆形
 export default {
     data(){
         return {
-          center: new AMap.LngLat(116.39,39.9)
+          center: [116.39,39.9]
         };
     },
 }
