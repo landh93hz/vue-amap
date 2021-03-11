@@ -67,3 +67,39 @@ export default {
 </style>
 ```
 :::
+# AmapCircle 圆形
+基础用法：
+::: demo
+```vue
+<div class="map-container">
+  <amap-map :center="{lng: 116.433322, lat: 39.900256}" >
+    <amap-circle-editor>
+      <amap-circle
+        isEditor
+        :center="center"
+        :radius="1000"
+        fillColor="#FF33FF"
+        strokeColor="pink"
+        fillOpacity="0.5"
+        :strokeWeight="2">
+      </amap-circle>
+    </amap-circle-editor>
+  </amap-map>
+</div>
+<script>
+export default {
+    data(){
+        return {
+          center: [116.39,39.9]
+        };
+    },
+}
+</script>
+<style>
+.map-container {
+  height: 400px;
+  width: 100%
+}
+</style>
+```
+:::

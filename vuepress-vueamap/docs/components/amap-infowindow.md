@@ -7,19 +7,66 @@ title: 信息窗体
 ```vue
 <div class="map-container">
   <amap-map :center="{lng: 121.498586, lat: 31.239637}">
-    <amap-infowindow :position="position">
-      <div>这是信息窗体内容区域</div>
-    </amap-infowindow>
+      <amap-infowindow :position="position">
+        <div style="padding: 10px">这是信息窗体内容区域</div>
+      </amap-infowindow>
   </amap-map>
 </div>
 <script>
 export default {
     data(){
         return {
-          // position: new AMap.LngLat(121.499358, 31.240171)
-          position: [121.499358, 31.240171]
+          position: [121.499358, 31.240171],
+        };
+    }
+}
+</script>
+<style>
+.map-container {
+  height: 400px;
+  width: 100%
+}
+</style>
+```
+:::
+#### 点击 Marker 打开信息窗口
+::: demo
+```vue
+<div class="map-container">
+  <amap-map :center="{lng: 121.498586, lat: 31.239637}">
+    <amap-marker 
+      :position="position" 
+      @click="markerClick" 
+      >
+    </amap-marker>
+      <amap-infowindow 
+        v-if="show"
+        :visible="visible" 
+        anchor="top-center"
+        :position="position" 
+        @close="handleCloseWindow">
+        <div>这是信息窗体内容区域</div>
+      </amap-infowindow>
+  </amap-map>
+</div>
+<script>
+export default {
+    data(){
+        return {
+          position: [121.499358, 31.240171],
+          show: false,
+          visible: false
         };
     },
+    methods:{
+      markerClick(){
+        this.show = true
+        this.visible = true
+      },
+      handleCloseWindow(){
+        this.visible = false
+      }
+    }
 }
 </script>
 <style>
