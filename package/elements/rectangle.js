@@ -31,7 +31,7 @@ export default {
   },
   props: {
     zIndex: Number,
-    bounds: Object,
+    bounds: { type: [Object, Array], require: true },
     bubble: Boolean,
     cursor: String,
     strokeColor: String,
@@ -78,6 +78,9 @@ export default {
   },
   created () {
     amapLoader.then(AMap => {
+      if (this.bounds instanceof Array){
+        this.options['bounds'] = new AMap.Bounds(new AMap.LngLat(this.bounds[0][0], this.bounds[0][1]), new AMap.LngLat(this.bounds[1][0], this.bounds[1][1]));
+      }
       this.target = new AMap.Rectangle(this.options);
       if (this.isEditor) {
         this.$parent.createRectangleEditor(this.target);

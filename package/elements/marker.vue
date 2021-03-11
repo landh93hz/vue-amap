@@ -33,7 +33,7 @@ export default {
     labelOffset: Object,
     labelDirection: String,
     extData: Object,
-    position: Object
+    position: [Object, Array]
   },
   data() {
     return {

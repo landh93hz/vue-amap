@@ -15,7 +15,7 @@ export default {
   mixins: [ElementMixin, EventMixin],
   props: {
     zIndex: Number,
-    center: { type: Object, require: true },
+    center: { type: [Object, Array], require: true },
     bubble: Boolean,
     radius: { type: Number, require: true },
     strokeColor: String,

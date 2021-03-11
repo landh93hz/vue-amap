@@ -31,7 +31,7 @@ export default {
   },
   props: {
     zIndex: Number,
-    center: { type: Object, required: true },
+    center: { type: [Object, Array], required: true },
     bubble: Boolean,
     cursor: String,
     radius: { type: Number, required: true },
