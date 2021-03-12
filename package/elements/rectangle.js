@@ -68,7 +68,7 @@ export default {
   computed: {
     rectangleOptions() {
       return {
-        strokeColor: this.strokeColor || 'green',
+        strokeColor: this.strokeColor || '#006600',
         strokeOpacity: this.strokeOpacity || 1,
         strokeWeight: this.strokeWeight || 2,
         strokeDasharray: this.strokeDasharray || [],
