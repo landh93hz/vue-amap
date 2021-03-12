@@ -1,7 +1,7 @@
 ---
 title: 圆形
 ---
-# AmapCircle 圆形
+# amap-circle 圆形
 基础用法：
 ::: demo
 ```vue

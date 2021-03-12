@@ -1,7 +1,7 @@
 ---
 title: 楼块图层
 ---
-# AmapBuildings   楼块图层
+# amap-buildings   楼块图层
 基础用法：
 ::: demo
 ```vue

@@ -1,7 +1,7 @@
 ---
 title: 标准图层
 ---
-# AmapTilelayer  标准图层
+# amap-tilelayer  标准图层
 基础用法：
 ::: demo
 ```vue

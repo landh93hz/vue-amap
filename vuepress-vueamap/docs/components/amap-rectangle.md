@@ -1,7 +1,7 @@
 ---
 title: 矩形
 ---
-# AmapRectangle 矩形
+# amap-rectangle 矩形
 基础用法：
 ::: demo
 ```vue

@@ -1,7 +1,7 @@
 ---
 title: 地图
 ---
-# AmapMap 地图组件
+# amap-map 地图组件
 #### 基本用法
 
 ::: demo  

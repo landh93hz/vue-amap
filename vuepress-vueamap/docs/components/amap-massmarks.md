@@ -1,14 +1,14 @@
 ---
 title: 海量点标记
 ---
-# AmapMassMarks 海量点标记
+# mass-marks 海量点标记
 #### 基本用法
 
 #### 属性  Attributes
 
 | 参数           | 类型                       | 说明                                                         |
 | :------------- | -------------------------- | ------------------------------------------------------------ |
-| `data`         | `Array`                    | **为必填值**，data为点对象的数组，点对象为包含经纬度lnglat属性的Object，opts为点与点集合的绘制样式。 |
+| `data`         | `Array` <img width=250/>                     | **为必填值**，data为点对象的数组，点对象为包含经纬度lnglat属性的Object，opts为点与点集合的绘制样式。 |
 | `pointStyle`   | `Object | Array| Function` | **为必填值**,用于设置点的样式                                |
 | `zIndex`       | `Number`                   | 图层叠加的顺序值5                                            |
 | `cursor`       | `String`                   | 指定鼠标悬停时的鼠标样式                                     |

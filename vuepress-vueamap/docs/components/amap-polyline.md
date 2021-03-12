@@ -1,7 +1,7 @@
 ---
 title: 折线
 ---
-# AmapPolyline 折线覆盖物
+# amap-polyline 折线覆盖物
 基础用法：
 ::: demo
 ```vue

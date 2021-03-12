@@ -1,7 +1,7 @@
 ---
 title: 路网图层
 ---
-# AmapRoadnet   路网图层
+# amap-roadnet  路网图层
 基础用法：
 ::: demo
 ```vue

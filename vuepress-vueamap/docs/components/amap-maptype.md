@@ -1,7 +1,7 @@
 ---
 title: 图层切换
 ---
-# AmapMapType   图层切换
+# amap-maptype   图层切换
 地图类型切换插件，用来切换固定的几个常用图层
 基础用法：
 ::: demo

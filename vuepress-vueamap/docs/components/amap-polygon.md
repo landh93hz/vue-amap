@@ -1,7 +1,7 @@
 ---
 title: 多边形
 ---
-# AmapPolygon 多边形
+# amap-polygon 多边形
 基础用法：
 ::: demo
 ```vue
@@ -57,7 +57,7 @@ export default {
 
 | 事件名       | 参数                                                         | 说明                                     |
 | ------------ | ------------------------------------------------------------ | :--------------------------------------- |
-| `complete`   | 当前 `Polygon` 对象                                          | 点标记加载完成后触发                     |
+| `complete`   | 当前 `Polygon` 对象                                          | 多边形加载完成后触发                     |
 | `click`      | [`MapsEvent`](https://lbs.amap.com/api/javascript-api/reference/event#MapsEvent) | 鼠标左键单击事件                         |
 | `dblclick`   | [`MapsEvent`](https://lbs.amap.com/api/javascript-api/reference/event#MapsEvent) | 鼠标左键双击事件                         |
 | `rightclick` | [`MapsEvent`](https://lbs.amap.com/api/javascript-api/reference/event#MapsEvent) | 鼠标右键单击事件                         |

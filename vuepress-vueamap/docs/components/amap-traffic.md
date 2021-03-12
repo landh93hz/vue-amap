@@ -1,7 +1,7 @@
 ---
 title: 交通图层
 ---
-# AmapTraffic   交通图层
+# amap-traffic   交通图层
 基础用法：
 ::: demo
 ```vue

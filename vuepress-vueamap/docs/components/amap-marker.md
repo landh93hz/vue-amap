@@ -1,7 +1,7 @@
 ---
 title: 点标记
 ---
-# AmapMarker 点标记
+# amap-marker 点标记
 #### 基本用法
 ::: demo
 ```vue

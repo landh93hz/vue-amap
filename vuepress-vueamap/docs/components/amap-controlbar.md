@@ -1,7 +1,7 @@
 ---
 title: 地图控件
 ---
-# AmapControlBar 地图控件
+# amap-controlbar 地图控件
 组合了旋转、倾斜、复位、缩放在内的地图控件，在3D地图模式下会显示（自V1.4.0版本新增）
 基础用法：
 ::: demo

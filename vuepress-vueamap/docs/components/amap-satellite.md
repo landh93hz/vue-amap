@@ -1,7 +1,7 @@
 ---
 title: 卫星图层
 ---
-# AmapSatellite  卫星图层
+# amap-satellite  卫星图层
 基础用法：
 ::: demo
 ```vue

@@ -1,7 +1,7 @@
 ---
 title: 信息窗体
 ---
-# AmapInfoWindow 信息窗体
+# amap-infowindow 信息窗体
 #### 基本用法
 ::: demo
 ```vue
@@ -81,7 +81,7 @@ export default {
 
 | 参数                | 类型                      | 说明                                                         |
 | :------------------ | ------------------------- | ------------------------------------------------------------ |
-| `position`          | `Object`                   | **为必填值**，信息窗体显示基点位置                           |
+| `position`          | `Object`   <img width=250/>                  | **为必填值**，信息窗体显示基点位置                           |
 | `autoMove`          | `Boolean`                 | 是否自动调整窗体到视野内（当信息窗体超出视野范围时，通过该属性设置是否自动平移地图，使信息窗体完全显示） |
 | `closeWhenClickMap` | `Boolean`                 | 控制是否在鼠标点击地图后关闭信息窗体  默认：`true`           |
 | `content`           | `String | HTMLDivElement` | 显示内容，可以是HTML要素字符串或者`HTMLElement`对象          |

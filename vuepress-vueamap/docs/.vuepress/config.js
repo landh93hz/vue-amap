@@ -72,6 +72,8 @@ module.exports = {
           '/components/amap-toolbar',
           '/components/amap-overview',
           '/components/amap-overlays-editor',
+          '/components/amap-overlays-rect-editor',
+          '/components/amap-overlays-circle-editor',
         ]
       },
     ]

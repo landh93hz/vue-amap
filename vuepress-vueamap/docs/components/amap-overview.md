@@ -1,7 +1,7 @@
 ---
 title: 鹰眼
 ---
-# AmapOverView   鹰眼
+# amap-overview   鹰眼
 地图鹰眼插件
 基础用法：
 ::: demo
