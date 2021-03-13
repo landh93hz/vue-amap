@@ -22,9 +22,6 @@ export default {
     };
   },
   inject: ['getMap'],
-  props: {
-    editorObject: Object
-  },
   created() {
     
   },

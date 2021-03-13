@@ -14,6 +14,7 @@ import AmapCircleMarker from './elements/circlemarker.vue';
 import AMapCircleEditor from './plugins/circle-editor.vue';
 import AmapPolyEditor from './plugins/polyeditor.vue';
 import AmapRectangleEditor from './plugins/rectangle-editor.vue';
+import AmapText from './elements/text'
 
 
 
@@ -42,5 +43,6 @@ export {
   AmapRectangleEditor,
   AmapCircle,
   AmapCircleMarker,
-  AMapCircleEditor
+  AMapCircleEditor,
+  AmapText
 };
