@@ -38,16 +38,14 @@ module.exports = {
         collapsable:false,
         children: [
           '/components/amap-marker',
+          '/components/amap-text',
+          '/components/amap-circle',
+          '/components/amap-circle-marker',
           '/components/amap-polyline',
           '/components/amap-polygon',
           '/components/amap-massmarks',
           '/components/amap-infowindow',
           '/components/amap-rectangle',
-          '/components/amap-circle',
-          '/components/amap-circle-marker',
-
-
-
         ]
       },
       {

@@ -36,7 +36,7 @@ export default {
           ],
           target: null
         };
-    }
+    },
 }
 </script>
 <style>
