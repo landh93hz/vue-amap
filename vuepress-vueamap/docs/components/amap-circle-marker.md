@@ -7,7 +7,7 @@ title: 圆点标记
 ::: demo
 ```vue
 <div class="map-container">
-  <amap-map :center="{lng: 121.498586, lat: 31.239637}">
+  <amap-map :center="center">
     <amap-circle-marker 
       :center="center"
       fillOpacity="0.5"

@@ -15,7 +15,8 @@ const options = {
     'ControlBar',
     'AMap.PolyEditor',
     'AMap.RectangleEditor',
-    'AMap.CircleEditor'
+    'AMap.CircleEditor',
+    'AMap.EllipseEditor'
   ]
 };
 // Vue.use(AmapVue, options);

@@ -46,6 +46,7 @@ module.exports = {
           '/components/amap-massmarks',
           '/components/amap-infowindow',
           '/components/amap-rectangle',
+          '/components/amap-ellipse',
         ]
       },
       {
@@ -72,6 +73,7 @@ module.exports = {
           '/components/amap-overlays-editor',
           '/components/amap-overlays-rect-editor',
           '/components/amap-overlays-circle-editor',
+          '/components/amap-overlays-ellipse-editor',
         ]
       },
     ]

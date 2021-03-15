@@ -53,7 +53,7 @@ export default {
   flex-direction: column;
   background: white;
   border-radius: 10px;
-  box-shadow: 0 2px 6px 0 rgb(114 124 245 / 50%);
+  box-shadow: 0 2px 6px 0 rgb(114 124 122);
   padding: 0.75rem 1.25rem;
   z-index: 200
 }

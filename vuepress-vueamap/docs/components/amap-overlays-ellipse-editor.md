@@ -1,29 +1,29 @@
 ---
-title: 圆形编辑插件
+title: 椭圆编辑插件
 ---
-# amap-circle-editor 圆形编辑
-圆编辑插件。用于编辑 `amap-circle`对象，功能包括使用鼠标改变圆半径大小、拖拽圆心改变圆的位置。
+# amap-ellipse-editor 椭圆编辑
+椭圆编辑插件。用于编辑 `amap-ellipse`对象，目前支持通过鼠标调整椭圆的圆心和形状。
 基础用法：
 ::: demo
 ```vue
 <div class="map-container">
   <amap-map :center="center" >
   <div class="input-card" >
-    <button class="btn" @click="circleTarget.open()" style="margin-bottom: 5px">开始编辑</button> 
-    <button class="btn" @click="circleTarget.close()">结束编辑</button> 
+    <button class="btn" @click="ellipseTarget.open()" style="margin-bottom: 5px">开始编辑</button> 
+    <button class="btn" @click="ellipseTarget.close()">结束编辑</button> 
   </div>
-    <amap-circle-editor @complete="event=>circleTarget=event">
+    <amap-ellipse-editor @complete="event=>ellipseTarget=event">
       <amap-ellipse
         isEditor
         :center="center"
-        :radius="1000"
+        :radius="[ 2000, 1000 ]"
         fillColor="#FF33FF"
         strokeColor="pink"
         fillOpacity="0.5"
         :strokeWeight="2"
         >
       </amap-ellipse>
-    </amap-circle-editor>
+    </amap-ellipse-editor>
   </amap-map>
 </div>
 <script>
@@ -31,7 +31,7 @@ export default {
     data(){
         return {
           center: [116.39,39.9],
-          circleTarget: null
+          ellipseTarget: null
         };
     },
 }
@@ -80,7 +80,7 @@ export default {
 
 **方法**
 
-调用 `amap-circle-editor`的 `complete`事件，会返回当前 `amap-circle-editor` 实例对象，通过调用该实例的 `open` 方法，即可开启编辑模式，调用 `close` 方法，即可关闭编辑模式
+调用 `amap-ellipse-editor`的 `complete`事件，会返回当前 `amap-ellipse-editor` 实例对象，通过调用该实例的 `open` 方法，即可开启编辑模式，调用 `close` 方法，即可关闭编辑模式
 
 | 方法       | 返回值 | 说明                                                         |
 | :--------- | :----- | :----------------------------------------------------------- |
