@@ -76,7 +76,7 @@ export default {
 | `complete`    | 当前编辑器对象 <img width=200/> | 编辑器创建完成后触发 |
 | `move`    | `{type, target, lnglat}`| 	拖拽圆心调整圆形位置时触发此事件<br>  type: 事件类型<br>  target: 发生事件的目标对象<br>   lnglat: 调整后圆的圆心坐标 |
 | `adjust`     | `{type, target, lnglat}` | 鼠标调整圆形半径时，触发此事件<br>   type: 事件类型<br>  target: 发生事件的目标对象<br>   radius: 调整后圆的半径，单位：米   |
-| `end`        | `{type,target}`                                              | 该方法会在调用close方法后触发，target即为编辑后的圆对象 |
+| `end`        | `{type,target}`                                              | 该方法会在调用close方法后触发，target即为编辑后的椭圆对象 |
 
 **方法**
 
