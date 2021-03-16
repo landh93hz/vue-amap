@@ -3,6 +3,9 @@ title: 信息窗体
 ---
 # amap-infowindow 信息窗体
 #### 基本用法
+将 `amap-infowindow`组件放置到 `amap-map`组件中即可，其中位置属性 `position`为**必传值**
+
+示例如下：
 ::: demo
 ```vue
 <div class="map-container">
@@ -30,6 +33,9 @@ export default {
 ```
 :::
 #### 点击 Marker 打开信息窗口
+通过与 `amap-marker`结合，点击 `Marker`点标记，弹出信息窗口。
+
+示例如下：
 ::: demo
 ```vue
 <div class="map-container">
@@ -81,7 +87,7 @@ export default {
 
 | 参数                | 类型                      | 说明                                                         |
 | :------------------ | ------------------------- | ------------------------------------------------------------ |
-| `position`          | `Object`   <img width=250/>                  | **为必填值**，信息窗体显示基点位置                           |
+| `position`          | `Object | Array`   <img width=250/>                  | **为必填值**，信息窗体显示基点位置                           |
 | `autoMove`          | `Boolean`                 | 是否自动调整窗体到视野内（当信息窗体超出视野范围时，通过该属性设置是否自动平移地图，使信息窗体完全显示） |
 | `closeWhenClickMap` | `Boolean`                 | 控制是否在鼠标点击地图后关闭信息窗体  默认：`true`           |
 | `content`           | `String | HTMLDivElement` | 显示内容，可以是HTML要素字符串或者`HTMLElement`对象          |

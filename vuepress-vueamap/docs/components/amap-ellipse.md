@@ -2,7 +2,12 @@
 title: 椭圆
 ---
 # amap-ellipse 椭圆
-基础用法：
+`amap-ellipse` 为矢量图形类，随地图的缩放会改变大小
+#### 基本用法
+将 `amap-ellipse`组件放置到 `amap-map`组件中即可，其中椭圆心属性 `center`与椭圆半径 `radius`为**必传值**
+
+示例如下：
+
 ::: demo
 ```vue
 <div class="map-container">

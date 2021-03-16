@@ -2,7 +2,10 @@
 title: 折线
 ---
 # amap-polyline 折线覆盖物
-基础用法：
+#### 基本用法
+将 `amap-polyline`组件放置到 `amap-map`组件中即可，其中路径属性 `path`为**必传值**
+
+示例如下：
 ::: demo
 ```vue
 <div class="map-container">

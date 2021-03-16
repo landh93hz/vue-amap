@@ -3,6 +3,10 @@ title: 文本标记
 ---
 # amap-text 文本标记
 #### 基本用法
+将 `amap-text`组件放置到 `amap-map`组件中即可，可以给 `amap-text`的`position`设置初始值，若不设置，则默认为地图的中心点。
+属性 **text 为必填值**
+
+示例如下：
 ::: demo
 ```vue
 <div class="map-container">

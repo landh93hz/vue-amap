@@ -2,7 +2,9 @@
 title: 椭圆编辑插件
 ---
 # amap-ellipse-editor 椭圆编辑
-椭圆编辑插件。用于编辑 `amap-ellipse`对象，目前支持通过鼠标调整椭圆的圆心和形状。
+椭圆编辑插件，用于编辑 `amap-ellipse`对象，目前支持通过鼠标调整椭圆的圆心和形状。
+
+在`amap-ellipse`组件外添加 `amap-ellipse-editor`作为父组件，并将 `amap-ellipse` 的属性值  `isEditor`设置为 `true`。
 基础用法：
 ::: demo
 ```vue
@@ -70,7 +72,7 @@ export default {
 ```
 :::
 
-**事件**
+#### 事件 Events
 | 事件         | 参数                                                         | 说明                                                         |
 | :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | `complete`    | 当前编辑器对象 <img width=200/> | 编辑器创建完成后触发 |
@@ -78,7 +80,7 @@ export default {
 | `adjust`     | `{type, target, lnglat}` | 鼠标调整圆形半径时，触发此事件<br>   type: 事件类型<br>  target: 发生事件的目标对象<br>   radius: 调整后圆的半径，单位：米   |
 | `end`        | `{type,target}`                                              | 该方法会在调用close方法后触发，target即为编辑后的椭圆对象 |
 
-**方法**
+#### 方法 methods
 
 调用 `amap-ellipse-editor`的 `complete`事件，会返回当前 `amap-ellipse-editor` 实例对象，通过调用该实例的 `open` 方法，即可开启编辑模式，调用 `close` 方法，即可关闭编辑模式
 

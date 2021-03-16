@@ -3,11 +3,14 @@ title: 点标记
 ---
 # amap-marker 点标记
 #### 基本用法
+将 `amap-marker`组件放置到 `amap-map`组件中即可，可以给 `amap-marker`的`position`设置初始值，若不设置，则默认为地图的中心点。
+
+示例如下：
 ::: demo
 ```vue
 <div class="map-container">
   <amap-map :center="{lng: 121.498586, lat: 31.239637}">
-    <amap-marker :position=position> </amap-marker>
+    <amap-marker :position=position > </amap-marker>
   </amap-map>
 </div>
 <script>
@@ -28,7 +31,10 @@ export default {
 ```
 :::
 
-#### 使用图片自定义点标记
+#### 使用图片自定义图标标记
+除了官方提供的自定义图标标记的方式，我们提供了通过使用**插槽`prop`**, `slot='content'`方式来传入图片，达到自定义图标标记的效果
+
+示例如下：
 ::: demo
 ```vue
 
@@ -82,7 +88,7 @@ export default {
 | `labelOffset`    | `Object`               | 文本标注偏移量                                               |
 | `labelDirection` | `String`               | 文本标注如果设置了 direction，以 direction 方位为基准点进行偏移 |
 | `extData`        | `Object`               | 用户自定义属性，支持JavaScript API任意数据类型，如Marker的id等 |
-| `position`       | `Object`               | 点标记在地图上显示的位置   默认：地图中心点                  |
+| `position`       | `Object | Array`               | 点标记在地图上显示的位置   默认：地图中心点                  |
 
 #### 事件 Events
 

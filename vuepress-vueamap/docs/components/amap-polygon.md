@@ -2,7 +2,10 @@
 title: 多边形
 ---
 # amap-polygon 多边形
-基础用法：
+#### 基本用法
+将 `amap-polygon`组件放置到 `amap-map`组件中即可，其中路径属性 `path`为**必传值**
+
+示例如下：
 ::: demo
 ```vue
 <div class="map-container">

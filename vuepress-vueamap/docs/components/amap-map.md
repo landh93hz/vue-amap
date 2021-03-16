@@ -3,7 +3,7 @@ title: 地图
 ---
 # amap-map 地图组件
 #### 基本用法
-
+首先，准备好一个HTML容器，设置好宽和高，然后将 `amap-map`组件放进容器中即可
 ::: demo  
 ``` vue
 <template>
@@ -19,7 +19,10 @@ title: 地图
 </style>
 ```
 :::
-#### 带参数
+#### 创建地图常用参数
+在添加 `amap-map`组件的时候，可以通过给组件传入初始化参数来设置地图的初始状态，
+
+如下示例，初始化了地图的中心点 `center`、缩放级别 `zoom`及是否监控地图容器尺寸 `resizeEnable`
 ::: demo
 ``` vue
 <template>
@@ -53,14 +56,14 @@ export default {
 #### 属性 Attributes
 > `*` 标注的属性均为响应式属性，同时支持`.sync`修饰符同步属性值与地图状态值
 
-| 参数                  | 类型                                                         | 说明                                                         |
+| 参数                  | 类型                                                       | 说明                                                         |
 | --------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `height`              | `Number | String`                                            | 地图高度  默认：`100%`                                       |
-| `width`               | `Number | String`                                            | 地图宽度  默认：`100%`                                       |
+| `height`              | `Number|String`                  | 地图高度  默认：`100%`                                       |
+| `width`               | `Number|String`                                            | 地图宽度  默认：`100%`                                       |
 | `*zoom`               | `Number`                                                     | 地图显示的缩放级别                                           |
 | `*pitch`              | `Number`                                                     | 设置地图的俯仰角  默认：`0`   , ` 2D`地图下无效              |
 | `*rotation`           | `Number`                                                     | 旋转角度  默认：`0`                                          |
-| `*center`             | [AMap.LngLat](https://lbs.amap.com/api/javascript-api/reference/core#LngLat) \| `Array` | 地图中心坐标值                                               |
+| `*center`             | `Object` | `Array` | 地图中心坐标值                                               |
 | `*city`               | `String`                                                     | 城市                                                         |
 | `*bounds`             | `Object`                                                     | 限制地图的显示范围                                           |
 | `view-mode`           | `String`                                                     | 地图显示效果  默认：`2D`                                     |
@@ -94,7 +97,7 @@ export default {
 
 #### 事件 Events
 
-以下只列举了部分地图事件，更多事件见[地图事件](!https://lbs.amap.com/api/javascript-api/reference/map)
+以下只列举了部分地图事件，更多事件见[地图事件](https://lbs.amap.com/api/javascript-api/reference/map)
 
 | 事件名     | 参数                                                         | 说明                       |
 | ---------- | ------------------------------------------------------------ | -------------------------- |

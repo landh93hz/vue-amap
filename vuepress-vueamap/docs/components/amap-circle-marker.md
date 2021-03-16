@@ -2,8 +2,11 @@
 title: 圆点标记
 ---
 # amap-circle-marker 圆点标记
-圆点标记，`amap-circle-marker` 不随着地图级别变化发生大小改变，`redius` 的单位为 `px`
+圆点标记，`amap-circle-marker` 不随着地图级别变化发生大小改变。
 #### 基本用法
+将 `amap-circle-marker`组件放置到 `amap-map`组件中即可，其中圆心属性 `center`与圆半径` radius`为必传值。
+
+示例如下：
 ::: demo
 ```vue
 <div class="map-container">
@@ -41,7 +44,7 @@ export default {
 | 参数             | 类型                   | 说明                                                         |
 | :--------------- | ---------------------- | ------------------------------------------------------------ |
 | `radius`          | `Number`              | **为必填值** 圆点半径，单位:px          |
-| `center`         | `Object`               | **为必填值** 圆心位置                             |
+| `center`         | `Object | Array`               | **为必填值** 圆心位置                             |
 | `zIndex`         | `Number`               | 层叠顺序,默认zIndex:10     |
 | `bubble`          | `Boolean`             | 是否将覆盖物的鼠标或touch等事件冒泡到地图上, 默认值：false  |
 | `strokeColor`    | `String`               | 线条颜色，使用16进制颜色代码赋值。默认值为#006600             |

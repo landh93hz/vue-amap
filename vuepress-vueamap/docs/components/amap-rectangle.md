@@ -2,7 +2,10 @@
 title: 矩形
 ---
 # amap-rectangle 矩形
-基础用法：
+#### 基本用法
+将 `amap-rectangle`组件放置到 `amap-map`组件中即可，其中矩形的范围属性 `bounds`为**必传值**
+
+示例如下：
 ::: demo
 ```vue
 <div class="map-container">
@@ -36,7 +39,7 @@ export default {
 
 | 参数              | 类型                       | 说明                                                        |
 | :---------------- | -------------------------- | ----------------------------------------------------------- |
-| `path`            | `Array`                    | **为必填值**，矩形轮廓线的节点坐标数组                    |
+| `bounds`            | `Array`                    | **为必填值**，矩形轮廓线的节点坐标数组                    |
 | `zIndex`          | `Number`                   | 矩形覆盖物的叠加顺序  默认：`10`                          |
 | `bubble`          | `Boolean`                  | 是否将覆盖物的鼠标或touch等事件冒泡到地图上                 |
 | `cursor`          | `String`                   | 指定鼠标悬停时的鼠标样式                                    |
@@ -46,7 +49,7 @@ export default {
 | `strokeDasharray` | `Array`                    | 勾勒形状轮廓的虚线和间隙的样式                              |
 | `fillColor`       | `String`                   | 矩形填充颜色                                              |
 | `fillOpacity`     | `Number`                   | 矩形填充透明度，取值范围[0,1]，0表示完全透明，1表示不透明 |
-| `draggable`       | `Boolean`                  | 设置矩形是否可拖拽移动                                    |
+| `strokeOpacity`       | `Boolean`                  | 轮廓线透明度，取值范围[0,1]，0表示完全透明，1表示不透明                                 |
 | `extData`         | `Number | String | Object` | 用户自定义属性                                              |
 | `isEditor`        | `Boolean`                  | 是否开启编辑功能， 默认：`false`                             |
 

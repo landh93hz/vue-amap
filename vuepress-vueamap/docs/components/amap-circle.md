@@ -2,7 +2,11 @@
 title: 圆形
 ---
 # amap-circle 圆形
-基础用法：
+`amap-circle` 为矢量图形类，随地图的缩放会改变大小
+#### 基本用法
+将 `amap-circle`组件放置到 `amap-map`组件中即可，其中圆心属性 `center`与圆半径 `radius`为**必传值**
+
+示例如下：
 ::: demo
 ```vue
 <div class="map-container">
@@ -38,7 +42,7 @@ export default {
 
 | 参数              | 类型                       | 说明                                                        |
 | :---------------- | -------------------------- | ----------------------------------------------------------- |
-| `center`            | `Object`                    | **为必填值**，圆心位置                    |
+| `center`            | `Object | Array`                    | **为必填值**，圆心位置                    |
 | `zIndex`          | `Number`                   | 叠加顺序  默认：`10`                          |
 | `bubble`          | `Boolean`                  | 是否将覆盖物的鼠标或touch等事件冒泡到地图上                 |
 | `cursor`          | `String`                   | 指定鼠标悬停时的鼠标样式                   |

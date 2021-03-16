@@ -2,8 +2,11 @@
 title: 圆形编辑插件
 ---
 # amap-circle-editor 圆形编辑
-圆编辑插件。用于编辑 `amap-circle`对象，功能包括使用鼠标改变圆半径大小、拖拽圆心改变圆的位置。
-基础用法：
+圆编辑插件，用于编辑 `amap-circle`对象，功能包括使用鼠标改变圆半径大小、拖拽圆心改变圆的位置。
+
+在`amap-circle`组件外添加 `amap-circle-editor`作为父组件，并将 `amap-circle` 的属性值  `isEditor`设置为 `true`。
+
+示例如下:
 ::: demo
 ```vue
 <div class="map-container">
@@ -70,7 +73,7 @@ export default {
 ```
 :::
 
-**事件**
+#### 事件 Events
 | 事件         | 参数                                                         | 说明                                                         |
 | :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | `complete`    | 当前编辑器对象 <img width=200/> | 编辑器创建完成后触发 |
@@ -78,7 +81,7 @@ export default {
 | `adjust`     | `{type, target, lnglat}` | 鼠标调整圆形半径时，触发此事件<br>   type: 事件类型<br>  target: 发生事件的目标对象<br>   radius: 调整后圆的半径，单位：米   |
 | `end`        | `{type,target}`                                              | 该方法会在调用close方法后触发，target即为编辑后的圆对象 |
 
-**方法**
+#### 方法 methods
 
 调用 `amap-circle-editor`的 `complete`事件，会返回当前 `amap-circle-editor` 实例对象，通过调用该实例的 `open` 方法，即可开启编辑模式，调用 `close` 方法，即可关闭编辑模式
 

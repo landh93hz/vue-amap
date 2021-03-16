@@ -4,9 +4,11 @@ title: 折线、多边形编辑插件
 # amap-polyeditor 折线、多边形编辑插件
 折线、多边形编辑插件，用于编辑折线、多边形对象，目前支持通过鼠标调整折线、多边形的形状。
 
+在要开启编辑的矢量图形外面包裹一层 `amap-polyeditor`，并将要编辑的矢量图形的属性值  `isEditor`设置为 `true`。
+
 这里以折线为例：
 
-::: demo 在要编辑的矢量图形外面包裹一层 `amap-polyeditor`，并给要编辑的矢量图形设置  `isEditor`值,默认为 `false`
+::: demo 
 ```vue
 <div class="map-container">
   <amap-map :center="{lng: 121.498586, lat: 31.239637}">
@@ -74,7 +76,7 @@ export default {
 :::
 
 
-**事件**
+#### 事件 Events
 | 事件         | 参数                                                         | 说明                                                         |
 | :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | `complete`    | 当前编辑器对象  | 编辑器创建完成后触发 |
@@ -83,7 +85,7 @@ export default {
 | `removenode` | [`MapsEvent`](https://developer.amap.com/api/javascript-api/reference/event#MapsEvent) | 通过鼠标在折线上删除一个节点或在多边形上删除一个顶点时触发此事件 |
 | `end`        | `{type,target}`                                              | 在调用close方法时，触发该事件，target即为编辑后的折线/多边形对象 |
 
-**方法**
+#### 方法 methods
 
 调用 `amap-polyeditor`的 `complete`事件，会返回当前 `amap-polyeditor` 实例对象，通过调用该实例的 `open` 方法，即可开启编辑模式，调用 `close` 方法，即可关闭编辑模式
 

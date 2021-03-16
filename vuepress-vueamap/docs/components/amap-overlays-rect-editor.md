@@ -3,6 +3,11 @@ title: 矩形编辑插件
 ---
 # amap-rectangle-editor 矩形编辑
  矩形的编辑插件，用于编辑 `amap-rectangle`对象，目前支持通过鼠标调整矩形的形状。
+
+ 在`amap-rectangle`组件外添加 `amap-rectangle-editor`作为父组件，并将 `amap-rectangle` 的属性值  `isEditor`设置为 `true`。
+
+
+ 示例如下：
 ::: demo 
 ```vue
 <div class="map-container">
@@ -66,15 +71,14 @@ export default {
 </style>
 ```
 :::
-
-**事件**
+#### 事件 Events
 | 事件         | 参数                                                         | 说明                                                         |
 | :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | `complete`    | 当前编辑器对象  | 编辑器创建完成后触发 |
 | `adjust`     |	 `{ type, radius, target }` | 鼠标调整横向和纵向半径时触发该事件   |
 | `end`        | `{type,target}`                        | 在调用close方法时，触发该事件，target即编辑的矩形 |
 
-**方法**
+#### 方法 methods
 
 调用 `amap-rectangle-editor`的 `complete`事件，会返回当前 `amap-rectangle-editor` 实例对象，通过调用该实例的 `open` 方法，即可开启编辑模式，调用 `close` 方法，即可关闭编辑模式
 
