@@ -30,7 +30,7 @@ function lazyLoadApi(name, url, options) {
           plugins = plugins.map(item => {
             if (typeof item === 'string') {
               if (item.split('.').length === 1) {
-                return ` .${item}`;
+                return `AMap.${item}`;
               }
               return item;
             } else {
