@@ -29,7 +29,7 @@
 | resize-enable     | 是否监控地图容器尺寸变化    | boolean    | --  | `true`   |       |
 | show-indoor-map   | 是否显示室内地图       | boolean    | --  | `true`   |       |
 | expand-room-range | 是否支持可以扩展最大缩放级别   | boolean    | --  | `true`   | 该属性开启时，PC支持`zooms`的范围最大级别为20   |
-| draggable         | 地图是否可以通过鼠标平移拖拽   | boolean    | --  | `true`   |    |
+| drag-enable         | 地图是否可以通过鼠标平移拖拽   | boolean    | --  | `true`   |    |
 | zoom-enable       | 地图是否可以缩放     | boolean    | --  | `true`   |     |
 | double-click-zoom | 地图是否可以通过双击放大     | boolean    | --  | `true`   |    |
 | keyboard-enable   | 地图是否可以通过键盘控制    | boolean    | --  | `true`   |       |

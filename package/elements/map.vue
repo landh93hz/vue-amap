@@ -51,6 +51,7 @@ export default {
     skyColor: { type: String },
     mask: { type: Array },
     zoom: { type: Number, default: 13 },
+    // 俯仰角度，默认0，[0,83]，2D地图下无效 。
     pitch: { type: Number, default: 0 },
     rotation: { type: Number, default: 0 },
     center: { type: [Object, Array] },
@@ -60,6 +61,7 @@ export default {
     mapStatus: { type: Object },
     defaultCursor: { type: String },
     showLabel: { type: Boolean, default: true },
+    // 地图显示的参考坐标系
     crs: {
       type: String,
       default: 'EPSG3857',
@@ -120,6 +122,7 @@ export default {
     }
     amapLoader.then(AMap => {
       let center;
+      // 判断中心点传入的方式
       if (Array.isArray(this.center)) {
         center = this.center;
       } else if (this.center) {
@@ -247,6 +250,9 @@ export default {
         this.$emit('update:city', city);
         this.$emit('getCity', info);
       });
+    },
+    setCenter(val){
+      this.target && this.target.setCenter(val);
     }
   },
   beforeDestroy() {
