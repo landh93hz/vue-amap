@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     delayedRender() {
-      if (this.target.getMap()) {
+      if (this.target && this.target.getMap()) {
         this.target.render();
         this.visible ? this.target.show() : this.target.hide();
       } else {
