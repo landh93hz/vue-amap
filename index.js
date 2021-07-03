@@ -60,7 +60,7 @@ export default {
       const LOCA_URL = 'https://webapi.amap.com/loca';
       const locaOptions = {
         key: options.key,
-        v: '1.3.0'
+        v: options.Loca.v || '1.3.0'
       };
       locaLoader.init(LOCA_URL, locaOptions);
       locaComponents.forEach(comp => {
