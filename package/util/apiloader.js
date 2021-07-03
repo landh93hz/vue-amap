@@ -40,7 +40,7 @@ function lazyLoadApi(name, url, options) {
           options.plugin = plugins.join(',');
         }
         if (typeof plugins === 'string') {
-          options.plugin = plugins;
+          options.plugin = plugins; 
         }
       }
       let params = '';
