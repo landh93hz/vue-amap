@@ -142,6 +142,9 @@ export default {
     
   },
   watch: {
+    center(val){
+      this.target && this.target.setCenter(val);
+    },
     rotation(val) {
       this.target && this.target.setRotation(val);
       this.updateBounds();
