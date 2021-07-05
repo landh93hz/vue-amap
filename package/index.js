@@ -8,6 +8,17 @@ import LocaHeatmap from './loca/heatmap';
 import MapBounds from './widgets/bounds.vue';
 import { AMapRoadnet, AMapSatellite, AMapTilelayer, AMapTraffic, AMapBuildings } from './layer/index';
 import { AMapControlBar, AMapMapType, AMapScale, AMapToolBar, AMapOverView } from './control/index';
+import AmapRectangle from './elements/rectangle.js';
+import AmapCircle from './elements/circle';
+import AmapCircleMarker from './elements/circlemarker.vue';
+import AMapCircleEditor from './plugins/circle-editor.vue';
+import AmapPolyEditor from './plugins/polyeditor.vue';
+import AmapRectangleEditor from './plugins/rectangle-editor.vue';
+import AmapText from './elements/text';
+import AmapEllipse from './elements/ellipse';
+import AmapEllipseEditor from './plugins/ellipse-editor';
+
+
 
 
 export { 
@@ -28,5 +39,14 @@ export {
   AMapToolBar, 
   AMapOverView,
   AMapBuildings,
-  LocaHeatmap
+  LocaHeatmap,
+  AmapPolyEditor,
+  AmapRectangle,
+  AmapRectangleEditor,
+  AmapCircle,
+  AmapCircleMarker,
+  AMapCircleEditor,
+  AmapText,
+  AmapEllipse,
+  AmapEllipseEditor
 };

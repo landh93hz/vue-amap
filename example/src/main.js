@@ -8,7 +8,7 @@ import './css/style.css';
 import VueRouter from 'vue-router';
 
 const options = {
-  key: '你的Key',
+  key: '0b8eff7c3cebc996161cf56812c23528',
   v: '1.4.15',
   plugins: [
     'AMap.Geocoder', 
@@ -17,7 +17,8 @@ const options = {
     'OverView',
     'MapType',
     'ToolBar',
-    'ControlBar'
+    'ControlBar',
+    'AMap.PolyEditor'
   ]
 };
 

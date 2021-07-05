@@ -1,18 +1,20 @@
-
 import EventMixin from '../mixins/events';
 import ElementMixin from '../mixins/element';
 import { amapLoader } from '../util/apiloader';
 
 export default {
-  name: 'amap-polyline',
-  mixins: [EventMixin, ElementMixin],
-  data() {
+  name: 'amap-ellipse',
+  mixins: [ElementMixin, EventMixin],
+  render() {
+    return this.$slots.default;
+  },
+  data(){
     return {
       target: null,
       options: {},
       events: [
         'click',
-        'dblclick',
+        'dbclick',
         'rightclick',
         'hide',
         'show',
@@ -24,19 +26,20 @@ export default {
         'touchstart',
         'touchmove',
         'touchend'
-      ],
+      ]
     };
   },
   props: {
     zIndex: Number,
+    center: { type: [Object, Array], required: true },
+    radius: { type: Array, required: true },
     bubble: Boolean,
     cursor: String,
-    geodesic: Boolean,
-    isOutline: Boolean,
-    outlineColor: String,
     strokeColor: String,
     strokeOpacity: String,
     strokeWeight: Number,
+    fillColor: String,
+    fillOpacity: String,
     strokeStyle: {
       type: String,
       default: 'solid',
@@ -44,26 +47,18 @@ export default {
         return ['solid', 'dashed'].indexOf(value) !== -1;
       }
     },
-    strokeDasharray: Array,
-    lineJoin: String,
-    lineCap: String,
-    draggable: Boolean,
-    showDir: Boolean,
     extData: Object,
-    path: {
-      type: Array,
-      required: true
-    },
+    strokeDasharray: Array,
     isEditor: {
       type: Boolean,
       default: false
     }
   },
   watch: {
-    path(val) {
-      this.target && this.target.setPath(val);
+    center(val) {
+      this.target && this.target.setCenter(val);
     },
-    polylineOptions: {
+    circleOptions: {
       deep: true,
       immediate: false,
       handler(val) {
@@ -72,31 +67,29 @@ export default {
     }
   },
   computed: {
-    polylineOptions() {
+    circleOptions() {
       return {
-        showDir: this.showDir || false,
         strokeColor: this.strokeColor || 'green',
-        strokeOpacity: this.strokeOpacity || 1,
-        strokeWeight: this.strokeWeight || 2,
-        draggable: this.draggable || false,
-        lineJoin: this.lineJoin || 'miter',
-        lineCap: this.lineCap || 'butt',
-        strokeDasharray: this.strokeDasharray || [],
-        strokeStyle: this.strokeStyle || 'solid',
-        isOutline: this.isOutline || false,
-        borderWeight: this.borderWeight || 0
+        fillColor: this.fillColor,
+        fillOpacity: this.fillOpacity,
+        strokeStyle: this.strokeStyle,
+        strokeWeight: this.strokeWeight,
       };
     }
   },
-  created() {
+  created () {
     amapLoader.then(AMap => {
-      this.target = new AMap.Polyline(this.options);
+      if (this.fillOpacity){
+        this.options['fillOpacity'] = parseFloat(this.fillOpacity);
+      }
+      if (this.strokeOpacity){
+         this.options['strokeOpacity'] = parseFloat(this.strokeOpacity);
+      }
+      this.target = new AMap.Ellipse(this.options);
       if (this.isEditor) {
-        this.$parent.createPolyEditor(this.target);
+        this.$parent.createEllipseEditor(this.target);
       }
     });
   },
-  render() {
-    return this.$slots.default;
-  }
+ 
 };

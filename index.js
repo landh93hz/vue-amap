@@ -15,7 +15,14 @@ import {
   AMapBuildings,
   MassMarks,
   InfoWindow,
-  LocaHeatmap
+  LocaHeatmap,
+  AmapPolyEditor,
+  AmapRectangle,
+  AmapRectangleEditor,
+  AmapCircle,
+  AmapCircleMarker,
+  AmapText,
+  AmapEllipse
 } from './package/index';
 
 import { amapLoader, locaLoader } from './package/util/apiloader';
@@ -37,7 +44,14 @@ const components = [
   AMapBuildings,
   MassMarks,
   InfoWindow,
-  LocaHeatmap
+  AmapPolyEditor,
+  AmapRectangle,
+  AmapRectangleEditor,
+  AmapCircle,
+  AmapCircleMarker,
+  LocaHeatmap,
+  AmapText,
+  AmapEllipse
 ];
 
 const locaComponents = [
