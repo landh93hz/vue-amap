@@ -47,7 +47,8 @@ export default {
         if (this.target && this.target.setMap) {
           if (!this.visible) this.target.hide();
           if (this.target.CLASS_NAME === 'AMAp.InfoWindow') return;
-          this.target.setMap(map);
+          // this.target.setMap(map);
+          map.add(this.target);
         }
       }, 0);
     }
