@@ -1,4 +1,4 @@
-import { amapLoader } from '..//util/apiloader';
+import { amapLoader } from '../util/apiloader';
 import layerFactory from './factory';
 
 // 卫星图层
@@ -26,7 +26,7 @@ const trafficOptions = {
 
 const tilelayer = new Promise(resolve => {
   amapLoader.then(AMap => {
-    resolve(AMap.TileLayer);
+    resolve(AMap.createDefaultLayer);
   });
 });
 
@@ -44,6 +44,14 @@ const buildingOptions = {
 
 export const AMapSatellite = layerFactory(satellite, 'amap-satellite');
 export const AMapRoadnet = layerFactory(roadnet, 'amap-roadnet');
-export const AMapTraffic = layerFactory(traffic, 'amap-traffic', trafficOptions);
+export const AMapTraffic = layerFactory(
+  traffic,
+  'amap-traffic',
+  trafficOptions
+);
 export const AMapTilelayer = layerFactory(tilelayer, 'amap-tilelayer');
-export const AMapBuildings = layerFactory(buildings, 'amap-buildings', buildingOptions);
+export const AMapBuildings = layerFactory(
+  buildings,
+  'amap-buildings',
+  buildingOptions
+);
