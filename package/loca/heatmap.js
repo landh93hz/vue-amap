@@ -91,7 +91,8 @@ export default {
   created() {
     locaLoader.then(Loca => {
       this.Loca = Loca;
-      this.target = new Loca.HeatMapLayer({});
+      const { zIndex, opacity, visible, zooms } = this;
+      this.target = new Loca.HeatMapLayer({ zIndex, opacity, visible, zooms });
       const geoData = this.getGeoData();
       this.target.setSource(geoData, {
         value: (index, feature) => feature.properties[this.value],
