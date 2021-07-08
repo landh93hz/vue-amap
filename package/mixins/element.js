@@ -1,4 +1,3 @@
-
 export default {
   props: {
     visible: {
@@ -11,6 +10,8 @@ export default {
     return {
       target: null,
       options: null,
+      _loca: null,
+      _map: null
     };
   },
   watch: {
@@ -37,20 +38,28 @@ export default {
     this.getMap(this.mapGetter);
   },
   beforeDestroy() {
-    this.target && this.target.setMap(null);
+    if (this.target.CLASS_NAME === 'HeatMap') {
+      this.target && this.target.remove();
+    } else {
+      this.target && this._map.remove(this.target);
+    }
     this.target = null;
     this.$emit('destroy');
-  }, 
+  },
   methods: {
     mapGetter(map) {
+      this._map = map;
       setTimeout(() => {
-        if (this.target && this.target.setMap) {
+        if (this.target) {
           if (!this.visible) this.target.hide();
           if (this.target.CLASS_NAME === 'AMAp.InfoWindow') return;
-          // this.target.setMap(map);
+          if (this.target.CLASS_NAME === 'HeatMap') {
+            this._loca = new this.Loca.Container({ map });
+            this._loca.add(this.target);
+          }
           map.add(this.target);
         }
       }, 0);
     }
-  },
+  }
 };

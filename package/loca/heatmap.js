@@ -9,62 +9,94 @@ export default {
     return this.$slots.default;
   },
   props: {
-    value: { type: String, default: 'value' },
-    dataType: String,
-    eventSupport: Boolean,
-    fitView: Boolean,
-    zIndex: Number,
-    lnglat: { type: [String, Function], default: 'lnglat' },
+    zIndex: { type: Number, default: 10 },
+    opacity: { type: Number, default: 1 },
+    visible: { type: Boolean, default: true },
+    zooms: { type: Array, default: () => [2, 20] },
+
+    points: { type: [Array, Object], required: true },
+    /* 图层样式相关 */
     radius: { type: Number, required: true },
-    color: { type: Object, required: true },
-    opacity: { type: Array, default: () => [0, 1] },
-    points: { type: Array, required: true },
-    visible: { type: Boolean, default: true }
+    // value 热力点的值的key值
+    value: { type: String, default: 'value' },
+    gradient: { type: Object, required: true },
+    height: { type: Number, default: 100 },
+    heightBezier: { type: Array, default: () => [0.4, 0.2, 0.4, 0.8] },
+    max: { type: Number, default: null },
+    min: { type: Number, default: null },
+    unit: { type: String, default: 'px' }
   },
   data() {
     return {
       target: null,
+      Loca: null,
       options: {},
-      events: []
+      events: ['setStyle']
     };
   },
   watch: {
-    points(val) {
-      if (this.target) {
-        this.target.setData(val, this.dataOptions);
-        this.target.setOptions({ style: this.styleOptions });
-        this.target.render();
+    points() {
+      if (this.target && this._loca) {
+        const geoData = this.getGeoData();
+        this.target.setSource(geoData, {
+          value: (index, feature) => feature.properties[this.value],
+          ...this.getStyleOption()
+        });
+        this._loca.add(this.target);
       }
-    }
-  },
-  computed: {
-    styleOptions() {
-      const { radius, color, opacity } = this;
-      const options = { radius, color, opacity };
-      return options;
-    },
-    dataOptions() {
-      const { lnglat, value, dataType: type } = this;
-      const options = { lnglat, value, type };
-      return options;
     }
   },
   methods: {
     delayedRender() {
-      if (this.target && this.target.getMap()) {
-        this.target.render();
+      if (this.target && this._loca) {
+        this._loca.add(this.target);
         this.visible ? this.target.show() : this.target.hide();
       } else {
         setTimeout(this.delayedRender, 50);
       }
+    },
+    /**
+     * 用来构造 geojson 格式的数据
+     * @returns {{features: [], type: string}}
+     */
+
+    getGeoData() {
+      if (this.points.length === 0 && !this.Loca) return;
+      const options = {
+        type: 'FeatureCollection',
+        features: []
+      };
+      const { value } = this;
+      this.points.forEach(point => {
+        const feature = {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'Point',
+            coordinates: []
+          }
+        };
+        const { longitude, latitude } = point;
+        feature['properties'][value] = point[value];
+        feature['geometry']['coordinates'] = [longitude, latitude];
+        options['features'].push(feature);
+      });
+      return new this.Loca.GeoJSONSource({ data: options });
+    },
+    getStyleOption() {
+      const { radius, unit, gradient, heightBezier, max, min } = this;
+      return { radius, unit, gradient, heightBezier, max, min };
     }
   },
   created() {
     locaLoader.then(Loca => {
-      const layer = new Loca.HeatmapLayer({});
-      layer.setData(this.points, this.dataOptions);
-      layer.setOptions({ style: this.styleOptions });
-      this.target = layer;
+      this.Loca = Loca;
+      this.target = new Loca.HeatMapLayer({});
+      const geoData = this.getGeoData();
+      this.target.setSource(geoData, {
+        value: (index, feature) => feature.properties[this.value],
+        ...this.getStyleOption()
+      });
     });
   },
   mounted() {

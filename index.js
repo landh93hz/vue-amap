@@ -72,9 +72,10 @@ export default {
 
     if (options.enableLoca) {
       const LOCA_URL = 'https://webapi.amap.com/loca';
+      const v = parseFloat(options.v) >= 2 ? '2.0.0' : '1.3.0';
       const locaOptions = {
         key: options.key,
-        v: options.Loca.v || '1.3.0'
+        v
       };
       locaLoader.init(LOCA_URL, locaOptions);
       locaComponents.forEach(comp => {
