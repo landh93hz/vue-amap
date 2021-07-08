@@ -31,7 +31,7 @@ export default {
       target: null,
       Loca: null,
       options: {},
-      events: ['setStyle']
+      events: []
     };
   },
   watch: {
