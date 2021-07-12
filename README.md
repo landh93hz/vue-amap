@@ -217,14 +217,14 @@ let loca = new Loca.Contanier({map:map})
 
 #### 3. 封装成组件的使用方法
 
-其中： `value, points, radius, gradient`为必填值
+其中： `value, points, radius, color`为必填值
 ```vue
 <amap-map>
   <loca-heatmap
     :value="score"  
     :points="points"
     :radius="radius"
-    :gradient="gradient">
+    :color="gradient">
   </loca-heatmap>
   <script>
     export default {
