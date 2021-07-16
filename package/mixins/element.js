@@ -55,6 +55,8 @@ export default {
             return;
           }
           map.add(this.target);
+        } else {
+          setTimeout(() => this.getMap(this.mapGetter));
         }
       }, 0);
     }
