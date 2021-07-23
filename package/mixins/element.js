@@ -11,7 +11,8 @@ export default {
       target: null,
       options: null,
       _loca: null,
-      _map: null
+      _map: null,
+      locas: ['HeatMap', 'Hexagon']
     };
   },
   watch: {
@@ -49,7 +50,10 @@ export default {
         if (this.target) {
           if (!this.visible) this.target.hide();
           if (this.target.CLASS_NAME === 'AMAp.InfoWindow') return;
-          if (this.target.CLASS_NAME === 'HeatMap' && this.isVersion2) {
+          if (
+            this.locas.includes(this.target.CLASS_NAME) &&
+            this.mapVersion === 'v2'
+          ) {
             this._loca = new this.Loca.Container({ map });
             this._loca.add(this.target);
             return;
