@@ -9,8 +9,8 @@ import {
   AMapTraffic,
   AMapControlBar,
   AMapMapType,
-  AMapScale, 
-  AMapToolBar, 
+  AMapScale,
+  AMapToolBar,
   AMapOverView,
   AMapBuildings,
   MassMarks,
@@ -22,7 +22,8 @@ import {
   AmapCircle,
   AmapCircleMarker,
   AmapText,
-  AmapEllipse
+  AmapEllipse,
+  LocaHexagon
 } from './package/index';
 
 import { amapLoader, locaLoader } from './package/util/apiloader';
@@ -38,8 +39,8 @@ const components = [
   AMapTraffic,
   AMapControlBar,
   AMapMapType,
-  AMapScale, 
-  AMapToolBar, 
+  AMapScale,
+  AMapToolBar,
   AMapOverView,
   AMapBuildings,
   MassMarks,
@@ -51,17 +52,14 @@ const components = [
   AmapCircleMarker,
   LocaHeatmap,
   AmapText,
-  AmapEllipse
+  AmapEllipse,
+  LocaHexagon
 ];
 
-const locaComponents = [
-  LocaHeatmap
-];
-
+const locaComponents = [LocaHeatmap];
 
 export default {
   install(vm, options = {}) {
-    
     const AMAP_URL = 'https://webapi.amap.com/maps';
 
     amapLoader.init(AMAP_URL, options);
@@ -85,7 +83,4 @@ export default {
   }
 };
 
-export {
-  amapLoader,
-  locaLoader
-};
+export { amapLoader, locaLoader };
