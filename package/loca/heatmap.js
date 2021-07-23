@@ -39,7 +39,7 @@ export default {
   },
   watch: {
     points(val) {
-      if (this.target && !this.mapVersion) {
+      if (this.target && this.mapVersion === 'v1') {
         this.target.setData(val, this.dataOptions);
         this.target.setOptions({ style: this.styleOptions });
         this.target.render();
@@ -67,9 +67,10 @@ export default {
   methods: {
     delayedRender() {
       if (this.target && this._loca) {
-        this._loca.add(this.target);
+        // console.log('5.将图层添加到地图上');
         this.visible ? this.target.show() : this.target.hide();
-      } else if (this.target && !this.mapVersion) {
+      } else if (this.target && this.mapVersion === 'v1') {
+        console.log('v1-target', this.target);
         this.target.render();
         this.visible ? this.target.show() : this.target.hide();
       } else {
@@ -125,13 +126,18 @@ export default {
     locaLoader.then(Loca => {
       this.Loca = Loca;
       if (this.mapVersion === 'v2') {
-        this.target = new Loca.HeatMapLayer(this.options);
-        const geoData = this.getGeoData();
-        this.target.setSource(geoData);
-        this.target.setStyle({
-          value: (index, feature) => feature.properties[this.value],
-          ...this.getStyleOption()
-        });
+        setTimeout(() => {
+          // console.log('3.创建可视化图层和数据源');
+          const layer = new Loca.HeatMapLayer(this.options);
+          const geoData = this.getGeoData();
+          // console.log('4.为图层关联数据和样式');
+          layer.setSource(geoData);
+          layer.setStyle({
+            value: (index, feature) => feature.properties[this.value],
+            ...this.getStyleOption()
+          });
+          this.target = layer;
+        }, 50);
       } else {
         const layer = new Loca.HeatmapLayer({});
         layer.setData(this.points, this.dataOptions);
