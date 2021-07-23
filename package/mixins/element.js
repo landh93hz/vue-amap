@@ -39,12 +39,20 @@ export default {
     this.getMap(this.mapGetter);
   },
   beforeDestroy() {
+    if (this._loca) {
+      this.target && this._loca.remove(this.target);
+      this._loca.destroy();
+      this.target.setLoca(null);
+      this.target = null;
+      this.Loca = null;
+    }
     this.target && this._map.remove(this.target);
     this.target = null;
     this.$emit('destroy');
   },
   methods: {
     mapGetter(map) {
+      // console.log(' 1. 获取map实例对象');
       this._map = map;
       setTimeout(() => {
         if (this.target) {
@@ -54,10 +62,12 @@ export default {
             this.locas.includes(this.target.CLASS_NAME) &&
             this.mapVersion === 'v2'
           ) {
+            // console.log(' 2. 创建Loca 实例');
             this._loca = new this.Loca.Container({ map });
             this._loca.add(this.target);
             return;
           }
+          console.log('v1');
           map.add(this.target);
         } else {
           setTimeout(() => this.getMap(this.mapGetter));
