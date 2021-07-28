@@ -39,17 +39,17 @@ export default {
   },
   watch: {
     points(val) {
-      if (this.target && this.mapVersion === 'v1') {
+      if (!this.target) return;
+      if (this.mapVersion === 'v2') {
+        const geoData = getGeoData(this.Loca, val, this.value);
+        this.target.setSource(geoData, this.getStyleOption());
+        this._loca.add(this.target);
+      } else if (this.mapVersion === 'v1') {
         this.target.setData(val, this.dataOptions);
         this.target.setOptions({ style: this.styleOptions });
         this.target.render();
-      } else if (this.target && this._loca) {
-        const geoData = this.getGeoData();
-        this.target.setSource(geoData, {
-          value: (index, feature) => feature.properties[this.value],
-          ...this.getStyleOption()
-        });
-        this._loca.add(this.target);
+      } else {
+        throw new Error('Please checkout the map version');
       }
     }
   },
