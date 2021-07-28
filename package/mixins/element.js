@@ -1,3 +1,5 @@
+import { getVersion } from '../util/loca';
+
 export default {
   props: {
     visible: {
@@ -12,7 +14,8 @@ export default {
       options: null,
       _loca: null,
       _map: null,
-      locas: ['HeatMap', 'Hexagon']
+      locas: ['HeatMap', 'Hexagon'],
+      mapVersion: null
     };
   },
   watch: {
@@ -58,21 +61,24 @@ export default {
         if (this.target) {
           if (!this.visible) this.target.hide();
           if (this.target.CLASS_NAME === 'AMAp.InfoWindow') return;
-          if (
-            this.locas.includes(this.target.CLASS_NAME) &&
-            this.mapVersion === 'v2'
-          ) {
-            // console.log(' 2. 创建Loca 实例');
-            this._loca = new this.Loca.Container({ map });
-            this._loca.add(this.target);
-            return;
-          }
-          console.log('v1');
-          map.add(this.target);
+          this.addToMap(map);
         } else {
           setTimeout(() => this.getMap(this.mapGetter));
         }
       }, 0);
+    },
+    addToMap(map) {
+      this.mapVersion = getVersion();
+      if (this.mapVersion === 'v2') {
+        if (this.locas.includes(this.target.CLASS_NAME)) {
+          this._loca = new this.Loca.Container({ map });
+          this._loca.add(this.target);
+        } else {
+          map.add(this.target);
+        }
+      } else if (this.mapVersion === 'v1') {
+        this.target.setMap(map);
+      }
     }
   }
 };
