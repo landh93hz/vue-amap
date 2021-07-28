@@ -1,7 +1,7 @@
 import EventMixin from '../mixins/events';
 import ElementMixin from '../mixins/element';
 import { locaLoader } from '../util/apiloader';
-import { getVersion } from '../util/version';
+import { getVersion, getGeoData } from '../util/loca';
 
 export default {
   name: 'loca-heatmap',
@@ -70,55 +70,16 @@ export default {
         // console.log('5.将图层添加到地图上');
         this.visible ? this.target.show() : this.target.hide();
       } else if (this.target && this.mapVersion === 'v1') {
-        console.log('v1-target', this.target);
         this.target.render();
         this.visible ? this.target.show() : this.target.hide();
       } else {
         setTimeout(this.delayedRender, 50);
       }
     },
-    /**
-     * 用来构造 geojson 格式的数据
-     * @returns {{features: [], type: string}}
-     */
-
-    getGeoData() {
-      if (this.points.type) {
-        return new this.Loca.GeoJSONSource({ data: this.points });
-      }
-      if (this.points.length === 0 && !this.Loca) return;
-      const options = {
-        type: 'FeatureCollection',
-        features: []
-      };
-      const { value } = this;
-      this.points.forEach(point => {
-        const feature = {
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            type: 'Point',
-            coordinates: []
-          }
-        };
-        const { longitude, latitude } = point;
-        feature['properties'][value] = point[value];
-        feature['geometry']['coordinates'] = [longitude, latitude];
-        options['features'].push(feature);
-      });
-      return new this.Loca.GeoJSONSource({ data: options });
-    },
     getStyleOption() {
-      const {
-        radius,
-        unit,
-        color: gradient,
-        heightBezier,
-        max,
-        min,
-        height
-      } = this;
-      return { radius, unit, gradient, heightBezier, max, min, height };
+      const { radius, unit, color: gradient, heightBezier, max, min, height, value } = this;
+      const fn = (index, feature) => feature.properties[value];
+      return { radius, unit, gradient, heightBezier, max, min, height, value: fn };
     }
   },
   created() {
@@ -129,13 +90,11 @@ export default {
         setTimeout(() => {
           // console.log('3.创建可视化图层和数据源');
           const layer = new Loca.HeatMapLayer(this.options);
-          const geoData = this.getGeoData();
+          const geoData = getGeoData(Loca, this.points, this.value);
+          const styleOptions = this.getStyleOption();
           // console.log('4.为图层关联数据和样式');
           layer.setSource(geoData);
-          layer.setStyle({
-            value: (index, feature) => feature.properties[this.value],
-            ...this.getStyleOption()
-          });
+          layer.setStyle(styleOptions);
           this.target = layer;
         }, 50);
       } else {

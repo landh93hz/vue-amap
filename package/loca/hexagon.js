@@ -1,7 +1,7 @@
 import EventMixin from '../mixins/events';
 import ElementMixin from '../mixins/element';
 import { locaLoader } from '../util/apiloader';
-import { getVersion } from '../util/version';
+import { getVersion, getGeoData } from '../util/loca';
 
 export default {
   name: 'loca-hexagon',
@@ -67,40 +67,10 @@ export default {
         setTimeout(this.delayedRender, 50);
       }
     },
-    /**
-     * 用来构造 geojson 格式的数据
-     * @returns {number}
-     */
-
-    getGeoData() {
-      if (this.points.type) {
-        return new this.Loca.GeoJSONSource({ data: this.points });
-      }
-      if (this.points.length === 0 && !this.Loca) return;
-      const options = {
-        type: 'FeatureCollection',
-        features: []
-      };
-      const { value } = this;
-      this.points.forEach(point => {
-        const feature = {
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            type: 'Point',
-            coordinates: []
-          }
-        };
-        const { longitude, latitude } = point;
-        feature['properties'][value] = point[value];
-        feature['geometry']['coordinates'] = [longitude, latitude];
-        options['features'].push(feature);
-      });
-      return new this.Loca.GeoJSONSource({ data: options });
-    },
     getStyleOption() {
-      const { topColor, sideColor, altitude, height, radius, gap, unit } = this;
-      return { topColor, sideColor, altitude, height, radius, gap, unit };
+      const { topColor, sideColor, altitude, height, radius, gap, unit, value } = this;
+      const fn = (index, feature) => feature.properties[value];
+      return { topColor, sideColor, altitude, height, radius, gap, unit, value: fn };
     }
   },
   created() {
@@ -110,12 +80,10 @@ export default {
       if (this.mapVersion === 'v2') {
         setTimeout(() => {
           const layer = new Loca.HexagonLayer(this.options);
-          const geoData = this.getGeoData();
+          const geoData = getGeoData(Loca, this.points, this.value);
+          const styleOptions = this.getStyleOption();
           layer.setSource(geoData);
-          layer.setStyle({
-            value: (index, feature) => feature.properties[this.value],
-            ...this.getStyleOption()
-          });
+          layer.setStyle(styleOptions);
           this.target = layer;
         }, 50);
       }
