@@ -1,4 +1,3 @@
-
 import ElementMixin from '../mixins/element';
 import EventMixin from '../mixins/events';
 import { amapLoader } from '../util/apiloader';
@@ -46,7 +45,7 @@ export default {
         fillColor: this.fillColor,
         fillOpacity: this.fillOpacity,
         strokeStyle: this.strokeStyle,
-        strokeWeight: this.strokeWeight,
+        strokeWeight: this.strokeWeight
       };
     }
   },
@@ -75,7 +74,11 @@ export default {
     amapLoader.then(AMap => {
       this.target = new AMap.Polygon(this.options);
       if (this.isEditor) {
-        this.$parent.createPolyEditor(this.target);
+        if (AMap.version === '2.0') {
+          this.$parent.createPolygonEditor && this.$parent.createPolygonEditor(this.target);
+        } else {
+          this.$parent.createPolyEditor && this.$parent.createPolyEditor(this.target);
+        }
       }
     });
   },

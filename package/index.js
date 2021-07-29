@@ -19,6 +19,7 @@ import AmapEllipse from './elements/ellipse';
 import AmapEllipseEditor from './plugins/ellipse-editor';
 
 import AmapPolylineEditor from './plugins/polyline-editor';
+import AmapPolygonEditor from './plugins/polygon-editor';
 
 import LocaHexagon from './loca/hexagon';
 
@@ -51,5 +52,6 @@ export {
   AmapEllipse,
   AmapEllipseEditor,
   LocaHexagon,
-  AmapPolylineEditor
+  AmapPolylineEditor,
+  AmapPolygonEditor
 };
