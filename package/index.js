@@ -6,20 +6,8 @@ import MassMarks from './elements/massmarks';
 import AmapPolygon from './elements/polygon.js';
 import LocaHeatmap from './loca/heatmap';
 import MapBounds from './widgets/bounds.vue';
-import {
-  AMapRoadnet,
-  AMapSatellite,
-  AMapTilelayer,
-  AMapTraffic,
-  AMapBuildings
-} from './layer/index';
-import {
-  AMapControlBar,
-  AMapMapType,
-  AMapScale,
-  AMapToolBar,
-  AMapOverView
-} from './control/index';
+import { AMapRoadnet, AMapSatellite, AMapTilelayer, AMapTraffic, AMapBuildings } from './layer/index';
+import { AMapControlBar, AMapMapType, AMapScale, AMapToolBar, AMapOverView } from './control/index';
 import AmapRectangle from './elements/rectangle.js';
 import AmapCircle from './elements/circle';
 import AmapCircleMarker from './elements/circlemarker.vue';
@@ -29,6 +17,8 @@ import AmapRectangleEditor from './plugins/rectangle-editor.vue';
 import AmapText from './elements/text';
 import AmapEllipse from './elements/ellipse';
 import AmapEllipseEditor from './plugins/ellipse-editor';
+
+import AmapPolylineEditor from './plugins/polyline-editor';
 
 import LocaHexagon from './loca/hexagon';
 
@@ -60,5 +50,6 @@ export {
   AmapText,
   AmapEllipse,
   AmapEllipseEditor,
-  LocaHexagon
+  LocaHexagon,
+  AmapPolylineEditor
 };

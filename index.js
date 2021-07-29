@@ -23,7 +23,8 @@ import {
   AmapCircleMarker,
   AmapText,
   AmapEllipse,
-  LocaHexagon
+  LocaHexagon,
+  AmapPolylineEditor
 } from './package/index';
 
 import { amapLoader, locaLoader } from './package/util/apiloader';
@@ -53,7 +54,8 @@ const components = [
   LocaHeatmap,
   AmapText,
   AmapEllipse,
-  LocaHexagon
+  LocaHexagon,
+  AmapPolylineEditor
 ];
 
 const locaComponents = [LocaHeatmap];

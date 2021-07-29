@@ -1,4 +1,3 @@
-
 import EventMixin from '../mixins/events';
 import ElementMixin from '../mixins/element';
 import { amapLoader } from '../util/apiloader';
@@ -24,7 +23,7 @@ export default {
         'touchstart',
         'touchmove',
         'touchend'
-      ],
+      ]
     };
   },
   props: {
@@ -92,7 +91,11 @@ export default {
     amapLoader.then(AMap => {
       this.target = new AMap.Polyline(this.options);
       if (this.isEditor) {
-        this.$parent.createPolyEditor(this.target);
+        if (AMap.version === '2.0') {
+          this.$parent.createPolylineEditor && this.$parent.createPolylineEditor(this.target);
+        } else {
+          this.$parent.createPolyEditor && this.$parent.createPolyEditor(this.target);
+        }
       }
     });
   },
