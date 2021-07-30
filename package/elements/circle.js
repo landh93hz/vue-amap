@@ -8,7 +8,7 @@ export default {
   render() {
     return this.$slots.default;
   },
-  data(){
+  data() {
     return {
       target: null,
       options: {},
@@ -73,23 +73,22 @@ export default {
         fillColor: this.fillColor,
         fillOpacity: this.fillOpacity,
         strokeStyle: this.strokeStyle,
-        strokeWeight: this.strokeWeight,
+        strokeWeight: this.strokeWeight
       };
     }
   },
-  created () {
+  created() {
     amapLoader.then(AMap => {
-      if (this.fillOpacity){
+      if (this.fillOpacity) {
         this.options['fillOpacity'] = parseFloat(this.fillOpacity);
       }
-      if (this.strokeOpacity){
-         this.options['strokeOpacity'] = parseFloat(this.strokeOpacity);
+      if (this.strokeOpacity) {
+        this.options['strokeOpacity'] = parseFloat(this.strokeOpacity);
       }
       this.target = new AMap.Circle(this.options);
       if (this.isEditor) {
-        this.$parent.createCircleEditor(this.target);
+        this.$parent.createCircleEditor && this.$parent.createCircleEditor(this.target);
       }
     });
-  },
- 
+  }
 };
