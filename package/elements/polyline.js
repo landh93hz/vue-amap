@@ -90,8 +90,9 @@ export default {
   created() {
     amapLoader.then(AMap => {
       this.target = new AMap.Polyline(this.options);
+      const version = AMap.v || AMap.version;
       if (this.isEditor) {
-        if (AMap.version === '2.0') {
+        if (version === '2.0') {
           this.$parent.createPolylineEditor && this.$parent.createPolylineEditor(this.target);
         } else {
           this.$parent.createPolyEditor && this.$parent.createPolyEditor(this.target);
