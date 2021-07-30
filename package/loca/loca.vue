@@ -30,10 +30,17 @@ export default {
     };
   },
   created() {
+    !this.options && (this.options = {});
+    const keys = Object.keys(this.$props);
+    for (const key of keys) {
+      if (this.$props[key] !== undefined) {
+        this.options[key] = this.$props[key];
+      }
+    }
     this.getMap(map => {
       locaLoader.then(Loca => {
-        this.target = new Loca.Container({ map });
-        console.log(this.target);
+        console.log(this.options);
+        this.target = new Loca.Container({ map, ...this.options });
       });
     });
   },
