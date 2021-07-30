@@ -27,7 +27,8 @@ import {
   LocaHexagon,
   AmapPolylineEditor,
   AmapPolygonEditor,
-  AmapEllipseEditor
+  AmapEllipseEditor,
+  Loca
 } from './package/index';
 
 import { amapLoader, locaLoader } from './package/util/apiloader';
@@ -61,7 +62,8 @@ const components = [
   AmapEllipseEditor,
   LocaHexagon,
   AmapPolylineEditor,
-  AmapPolygonEditor
+  AmapPolygonEditor,
+  Loca
 ];
 
 const locaComponents = [LocaHeatmap];

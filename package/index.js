@@ -22,6 +22,7 @@ import AmapPolylineEditor from './plugins/polyline-editor';
 import AmapPolygonEditor from './plugins/polygon-editor';
 
 import LocaHexagon from './loca/hexagon';
+import Loca from './loca/loca';
 
 export {
   AmapMap,
@@ -53,5 +54,6 @@ export {
   AmapEllipseEditor,
   LocaHexagon,
   AmapPolylineEditor,
-  AmapPolygonEditor
+  AmapPolygonEditor,
+  Loca
 };
