@@ -8,7 +8,7 @@ export default {
   render() {
     return this.$slots.default;
   },
-  data(){
+  data() {
     return {
       target: null,
       options: {},
@@ -72,20 +72,22 @@ export default {
         strokeOpacity: this.strokeOpacity || 1,
         strokeWeight: this.strokeWeight || 2,
         strokeDasharray: this.strokeDasharray || [],
-        strokeStyle: this.strokeStyle || 'solid',
+        strokeStyle: this.strokeStyle || 'solid'
       };
     }
   },
-  created () {
+  created() {
     amapLoader.then(AMap => {
-      if (this.bounds instanceof Array){
-        this.options['bounds'] = new AMap.Bounds(new AMap.LngLat(this.bounds[0][0], this.bounds[0][1]), new AMap.LngLat(this.bounds[1][0], this.bounds[1][1]));
+      if (this.bounds instanceof Array) {
+        this.options['bounds'] = new AMap.Bounds(
+          new AMap.LngLat(this.bounds[0][0], this.bounds[0][1]),
+          new AMap.LngLat(this.bounds[1][0], this.bounds[1][1])
+        );
       }
       this.target = new AMap.Rectangle(this.options);
       if (this.isEditor) {
-        this.$parent.createRectangleEditor(this.target);
+        this.$parent.createRectangleEditor && this.$parent.createRectangleEditor(this.target);
       }
     });
-  },
- 
+  }
 };
