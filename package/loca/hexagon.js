@@ -44,7 +44,7 @@ export default {
       if (this.mapVersion === 'v2') {
         const geoData = getGeoData(this.Loca, val, this.value);
         this.target.setSource(geoData, this.getStyleOption());
-        this._loca.add(this.target);
+        this.$parent.getLoca(loca => loca.add(this.target));
       } else if (this.mapVersion === 'v1') {
         this.target.setData(val, this.dataOptions);
         this.target.setOptions({ style: this.styleOptions });
