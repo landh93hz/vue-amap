@@ -26,7 +26,8 @@ const trafficOptions = {
 
 const tilelayer = new Promise(resolve => {
   amapLoader.then(AMap => {
-    resolve(AMap.createDefaultLayer);
+    const version = AMap.v || AMap.version;
+    version === '2.0' ? resolve(AMap.createDefaultLayer) : resolve(AMap.TileLayer);
   });
 });
 
@@ -44,14 +45,6 @@ const buildingOptions = {
 
 export const AMapSatellite = layerFactory(satellite, 'amap-satellite');
 export const AMapRoadnet = layerFactory(roadnet, 'amap-roadnet');
-export const AMapTraffic = layerFactory(
-  traffic,
-  'amap-traffic',
-  trafficOptions
-);
+export const AMapTraffic = layerFactory(traffic, 'amap-traffic', trafficOptions);
 export const AMapTilelayer = layerFactory(tilelayer, 'amap-tilelayer');
-export const AMapBuildings = layerFactory(
-  buildings,
-  'amap-buildings',
-  buildingOptions
-);
+export const AMapBuildings = layerFactory(buildings, 'amap-buildings', buildingOptions);
