@@ -74,10 +74,11 @@ export default {
           this._loca = new this.Loca.Container({ map });
           this._loca.add(this.target);
         } else {
+          // todo 工具类的是否需要使用 map.add？或者工具类的不使用element.js混入会更好
           map.add(this.target);
         }
       } else if (this.mapVersion === 'v1') {
-        this.target.setMap(map);
+        this.target.setMap && this.target.setMap(map);
       }
     }
   }
