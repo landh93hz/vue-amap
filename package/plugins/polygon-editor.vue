@@ -32,7 +32,7 @@ export default {
   },
   inject: ['getMap'],
   created() {
-    
+    this.createPolygonEditor();
   },
   methods: {
     createPolygonEditor(editorObject = undefined){
