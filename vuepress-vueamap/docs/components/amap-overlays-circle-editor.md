@@ -16,7 +16,7 @@ title: 圆形编辑插件
     <button class="btn" @click="circleTarget.close()">结束编辑</button> 
   </div>
     <amap-circle-editor @complete="event=>circleTarget=event">
-      <amap-ellipse
+      <amap-circle
         isEditor
         :center="center"
         :radius="1000"
@@ -25,7 +25,7 @@ title: 圆形编辑插件
         fillOpacity="0.5"
         :strokeWeight="2"
         >
-      </amap-ellipse>
+      </amap-circle>
     </amap-circle-editor>
   </amap-map>
 </div>
