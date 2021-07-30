@@ -20,12 +20,14 @@ import {
   AmapRectangle,
   AmapRectangleEditor,
   AmapCircle,
+  AMapCircleEditor,
   AmapCircleMarker,
   AmapText,
   AmapEllipse,
   LocaHexagon,
   AmapPolylineEditor,
-  AmapPolygonEditor
+  AmapPolygonEditor,
+  AmapEllipseEditor
 } from './package/index';
 
 import { amapLoader, locaLoader } from './package/util/apiloader';
@@ -51,10 +53,12 @@ const components = [
   AmapRectangle,
   AmapRectangleEditor,
   AmapCircle,
+  AMapCircleEditor,
   AmapCircleMarker,
   LocaHeatmap,
   AmapText,
   AmapEllipse,
+  AmapEllipseEditor,
   LocaHexagon,
   AmapPolylineEditor,
   AmapPolygonEditor
