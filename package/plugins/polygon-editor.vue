@@ -35,11 +35,23 @@ export default {
     
   },
   methods: {
-    createPolygonEditor(editorObject){
-      console.log('edit', editorObject);
+    createPolygonEditor(editorObject = undefined){
+      if (this.target) {
+        this.target.setTarget(editorObject);
+      } else {
+        amapLoader.then(AMap => {
+          const version = AMap.v || AMap.version;
+          if (version !== '2.0') return;
+          this.getMap(map => {
+            this.target = new AMap.PolygonEditor(map, editorObject, this.options);
+          });
+        });
+      }
+    },
+    createPolyEditor(editorObject){
       amapLoader.then(AMap => {
         this.getMap(map => {
-          this.target = new AMap.PolygonEditor(map, editorObject, this.options);
+          this.target = new AMap.PolyEditor(map, editorObject);
         });
       });
     }

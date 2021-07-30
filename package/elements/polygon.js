@@ -73,8 +73,9 @@ export default {
   created() {
     amapLoader.then(AMap => {
       this.target = new AMap.Polygon(this.options);
+      const version = AMap.v || AMap.version;
       if (this.isEditor) {
-        if (AMap.version === '2.0') {
+        if (version === '2.0') {
           this.$parent.createPolygonEditor && this.$parent.createPolygonEditor(this.target);
         } else {
           this.$parent.createPolyEditor && this.$parent.createPolyEditor(this.target);
