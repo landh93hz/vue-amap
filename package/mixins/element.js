@@ -40,12 +40,17 @@ export default {
     this.getMap(this.mapGetter);
   },
   beforeDestroy() {
-    this.target && this.target.setMap(null);
+    if (this.mapVersion === 'v2') {
+      this.target && this._map.remove(this.target);
+    } else {
+      this.target && this.target.setMap(null);
+    }
     this.target = null;
     this.$emit('destroy');
   },
   methods: {
     mapGetter(map) {
+      this._map = map;
       this.mapVersion = getVersion();
       setTimeout(() => {
         if (this.target) {
