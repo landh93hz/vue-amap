@@ -17,25 +17,18 @@ module.exports = {
   themeConfig: {
     sidebar: [
       {
-        title:'入门',
-        collapsable:false,
-        children: [
-          '/components/install',
-          '/components/init',
-          '/components/amap'
-        ]
-
+        title: '入门',
+        collapsable: false,
+        children: ['/components/install', '/components/init', '/components/amap']
       },
       {
         title: '地图',
-        collapsable:false,
-        children: [
-          '/components/amap-map'
-        ]
+        collapsable: false,
+        children: ['/components/amap-map']
       },
       {
         title: '覆盖物',
-        collapsable:false,
+        collapsable: false,
         children: [
           '/components/amap-marker',
           '/components/amap-text',
@@ -46,23 +39,23 @@ module.exports = {
           '/components/amap-massmarks',
           '/components/amap-infowindow',
           '/components/amap-rectangle',
-          '/components/amap-ellipse',
+          '/components/amap-ellipse'
         ]
       },
       {
         title: '图层',
-        collapsable:false,
+        collapsable: false,
         children: [
           '/components/amap-roadnet',
           '/components/amap-satellite',
           '/components/amap-tilelayer',
           '/components/amap-traffic',
-          '/components/amap-buildings',
+          '/components/amap-buildings'
         ]
       },
       {
         title: '插件',
-        collapsable:false,
+        collapsable: false,
         children: [
           '/components/amap-control',
           '/components/amap-controlbar',
@@ -70,12 +63,18 @@ module.exports = {
           '/components/amap-scale',
           '/components/amap-toolbar',
           '/components/amap-overview',
-          '/components/amap-overlays-editor',
+          '/components/amap-overlays-polyline-editor',
+          '/components/amap-overlays-polygon-editor',
           '/components/amap-overlays-rect-editor',
           '/components/amap-overlays-circle-editor',
-          '/components/amap-overlays-ellipse-editor',
+          '/components/amap-overlays-ellipse-editor'
         ]
       },
+      {
+        title: 'Loca数据可视化',
+        collapsable: false,
+        children: ['/components/loca', '/components/loca-heatmap', '/components/loca-hexagon']
+      }
     ]
   }
-}
+};

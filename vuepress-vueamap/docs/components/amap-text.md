@@ -10,8 +10,8 @@ title: 文本标记
 ::: demo
 ```vue
 <div class="map-container">
-  <amap-map>
-    <amap-text text="这是一条文本标记" :textStyle="textStyle"> </amap-text>
+  <amap-map :center="position">
+    <amap-text text="这是一条文本标记" :textStyle="textStyle" :position="position"> </amap-text>
   </amap-map>
 </div>
 <script>
@@ -29,7 +29,8 @@ export default {
             'text-align': 'center',
             'font-size': '20px',
             'color': 'blue'
-          }
+          },
+          position: [121.499358, 31.240171]
         };
     },
 }

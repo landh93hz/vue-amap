@@ -73,20 +73,34 @@ export default {
 ```
 :::
 
+
+#### 属性  Attributes
+
+| 参数           | 类型                       | 说明                                                         |
+| :------------- | -------------------------- | ------------------------------------------------------------ |
+| `createOptions`| `Object`                   |               新创建的对象样式                 |
+| `editOptions `       | `Object`                   | 编辑样式                                            |
+| `movePoint `       | `Object`                   | 移动点样式 MarkerOptions                                   |
+| `resizePoint `        | `Object`                    | resize点样式 MarkerOptions                                          |
+
 #### 事件 Events
 | 事件         | 参数                                                         | 说明                                                         |
 | :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | `complete`    | 当前编辑器对象 <img width=200/> | 编辑器创建完成后触发 |
-| `move`    | `{type, target, lnglat}`| 	拖拽圆心调整圆形位置时触发此事件<br>  type: 事件类型<br>  target: 发生事件的目标对象<br>   lnglat: 调整后圆的圆心坐标 |
-| `adjust`     | `{type, target, lnglat}` | 鼠标调整圆形半径时，触发此事件<br>   type: 事件类型<br>  target: 发生事件的目标对象<br>   radius: 调整后圆的半径，单位：米   |
-| `end`        | `{type,target}`                                              | 该方法会在调用close方法后触发，target即为编辑后的圆对象 |
+| `addnode`     | `{target: Circle, lnglat: Lnglat, pixel: Pixel}` | 增加一个节点时触发此事件 |
+| `adjust`     | `{target: Circle, lnglat: Lnglat, pixel: Pixel}` | 鼠标调整圆形半径时，触发此事件<br>   |  
+| `move`    | `target: Circle, lnglat: Lnglat, pixel: Pixel}`| 	拖拽圆心调整圆形位置时触发此事件<br>   |
+| `add`    | `{target: Circle}`| 	创建一个覆盖物之后触发该事件，target即为创建对象。当editor编辑对象为空时，调用open接口，再点击一次屏幕就会创建新的覆盖物对象<br>   |
+| `end`        | `{target: Circle}`                                              | 该方法会在调用close方法后触发，target即为编辑后的圆对象 |
 
 #### 方法 methods
 
 调用 `amap-circle-editor`的 `complete`事件，会返回当前 `amap-circle-editor` 实例对象，通过调用该实例的 `open` 方法，即可开启编辑模式，调用 `close` 方法，即可关闭编辑模式
 
-| 方法       | 返回值 | 说明                                                         |
-| :--------- | :----- | :----------------------------------------------------------- |
-| `open( )`   |      | 打开编辑功能 |
-| `close( )` |        | 关闭编辑功能                                                 |
+| 方法       | 参数 | 返回值 | 说明                                                         |
+| :--------- | :----- | :----- | :----------------------------------------------------------- |
+| ` setTarget(overlay?)`   |  `overlay (Circle?)`    | |设置编辑对象 |
+| `getTarget()`   |   | `(Circle | undefined)`  | 获取编辑对象 |
+| `open( )`   |    |  | 打开编辑功能 |
+| `close( )` |      |  | 关闭编辑功能                                                 |
 

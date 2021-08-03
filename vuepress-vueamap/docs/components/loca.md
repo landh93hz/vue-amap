@@ -1,12 +1,10 @@
 ---
-title: 初始化
+title: Loca 
 ---
 # 初始化
 <font size=5>**项目引入地图**</font>
 
-一般项目中，可以按照如下方式在入口文件引入即可
-
-NPM 安装：
+ 地图组件若想配套使用 **Loca 数据可视化**，则需要添加`enableLoca: true`属性
 
 ```javascript
 import Vue from 'vue';
@@ -15,7 +13,8 @@ import AmapVue  from 'amap';
 const options = {
   key: 'YOUR_KEY',
   v: '2.0',
-  plugins: []
+  plugins: [],
+  enableLoca: true,
 };
 Vue.use(AmapVue, options);
 ```

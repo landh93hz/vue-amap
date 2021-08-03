@@ -71,18 +71,34 @@ export default {
 </style>
 ```
 :::
+
+
+#### 属性  Attributes
+
+| 参数           | 类型                       | 说明                                                         |
+| :------------- | -------------------------- | ------------------------------------------------------------ |
+| `createOptions`| `Object`                   |               新创建的对象样式                 |
+| `editOptions `       | `Object`                   | 编辑样式                                            |
+| `southWestPoint   `       | `Object`                   | 西南点样式 MarkerOptions                                 |
+| `northEastPoint   `        | `Object`                    | 东北点样式 MarkerOptions                             |
+
 #### 事件 Events
 | 事件         | 参数                                                         | 说明                                                         |
 | :----------- | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | `complete`    | 当前编辑器对象  | 编辑器创建完成后触发 |
-| `adjust`     |	 `{ type, radius, target }` | 鼠标调整横向和纵向半径时触发该事件   |
-| `end`        | `{type,target}`                        | 在调用close方法时，触发该事件，target即编辑的矩形 |
+| `addnode`    | `{target: Rectangle, lnglat: Lnglat, pixel: Pixel}`  | 编辑器创建完成后触发 |
+| `adjust`     |	 `{target: Rectangle, lnglat: Lnglat, pixel: Pixel}` | 鼠标调整横向和纵向半径时触发该事件   |
+| `move`    | `{target: Rectangle, lnglat: Lnglat, pixel: Pixel}`  | 增加一个节点时触发此事件 |
+| `add`    | `{target: Rectangle}`  | 创建一个覆盖物之后触发该事件，target即为创建对象。当editor编辑对象为空时，调用open接口，再点击一次屏幕就会创建新的覆盖物对象 |
+| `end`        | `{target: Rectangle}`                        | 在调用close方法时，触发该事件，target即编辑的矩形 |
 
 #### 方法 methods
 
 调用 `amap-rectangle-editor`的 `complete`事件，会返回当前 `amap-rectangle-editor` 实例对象，通过调用该实例的 `open` 方法，即可开启编辑模式，调用 `close` 方法，即可关闭编辑模式
 
-| 方法       | 返回值 | 说明                                                         |
-| :--------- | :----- | :----------------------------------------------------------- |
-| `open( )`  |        | 打开编辑功能。功能开启后，通过编辑点可调整矩形的形状 |
-| `close( )` |        | 关闭编辑功能                                                 |
+| 方法       | 参数 |返回值 | 说明                                                         |
+| :--------- | :----- |:----- | :----------------------------------------------------------- |
+| `setTarget(overlay?)`  |  `overlay (Rectangle?)`      | |设置编辑对象 |
+| `getTarget()`  |        |`(Rectangle | undefined)`|获取编辑对象 |
+| `open( )`  |        | |打开编辑功能。功能开启后，通过编辑点可调整矩形的形状 |
+| `close( )` |        | |关闭编辑功能                                                 |
