@@ -31,8 +31,12 @@ export default {
       }
     }
 
-    const name = this.key;
+    let name = this.key;
     amapLoader.then(AMap => {
+      const version = AMap.v || AMap.version;
+      if (version === '2.0' && name === 'OverView') {
+        name = 'HawkEye';
+      }
       const Ctor = AMap[name];
       if (!Ctor) throw new Error(`${name} is a plugin, you have to add it before invoked`);
       this.createTarget(Ctor);
@@ -63,9 +67,7 @@ export default {
       /* eslint-disable */
       try {
         this.target && map && map.removeControl(this.target);
-      } catch (_) {
-
-      };
+      } catch (_) {}
       /* eslint-enable */
     },
     showTarget() {
