@@ -73,7 +73,7 @@ module.exports = {
       {
         title: 'Loca数据可视化',
         collapsable: false,
-        children: ['/components/loca', '/components/loca-heatmap', '/components/loca-hexagon']
+        children: ['/components/loca-init', '/components/loca', '/components/loca-heatmap', '/components/loca-hexagon']
       }
     ]
   }
