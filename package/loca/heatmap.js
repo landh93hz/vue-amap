@@ -80,6 +80,24 @@ export default {
       const { radius, unit, color: gradient, heightBezier, max, min, height, value } = this;
       const fn = (index, feature) => feature.properties[value];
       return { radius, unit, gradient, heightBezier, max, min, height, value: fn };
+    },
+    initLayerV2(Loca) {
+      setTimeout(() => {
+        // console.log('3.创建可视化图层和数据源');
+        const layer = new Loca.HeatMapLayer(this.options);
+        const geoData = getGeoData(Loca, this.points, this.value);
+        const styleOptions = this.getStyleOption();
+        // console.log('4.为图层关联数据和样式');
+        layer.setSource(geoData);
+        layer.setStyle(styleOptions);
+        this.target = layer;
+      }, 50);
+    },
+    initLayerV1(Loca) {
+      const layer = new Loca.HeatmapLayer({});
+      layer.setData(this.points, this.dataOptions);
+      layer.setOptions({ style: this.styleOptions });
+      this.target = layer;
     }
   },
   created() {
@@ -87,21 +105,9 @@ export default {
     locaLoader.then(Loca => {
       this.Loca = Loca;
       if (this.mapVersion === 'v2') {
-        setTimeout(() => {
-          // console.log('3.创建可视化图层和数据源');
-          const layer = new Loca.HeatMapLayer(this.options);
-          const geoData = getGeoData(Loca, this.points, this.value);
-          const styleOptions = this.getStyleOption();
-          // console.log('4.为图层关联数据和样式');
-          layer.setSource(geoData);
-          layer.setStyle(styleOptions);
-          this.target = layer;
-        }, 50);
+        this.initLayerV2(Loca);
       } else {
-        const layer = new Loca.HeatmapLayer({});
-        layer.setData(this.points, this.dataOptions);
-        layer.setOptions({ style: this.styleOptions });
-        this.target = layer;
+        this.initLayerV1(Loca);
       }
     });
   },
