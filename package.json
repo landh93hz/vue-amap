@@ -25,11 +25,12 @@
     "style-loader": "^1.1.1",
     "vue": "^2.6.10",
     "vue-loader": "^15.9.6",
-    "vue-template-compiler": "^2.6.12",
     "vuepress": "^1.3.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "vue-template-compiler": "^2.6.12"
+  }
 }
