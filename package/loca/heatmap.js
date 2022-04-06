@@ -43,6 +43,7 @@ export default {
       if (this.mapVersion === 'v2') {
         const geoData = getGeoData(this.Loca, val, this.value);
         this.target.setSource(geoData, this.getStyleOption());
+        // todo 怎么确保或者判断 this.$parent 有 getLoca这个方法，如果没有要怎么处理，这个方法是必须的么？
         this.$parent.getLoca(loca => loca.add(this.target));
       } else if (this.mapVersion === 'v1') {
         this.target.setData(val, this.dataOptions);
