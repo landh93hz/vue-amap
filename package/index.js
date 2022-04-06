@@ -23,6 +23,7 @@ import AmapPolygonEditor from './plugins/polygon-editor';
 
 import LocaHexagon from './loca/hexagon';
 import Loca from './loca/loca';
+import LabelMarker from './elements/labelmarker.js';
 
 export {
   AmapMap,
@@ -55,5 +56,6 @@ export {
   LocaHexagon,
   AmapPolylineEditor,
   AmapPolygonEditor,
-  Loca
+  Loca,
+  LabelMarker
 };

@@ -56,7 +56,7 @@ export default {
         if (this.target) {
           if (!this.visible) this.target.hide();
           if (this.target.CLASS_NAME === 'AMAp.InfoWindow') return;
-          if (this.mapVersion === 'v2') {
+          if (this.mapVersion === 'v2' || this.target.CLASS_NAME === 'AMap.LabelsLayer') {
             if (this.locas.includes(this.target.CLASS_NAME)) {
               this.$parent.getLoca(loca => loca.add(this.target));
             }
