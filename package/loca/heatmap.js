@@ -2,6 +2,7 @@ import EventMixin from '../mixins/events';
 import ElementMixin from '../mixins/element';
 import { locaLoader } from '../util/apiloader';
 import { getVersion, getGeoData } from '../util/loca';
+const version = getVersion();
 
 export default {
   name: 'loca-heatmap',
@@ -9,6 +10,7 @@ export default {
   render() {
     return this.$slots.default;
   },
+  inject: version === 'v2' ? ['getLocaLayer'] : [],
   props: {
     zIndex: { type: Number, default: 10 },
     opacity: { type: Number, default: 1 },
@@ -17,7 +19,7 @@ export default {
     lnglat: { type: [String, Function], default: 'lnglat' },
     dataType: String,
 
-    points: { required: true },
+    points: { type: [Object, Array], required: true },
     /* 图层样式相关 */
     radius: { type: Number, required: true },
     // value 热力点的值的key值
@@ -43,8 +45,6 @@ export default {
       if (this.mapVersion === 'v2') {
         const geoData = getGeoData(this.Loca, val, this.value);
         this.target.setSource(geoData, this.getStyleOption());
-        // todo 怎么确保或者判断 this.$parent 有 getLoca这个方法，如果没有要怎么处理，这个方法是必须的么？
-        this.$parent.getLoca(loca => loca.add(this.target));
       } else if (this.mapVersion === 'v1') {
         this.target.setData(val, this.dataOptions);
         this.target.setOptions({ style: this.styleOptions });
@@ -67,13 +67,15 @@ export default {
 
   methods: {
     delayedRender() {
-      if (this.target && this._loca) {
-        // console.log('5.将图层添加到地图上');
+      if (this.target && this.mapVersion === 'v2') {
         this.visible ? this.target.show() : this.target.hide();
       } else if (this.target && this.mapVersion === 'v1') {
+        if (!this.target.getMap()) {
+          this.getMap(this.mapGetter);
+        }
         this.target.render();
         this.visible ? this.target.show() : this.target.hide();
-      } else {
+      } else if (!this.target) {
         setTimeout(this.delayedRender, 50);
       }
     },
@@ -83,26 +85,34 @@ export default {
       return { radius, unit, gradient, heightBezier, max, min, height, value: fn };
     },
     initLayerV2(Loca) {
-      setTimeout(() => {
-        // console.log('3.创建可视化图层和数据源');
-        const layer = new Loca.HeatMapLayer(this.options);
-        const geoData = getGeoData(Loca, this.points, this.value);
-        const styleOptions = this.getStyleOption();
-        // console.log('4.为图层关联数据和样式');
-        layer.setSource(geoData);
-        layer.setStyle(styleOptions);
-        this.target = layer;
-      }, 50);
+      const layer = new Loca.HeatMapLayer(this.options);
+      if (!this.points) return;
+      const geoData = getGeoData(Loca, this.points, this.value);
+      const styleOptions = this.getStyleOption();
+      layer.setSource(geoData);
+      layer.setStyle(styleOptions);
+      this.target = layer;
+      this.getLocaLayer(this.locaLayerGetter);
     },
     initLayerV1(Loca) {
       const layer = new Loca.HeatmapLayer({});
       layer.setData(this.points, this.dataOptions);
       layer.setOptions({ style: this.styleOptions });
       this.target = layer;
+    },
+    locaLayerGetter(locaLayer) {
+      locaLayer.add(this.target);
+      this.$once('hook:beforeDestroy', () => {
+        this.target && locaLayer.remove(this.target);
+      });
+    },
+    mapGetter(map) {
+      if (!this.target) return;
+      this.target.setMap(map);
     }
   },
   created() {
-    this.mapVersion = getVersion();
+    this.mapVersion = version;
     locaLoader.then(Loca => {
       this.Loca = Loca;
       if (this.mapVersion === 'v2') {
