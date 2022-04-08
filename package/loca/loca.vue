@@ -39,7 +39,7 @@ export default {
     }
     this.getMap(map => {
       locaLoader.then(Loca => {
-        console.log(this.options);
+        // console.log(this.options);
         this.target = new Loca.Container({ map, ...this.options });
       });
     });
