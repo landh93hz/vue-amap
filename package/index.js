@@ -23,6 +23,7 @@ import AmapPolygonEditor from './plugins/polygon-editor';
 
 import LocaHexagon from './loca/hexagon';
 import Loca from './loca/loca';
+import LabelsLayer from './elements/labelsLayer.vue';
 import LabelMarker from './elements/labelmarker.js';
 
 export {
@@ -57,5 +58,6 @@ export {
   AmapPolylineEditor,
   AmapPolygonEditor,
   Loca,
+  LabelsLayer,
   LabelMarker
 };

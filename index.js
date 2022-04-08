@@ -29,6 +29,7 @@ import {
   AmapPolygonEditor,
   AmapEllipseEditor,
   Loca,
+  LabelsLayer,
   LabelMarker
 } from './package/index';
 
@@ -65,6 +66,7 @@ const components = [
   AmapPolylineEditor,
   AmapPolygonEditor,
   Loca,
+  LabelsLayer,
   LabelMarker
 ];
 

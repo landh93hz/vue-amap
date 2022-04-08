@@ -9,29 +9,18 @@ export default {
     return this.$slots.default;
   },
   props: {
-    // labelMarker data
     data: {
-      type: Array,
+      type: Object,
       require: true
     },
-    // labelsLayer options
-    zIndex: Number,
-    opacity: Number,
-    collision: {
-      type: Boolean,
-      default: false
-    },
-    animation: {
-      type: Boolean,
-      default: false
+    extData: {
+      type: Object
     }
   },
   data() {
     return {
       AMap: null,
-      options: {},
       target: null,
-      markers: [],
       events: [
         'complete',
         'click',
@@ -46,34 +35,17 @@ export default {
     };
   },
   created() {
-    this.options.style = this.pointStyle;
-    delete this.options.pointStyle;
-    delete this.options.data;
     amapLoader.then(AMap => {
       this.AMap = AMap;
-      this.target = new AMap.LabelsLayer(this.options);
-      this.initLabelMarker(this.data);
-      this.visible || this.target.hide();
-    });
-  },
-  watch: {
-    data(val) {
-      this.target && this.initLabelMarker(val);
-    }
-  },
-  methods: {
-    initLabelMarker(data) {
-      if (!data) return;
-      this.target && this.target.clear();
-      data.forEach(item => {
-        if (!item.position) return;
-        const labelMarker = new this.AMap.LabelMarker(item);
-        // this.markers.push(labelMarker);
-        this.target.add(labelMarker);
+      const { position, icon, text, zooms } = this.data;
+      this.target = new this.AMap.LabelMarker({ position, icon, text, zooms });
+      this.extData && this.target.setExtData(this.extData);
+      this.$parent.getLabelsLayer(layer => {
+        layer.add(this.target);
+        this.$once('hook:beforeDestroy', () => {
+          this.target && layer.remove(this.target);
+        });
       });
-    }
-  },
-  beforeDestroy() {
-    this.target && this.target.clear();
+    });
   }
 };
