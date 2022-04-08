@@ -17,6 +17,7 @@ export default {
       type: Object
     }
   },
+  inject: ['getLabelsLayer'],
   data() {
     return {
       AMap: null,
@@ -40,12 +41,15 @@ export default {
       const { position, icon, text, zooms } = this.data;
       this.target = new this.AMap.LabelMarker({ position, icon, text, zooms });
       this.extData && this.target.setExtData(this.extData);
-      this.$parent.getLabelsLayer(layer => {
-        layer.add(this.target);
-        this.$once('hook:beforeDestroy', () => {
-          this.target && layer.remove(this.target);
-        });
-      });
+      this.getLabelsLayer(this.layerGetter);
     });
+  },
+  methods: {
+    layerGetter(layer) {
+      layer.add(this.target);
+      this.$once('hook:beforeDestroy', () => {
+        this.target && layer.remove(this.target);
+      });
+    }
   }
 };

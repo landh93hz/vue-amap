@@ -18,15 +18,12 @@ export default {
     zIndex: Number,
     opacity: {
       type: Number,
-      default: 1
     },
     collision: {
       type: Boolean,
-      default: false
     },
     animation: {
       type: Boolean,
-      default: false
     }
   },
   data() {
@@ -46,6 +43,9 @@ export default {
         'touchend'
       ]
     };
+  },
+  provide() {
+    return { getLabelsLayer: this.getLabelsLayer };
   },
   created() {
     amapLoader.then(AMap => {
