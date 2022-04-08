@@ -20,6 +20,9 @@ export default {
     pointLight: Object,
     viewControl: Object,
   },
+  provide() {
+    return { getLocaLayer: this.getLocaLayer };
+  },
   inject: ['getMap'],
   data() {
     return {
@@ -45,11 +48,11 @@ export default {
     });
   },
   methods: {
-    getLoca(getter){
+    getLocaLayer(getter){
       if (this.target){
         getter(this.target);
       } else {
-        setTimeout(() => this.getLoca(getter), 50);
+        setTimeout(() => this.getLocaLayer(getter), 50);
       }
     }
   }
