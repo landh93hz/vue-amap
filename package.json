@@ -1,14 +1,17 @@
 {
-  "name": "amap",
+  "name": "@wintoo/vue-amap",
   "version": "1.0.0",
+  "files": ["dist/*"],
   "description": "vue component of amap",
-  "main": "index.js",
+  "main": "dist/vue-amap.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "serve": "webpack-dev-server --config ./example/webpack.config.js"
   },
-  "keywords": [],
+  "keywords": [
+    "Vue", "amap"
+  ],
   "author": "",
   "license": "ISC",
   "peerDependencies": {
