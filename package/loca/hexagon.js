@@ -44,7 +44,6 @@ export default {
       if (this.mapVersion === 'v2') {
         const geoData = getGeoData(this.Loca, val, this.value);
         this.target.setSource(geoData, this.getStyleOption());
-        this.$parent.getLoca(loca => loca.add(this.target));
       } else if (this.mapVersion === 'v1') {
         this.target.setData(val, this.dataOptions);
         this.target.setOptions({ style: this.styleOptions });
@@ -56,21 +55,16 @@ export default {
   },
 
   methods: {
-    delayedRender() {
-      // todo v1.4的版本待添加蜂窝热力图
-      if (this.target && this._loca) {
-        this.visible ? this.target.show() : this.target.hide();
-      } else if (this.target && this.mapVersion === 'v1') {
-        this.target.render();
-        this.visible ? this.target.show() : this.target.hide();
-      } else {
-        setTimeout(this.delayedRender, 50);
-      }
-    },
     getStyleOption() {
       const { topColor, sideColor, altitude, height, radius, gap, unit, value } = this;
       const fn = (index, feature) => feature.properties[value];
       return { topColor, sideColor, altitude, height, radius, gap, unit, value: fn };
+    },
+    locaLayerGetter(locaLayer) {
+      locaLayer.add(this.target);
+      this.$once('hook:beforeDestroy', () => {
+        this.target && locaLayer.remove(this.target);
+      });
     }
   },
   created() {
@@ -85,11 +79,10 @@ export default {
           layer.setSource(geoData);
           layer.setStyle(styleOptions);
           this.target = layer;
+          this.$parent.getLocaLayer && this.$parent.getLocaLayer(this.locaLayerGetter);
         }, 50);
       }
     });
   },
-  mounted() {
-    this.delayedRender();
-  }
+  mounted() {}
 };

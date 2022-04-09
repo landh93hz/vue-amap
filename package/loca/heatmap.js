@@ -2,7 +2,6 @@ import EventMixin from '../mixins/events';
 import ElementMixin from '../mixins/element';
 import { locaLoader } from '../util/apiloader';
 import { getVersion, getGeoData } from '../util/loca';
-const version = getVersion();
 
 export default {
   name: 'loca-heatmap',
@@ -10,7 +9,6 @@ export default {
   render() {
     return this.$slots.default;
   },
-  inject: version === 'v2' ? ['getLocaLayer'] : [],
   props: {
     zIndex: { type: Number, default: 10 },
     opacity: { type: Number, default: 1 },
@@ -36,7 +34,8 @@ export default {
       target: null,
       Loca: null,
       options: {},
-      events: []
+      events: [],
+      mapVersion: ''
     };
   },
   watch: {
@@ -92,7 +91,8 @@ export default {
       layer.setSource(geoData);
       layer.setStyle(styleOptions);
       this.target = layer;
-      this.getLocaLayer(this.locaLayerGetter);
+      this.$parent.getLocaLayer && this.$parent.getLocaLayer(this.locaLayerGetter);
+      // this.getLocaLayer(this.locaLayerGetter);
     },
     initLayerV1(Loca) {
       const layer = new Loca.HeatmapLayer({});
@@ -112,7 +112,7 @@ export default {
     }
   },
   created() {
-    this.mapVersion = version;
+    this.mapVersion = getVersion();
     locaLoader.then(Loca => {
       this.Loca = Loca;
       if (this.mapVersion === 'v2') {
