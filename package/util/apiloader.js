@@ -1,4 +1,3 @@
-
 /**
  * 1、在`install`中使用manager的`init`方法
  * 2、`init`方法中会加载`AMap`或`Loca`的API
@@ -15,7 +14,6 @@
  * @param {Object} options
  */
 function lazyLoadApi(name, url, options) {
-
   return new Promise((resolve, reject) => {
     // 如果在html文件中手动添加了script标签，则直接返回window对象上的属性
     if (window[name]) {
@@ -65,9 +63,7 @@ function lazyLoadApi(name, url, options) {
   });
 }
 
-
 class ApiLoader {
-
   constructor(name) {
     this.callbacks = {
       resolve: [],
@@ -90,14 +86,16 @@ class ApiLoader {
       throw new Error(`Reapted loading API of ${this.name}`);
     }
     const lazyLoader = lazyLoadApi(this.name, url, options);
-    lazyLoader.then((...value) => {
-      this.value = value;
-      this.status = 'resolved';
-      this.installed = true;
-    }).catch(() => {
-      this.reason = `Failed to load ${name} API at given ${url}`;
-      this.status = 'rejected';
-    });
+    lazyLoader
+      .then((...value) => {
+        this.value = value;
+        this.status = 'resolved';
+        this.installed = true;
+      })
+      .catch(() => {
+        this.reason = `Failed to load ${name} API at given ${url}`;
+        this.status = 'rejected';
+      });
   }
 
   get status() {
@@ -124,10 +122,10 @@ class ApiLoader {
   then(resolve, reject) {
     switch (this.status) {
       case 'pending': {
-        if (resolve && typeof(resolve) === 'function') {
+        if (resolve && typeof resolve === 'function') {
           this.callbacks.resolve.push(resolve);
         }
-        if (reject && typeof(reject) === 'function') {
+        if (reject && typeof reject === 'function') {
           this.callbacks.reject.push(reject);
         }
         break;
@@ -143,7 +141,6 @@ class ApiLoader {
     }
   }
 }
-
 
 function createLoader(name) {
   const installed = false;
