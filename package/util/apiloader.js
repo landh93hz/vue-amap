@@ -10,12 +10,12 @@
 
 /**
  * 懒加载指定API
- * @param {String} name 
- * @param {String} url 
- * @param {Object} options 
+ * @param {String} name
+ * @param {String} url
+ * @param {Object} options
  */
 function lazyLoadApi(name, url, options) {
-  
+
   return new Promise((resolve, reject) => {
     // 如果在html文件中手动添加了script标签，则直接返回window对象上的属性
     if (window[name]) {
@@ -40,15 +40,18 @@ function lazyLoadApi(name, url, options) {
           options.plugin = plugins.join(',');
         }
         if (typeof plugins === 'string') {
-          options.plugin = plugins; 
+          options.plugin = plugins;
         }
       }
       let params = '';
+      if (!options.v) {
+        options.v = '1.4.15';
+      }
       for (const key in options) {
         params += `${key}=${options[key]}&`;
       }
       params.slice(0, params.length - 1);
-      
+
       $script.src = src + params;
       document.head.append($script);
       $script.onload = function onload() {
@@ -64,7 +67,7 @@ function lazyLoadApi(name, url, options) {
 
 
 class ApiLoader {
-  
+
   constructor(name) {
     this.callbacks = {
       resolve: [],
@@ -76,11 +79,11 @@ class ApiLoader {
     this.installed = false;
     this.name = name;
   }
-  
+
   /**
-   * 
-   * @param {String} url 
-   * @param {Object} options 
+   *
+   * @param {String} url
+   * @param {Object} options
    */
   init(url, options) {
     if (this.installed) {
