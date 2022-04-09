@@ -221,7 +221,7 @@ let loca = new Loca.Contanier({map:map})
 ```vue
 <amap-map>
   <loca-heatmap
-    :value="score"  
+    :value="value"  
     :points="points"
     :radius="radius"
     :color="gradient">
