@@ -5,8 +5,10 @@ module.exports = {
     // ['script', { src: 'https://webapi.amap.com/maps?key=0b8eff7c3cebc996161cf56812c23528&v=1.3.0' }],
   ],
   plugins: ['demo-container'],
-  base: '/vue-amap/',
-  dest: 'public',
+  // base: '/vuepress-vueamap/dist/',
+  // 上传到 github-page 的路径配置
+  base: '/vue-amp/vuepress-vueamap/dist/',
+  dest: 'dist',
   locales: {
     '/': {
       lang: 'zh-CN',
