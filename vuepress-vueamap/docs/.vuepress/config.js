@@ -7,7 +7,7 @@ module.exports = {
   plugins: ['demo-container'],
   // base: '/vuepress-vueamap/dist/',
   // 上传到 github-page 的路径配置
-  base: '/vue-amp/',
+  base: '/vue-amp/vuepress-vueamap/dist/',
   dest: 'dist',
   locales: {
     '/': {
