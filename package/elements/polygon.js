@@ -1,4 +1,3 @@
-
 import ElementMixin from '../mixins/element';
 import EventMixin from '../mixins/events';
 import { amapLoader } from '../util/apiloader';
@@ -21,7 +20,11 @@ export default {
     draggable: Boolean,
     extData: [Number, String, Object],
     strokeDasharray: Array,
-    path: { type: Array, required: true }
+    path: { type: Array, required: true },
+    isEditor: {
+      type: Boolean,
+      default: false
+    }
   },
   watch: {
     path(val) {
@@ -42,7 +45,7 @@ export default {
         fillColor: this.fillColor,
         fillOpacity: this.fillOpacity,
         strokeStyle: this.strokeStyle,
-        strokeWeight: this.strokeWeight,
+        strokeWeight: this.strokeWeight
       };
     }
   },
@@ -70,6 +73,14 @@ export default {
   created() {
     amapLoader.then(AMap => {
       this.target = new AMap.Polygon(this.options);
+      const version = AMap.v || AMap.version;
+      if (this.isEditor) {
+        if (version === '2.0') {
+          this.$parent.createPolygonEditor && this.$parent.createPolygonEditor(this.target);
+        } else {
+          this.$parent.createPolyEditor && this.$parent.createPolyEditor(this.target);
+        }
+      }
     });
   },
   methods: {

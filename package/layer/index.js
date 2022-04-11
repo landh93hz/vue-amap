@@ -1,4 +1,4 @@
-import { amapLoader } from '..//util/apiloader';
+import { amapLoader } from '../util/apiloader';
 import layerFactory from './factory';
 
 // 卫星图层
@@ -26,7 +26,8 @@ const trafficOptions = {
 
 const tilelayer = new Promise(resolve => {
   amapLoader.then(AMap => {
-    resolve(AMap.TileLayer);
+    const version = AMap.v || AMap.version;
+    version === '2.0' ? resolve(AMap.createDefaultLayer) : resolve(AMap.TileLayer);
   });
 });
 

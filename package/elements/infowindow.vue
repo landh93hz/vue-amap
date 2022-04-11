@@ -20,7 +20,7 @@ export default {
     size: Object,
     anchor: String,
     offset: Object,
-    position: { type: Object, required: true },
+    position: { type: [Object, Array], required: true },
     showShadow: Boolean,
     data: [String, Number, Object]
   },

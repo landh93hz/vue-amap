@@ -9,13 +9,28 @@ import {
   AMapTraffic,
   AMapControlBar,
   AMapMapType,
-  AMapScale, 
-  AMapToolBar, 
+  AMapScale,
+  AMapToolBar,
   AMapOverView,
   AMapBuildings,
   MassMarks,
   InfoWindow,
-  LocaHeatmap
+  LocaHeatmap,
+  AmapPolyEditor,
+  AmapRectangle,
+  AmapRectangleEditor,
+  AmapCircle,
+  AMapCircleEditor,
+  AmapCircleMarker,
+  AmapText,
+  AmapEllipse,
+  LocaHexagon,
+  AmapPolylineEditor,
+  AmapPolygonEditor,
+  AmapEllipseEditor,
+  Loca,
+  LabelsLayer,
+  LabelMarker
 } from './package/index';
 
 import { amapLoader, locaLoader } from './package/util/apiloader';
@@ -31,23 +46,34 @@ const components = [
   AMapTraffic,
   AMapControlBar,
   AMapMapType,
-  AMapScale, 
-  AMapToolBar, 
+  AMapScale,
+  AMapToolBar,
   AMapOverView,
   AMapBuildings,
   MassMarks,
   InfoWindow,
-  LocaHeatmap
+  AmapPolyEditor,
+  AmapRectangle,
+  AmapRectangleEditor,
+  AmapCircle,
+  AMapCircleEditor,
+  AmapCircleMarker,
+  LocaHeatmap,
+  AmapText,
+  AmapEllipse,
+  AmapEllipseEditor,
+  LocaHexagon,
+  AmapPolylineEditor,
+  AmapPolygonEditor,
+  Loca,
+  LabelsLayer,
+  LabelMarker
 ];
 
-const locaComponents = [
-  LocaHeatmap
-];
-
+const locaComponents = [LocaHeatmap];
 
 export default {
   install(vm, options = {}) {
-    
     const AMAP_URL = 'https://webapi.amap.com/maps';
 
     amapLoader.init(AMAP_URL, options);
@@ -58,9 +84,10 @@ export default {
 
     if (options.enableLoca) {
       const LOCA_URL = 'https://webapi.amap.com/loca';
+      const v = parseFloat(options.v) >= 2 ? '2.0.0' : '1.3.0';
       const locaOptions = {
         key: options.key,
-        v: '1.3.0'
+        v
       };
       locaLoader.init(LOCA_URL, locaOptions);
       locaComponents.forEach(comp => {
@@ -70,7 +97,4 @@ export default {
   }
 };
 
-export {
-  amapLoader,
-  locaLoader
-};
+export { amapLoader, locaLoader };

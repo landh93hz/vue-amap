@@ -1,3 +1,4 @@
+import { getVersion } from '../util/loca';
 
 export default {
   props: {
@@ -11,6 +12,8 @@ export default {
     return {
       target: null,
       options: null,
+      locas: ['HeatMap', 'Hexagon'],
+      mapVersion: null
     };
   },
   watch: {
@@ -37,19 +40,32 @@ export default {
     this.getMap(this.mapGetter);
   },
   beforeDestroy() {
-    this.target && this.target.setMap(null);
+    if (this.mapVersion === 'v2') {
+      this.target && this._map.remove(this.target);
+    } else {
+      this.target && this.target.setMap(null);
+    }
     this.target = null;
     this.$emit('destroy');
-  }, 
+  },
   methods: {
     mapGetter(map) {
+      this._map = map;
+      this.mapVersion = getVersion();
       setTimeout(() => {
-        if (this.target && this.target.setMap) {
+        if (this.target) {
           if (!this.visible) this.target.hide();
           if (this.target.CLASS_NAME === 'AMAp.InfoWindow') return;
-          this.target.setMap(map);
+          if (this.mapVersion === 'v2' || this.target.CLASS_NAME === 'AMap.LabelsLayer') {
+            if (this.locas.includes(this.target.CLASS_NAME)) {
+              this.$parent.getLoca(loca => loca.add(this.target));
+            }
+            map.add(this.target);
+          } else {
+            this.target.setMap && this.target.setMap(map);
+          }
         }
       }, 0);
     }
-  },
+  }
 };
