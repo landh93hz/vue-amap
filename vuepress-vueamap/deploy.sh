@@ -7,13 +7,13 @@ set -e
 npm run docs:build
 
 # 进入生成的文件夹
-cd ./dist
+cd dist
 
 git init
 git add -A
 git commit -m 'deploy'
 
 # 如果发布到 https://<USERNAME>.github.io/<REPO>
-git push -f git@github.com:landh93hz/vue-amap.git ping-2.0:gh-pages
+git push -f git@github.com:landh93hz/vue-amap.git master:ping-2.0
 
 cd -
