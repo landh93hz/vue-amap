@@ -11,7 +11,7 @@ module.exports = {
   locales: {
     '/': {
       lang: 'zh-CN',
-      title: 'VuePress',
+      title: 'VueAmap',
       description: 'Vue 驱动的静态网站生成器'
     }
   },
