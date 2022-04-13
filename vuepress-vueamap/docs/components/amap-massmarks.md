@@ -1,8 +1,111 @@
 ---
 title: 海量点标记
 ---
-# mass-marks 海量点标记
+# amap-massmarks 海量点标记
 #### 基本用法
+::: demo  
+``` vue
+<template>
+	<div class="map-container">
+      <amap-map :zoom="3">
+        <amap-massmarks
+          :data=points
+          :bubble="false"
+          :point-style="pointStyle"
+          @complete="massmarkComplete"
+          :z-index="100"
+          >
+        </amap-massmarks>
+      </amap-map>
+    </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      points: [],
+      pointStyle:[
+        {
+          url: require('../img/dot.png'),
+          // anchor: new AMap.Pixel(4, 4),
+          // size: new AMap.Size(7, 7)
+        },
+      ],
+    
+    };
+  },
+  mounted(){
+    this.points = require('../mock/massMark.json');
+    if (AMap){
+      this.pointStyle[0].anchor = new AMap.Pixel(4, 4);
+      this.pointStyle[0].size = new AMap.Size(7, 7);
+    }
+  },
+  methods: {
+    massmarkComplete(e){
+      console.log(e)
+    }
+  }
+}
+</script>
+<style>
+.map-container {
+    height: 400px;
+    width: 100%
+}
+</style>
+```
+::: 
+
+#### 重要说明
+示例中的代码因为 `VuePress` 应用中**浏览器的 API 访问限制**原因，故代码做了一些修改，在正常的 `Vue`项目中如下引入即可
+``` vue
+<template>
+	<div class="map-container">
+      <amap-map :zoom="3">
+        <amap-massmarks
+          :data=points
+          :bubble="false"
+          :point-style="pointStyle"
+          @complete="massmarkComplete"
+          :z-index="100"
+          >
+        </amap-massmarks>
+      </amap-map>
+    </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      points: [],
+      pointStyle:[
+        {
+          url: require('../img/dot.png'),
+          anchor: new AMap.Pixel(4, 4),
+          size: new AMap.Size(7, 7)
+        },
+      ],
+    
+    };
+  },
+  mounted(){
+    this.points = require('../mock/massMark.json');
+  },
+  methods: {
+    massmarkComplete(e){
+      console.log(e)
+    }
+  }
+}
+</script>
+<style>
+.map-container {
+    height: 400px;
+    width: 100%
+}
+</style>
+```
 
 #### 属性  Attributes
 
