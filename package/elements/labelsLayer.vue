@@ -15,7 +15,9 @@ export default {
     return this.$slots.default;
   },
   props: {
-    zIndex: Number,
+    zIndex: {
+      type: Number
+    },
     opacity: {
       type: Number,
     },
