@@ -8,11 +8,11 @@ title: 基础
 
 ```javascript
 import Vue from 'vue';
-import AmapVue  from 'amap';
+import AmapVue  from '@wintoo/vue-amap';
 
 const options = {
   key: 'YOUR_KEY',
-  v: '2.0',
+  v: '1.4.15',
   plugins: [],
   enableLoca: true,
 };
