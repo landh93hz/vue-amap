@@ -12,7 +12,6 @@
 代码：
 
 ```vue
-<!-- html -->
 <amap-map :center="[120.0983, 30.0182]" view-mode="3D" :rotation.sync="mapRotation">
   <amap-marker :position="position"></amap-marker>
   <amap-polyline :path="path"></amap-polyline>
