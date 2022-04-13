@@ -22,7 +22,7 @@ Vue.use(AmapVue, options);
 ```
 2. 若是通过 `script`标签在 `.html`页面引入时，要使用封装好的插件，也要初始化
 ```html
-<script src="https://webapi.amap.com/maps?v=2.0&key=你的Key&plugin=AMap.Geocoder,AMap.PlaceSearch,AMap.RoadInfoSearch,AMap.DistrictSearch,AMap.Autocomplete"></script> 
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=你的Key&plugin=AMap.Geocoder,AMap.PlaceSearch,AMap.RoadInfoSearch,AMap.DistrictSearch,AMap.Autocomplete"></script> 
 ```
 
 **小结**

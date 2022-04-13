@@ -3,7 +3,7 @@ import Vue from 'vue';
 
 const options = {
   key: '0b8eff7c3cebc996161cf56812c23528',
-  v: '2.0',
+  v: '1.4.15',
   plugins: [
     'AMap.Geocoder',
     'AMap.PlaceSearch',
