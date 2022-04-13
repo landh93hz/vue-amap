@@ -108,7 +108,7 @@ export default {
     },
     mapGetter(map) {
       if (!this.target) return;
-      this.target.setMap(map);
+      this.target.setMap && this.target.setMap(map);
     }
   },
   created() {
