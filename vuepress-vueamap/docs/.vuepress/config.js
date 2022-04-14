@@ -38,6 +38,7 @@ module.exports = {
           '/components/amap-polyline',
           '/components/amap-polygon',
           '/components/amap-massmarks',
+          '/components/amap-labelmarker',
           '/components/amap-infowindow',
           '/components/amap-rectangle',
           '/components/amap-ellipse'
