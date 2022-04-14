@@ -61,6 +61,11 @@ export default {
               this.$parent.getLoca(loca => loca.add(this.target));
             }
             map.add(this.target);
+            // AMap.MassMarks 使用 map.add 加载不到地图上，官方文档用的还是 target.setMap方法，但是文档上又说 2.0版本此方法已废弃
+            // 这里做一个判断，若没有设置地图对象则重新使用 setMap 方法
+            if (!this.target.getMap()) {
+              this.target.setMap && this.target.setMap(map);
+            }
           } else {
             this.target.setMap && this.target.setMap(map);
           }
