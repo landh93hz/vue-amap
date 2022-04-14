@@ -1,6 +1,7 @@
 import { amapLoader } from '../util/apiloader';
 import EventMixin from '../mixins/events';
 import ElementMixin from '../mixins/element';
+import { getVersion } from '../util/loca.js';
 
 export default {
   name: 'amap-label-marker',
@@ -36,12 +37,17 @@ export default {
     };
   },
   created() {
+    this.mapVersion = getVersion();
     amapLoader.then(AMap => {
       this.AMap = AMap;
       const { position, icon, text, zooms } = this.data;
       this.target = new this.AMap.LabelMarker({ position, icon, text, zooms });
       this.extData && this.target.setExtData(this.extData);
-      this.getLabelsLayer(this.layerGetter);
+      // JSAPI 2.0 this.getLabelsLayer(this.layerGetter)执行后页面会特别卡
+      // todo 2.0 labelMarker 优化
+      if (this.mapVersion === 'v1') {
+        this.getLabelsLayer(this.layerGetter);
+      }
     });
   },
   methods: {
