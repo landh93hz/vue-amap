@@ -90,7 +90,7 @@ Vue.use(VueAMap, options);
 # 支持的高德版本与Vue的版本
 - 高德 JSAPI 版本
 
-支持高德地图JS API v1.4.15 及 JS API v2.0 版本
+支持高德地图JS API v1.4.15 及 JS API v2.0 版本, 建议使用` v1.4.15`版本, `v2.0`版本可能有部分兼容问题。
 - Loca 版本
 
 支持 Loca 数据可视化 API 1.3.x 版本及 API 2.0版本，具体与 JS API 版本对应关系请参见 [高德官方文档](https://lbs.amap.com/api/loca-v2/intro)
