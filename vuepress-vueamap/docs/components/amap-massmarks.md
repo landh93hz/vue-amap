@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     massmarkComplete(e){
-      console.log(e)
+      // console.log(e)
     }
   }
 }
@@ -94,7 +94,7 @@ export default {
   },
   methods: {
     massmarkComplete(e){
-      console.log(e)
+      // console.log(e)
     }
   }
 }
