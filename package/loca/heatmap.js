@@ -15,7 +15,7 @@ export default {
     visible: { type: Boolean, default: true },
     zooms: { type: Array, default: () => [2, 20] },
     lnglat: { type: [String, Function], default: 'lnglat' },
-    dataType: String,
+    type: String,
 
     points: { type: [Object, Array], required: true },
     /* 图层样式相关 */
@@ -59,7 +59,7 @@ export default {
       return { radius, color, opacity };
     },
     dataOptions() {
-      const { lnglat, value, dataType: type } = this;
+      const { lnglat, value, type } = this;
       return { lnglat, value, type };
     }
   },
