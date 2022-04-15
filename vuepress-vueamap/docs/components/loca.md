@@ -2,10 +2,10 @@
 title: Loca 图层的容器和控制器
 ---
 # Loca 
-图层的容器和控制器
-
-# Loca.Container
-Loca 的核心控制类，可以控制光照、视角变换、图层渲染等。
+图层的容器和控制器，可以控制光照、视角变换、图层渲染等。<font color="#409EFF">在 Loca 版本为 2.0 版本中，所有可视化图层都要挂载在 loca 上，再由 loca 添加到地图上。</font>
+:::warning
+  `loca`组件仅在 Loca 版本为 2.0 版本中才需要用到作为数据可视化的容器。
+:::
 ```vue
 <div class="map-container">
   <amap-map :center="center">
