@@ -8,12 +8,14 @@ const options = {
     'AMap.Geocoder',
     'AMap.PlaceSearch',
     'AMap.Scale',
+    'AMap.OverView',
     'HawkEye',
     'MapType',
     'ToolBar',
     'ControlBar',
     'AMap.PolylineEditor',
     'AMap.PolygonEditor',
+    'AMap.PolyEditor',
     'AMap.RectangleEditor',
     'AMap.CircleEditor',
     'AMap.EllipseEditor'
@@ -26,7 +28,7 @@ export default async ({
 }) => {
   // Vue.use(VueAmap, options)
   if (!isServer) {
-    import('../../../dist/vue-amap').then(module => {
+    import('../../../index.js').then(module => {
       const VueAmap = module.default;
       // Vue.AMap= await module.amapLoader.then()
       Vue.use(VueAmap, options);
