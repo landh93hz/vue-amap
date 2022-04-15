@@ -1,5 +1,5 @@
 ---
-title: 拓展 AMap 对象的引入
+title:  AMap 对象获取
 ---
 # 异步加载
 当想要使用 AMap 对象时，我们为您提供了异步加载的方式， 在要使用 AMap 对象的组件中按以下方式引入，我们提供了 `amapLoader` 这个 `Promise` 对象，通过异步回调的方式得到 AMap 对象
@@ -48,3 +48,17 @@ export default {
 </script>
 ```
 
+# 同步加载
+若 `public/index.html` 中同步加载 `<script src="https://webapi.amap.com/maps?v=1.4.15&key=您申请的key值""></script>`，可直接在组件直接使用 `AMap`对象。
+``` vue
+<script>
+export default {
+  mounted(){
+    var map = new AMap.Map('container', {
+        zoom: 4,
+        center: [102.342785, 35.312316]
+    });
+  }
+}
+</script>
+```

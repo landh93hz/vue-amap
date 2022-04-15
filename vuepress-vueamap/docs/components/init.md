@@ -4,7 +4,8 @@ title: 快速上手
 # 快速上手
 本节将介绍如何在项目中使用 VueAmap。
 
-## 同步方式引入高德地图 JS API +  VueAmap 组件引入
+<font size=5>**同步方式引入高德地图 JS API +  VueAmap 组件引入**</font>
+
 **1. 顺序同步加载 JS API 脚本**
 
 在 `public/index.html` 中写入以下内容 `<script src="https://webapi.amap.com/maps?v=1.4.15&key=您申请的key值""></script>`
@@ -44,8 +45,7 @@ Vue.use(AmapVue);
 
 至此， 一个基于 `Vue` 和 `VueAmap` 的开发环境就已经搭建完毕，现在就可以编写代码了。各个组件的使用方法请参阅它们各自的文档
 
-## 异步方式引入高德地图 JS API +  VueAmap 组件引入
-**异步加载 JS API 脚本**
+<font size=5>**异步方式引入高德地图 JS API +  VueAmap 组件引入**</font>
 
 在 main.js 中写入以下内容
 
