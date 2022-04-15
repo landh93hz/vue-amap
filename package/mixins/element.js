@@ -43,7 +43,7 @@ export default {
     if (this.mapVersion === 'v2') {
       this.target && this._map.remove(this.target);
     } else {
-      this.target && this.target.setMap(null);
+      (this.target && this.target.setMap) && this.target.setMap(null);
     }
     this.target = null;
     this.$emit('destroy');
