@@ -43,7 +43,7 @@ export default {
     if (this.mapVersion === 'v2') {
       this.target && this._map.remove(this.target);
     } else {
-      (this.target && this.target.setMap) && this.target.setMap(null);
+      this.target && this.target.setMap && this.target.setMap(null);
     }
     this.target = null;
     this.$emit('destroy');
@@ -55,15 +55,16 @@ export default {
       setTimeout(() => {
         if (this.target) {
           if (!this.visible) this.target.hide();
-          if (this.target.CLASS_NAME === 'AMAp.InfoWindow') return;
-          if (this.mapVersion === 'v2' || this.target.CLASS_NAME === 'AMap.LabelsLayer') {
-            if (this.locas.includes(this.target.CLASS_NAME)) {
+          const CLASS_NAME = this.target.CLASS_NAME || this.target.className;
+          if (CLASS_NAME === 'AMAp.InfoWindow') return;
+          if (this.mapVersion === 'v2' || CLASS_NAME === 'AMap.LabelsLayer') {
+            if (this.locas.includes(CLASS_NAME)) {
               this.$parent.getLoca(loca => loca.add(this.target));
             }
             map.add(this.target);
             // AMap.MassMarks 使用 map.add 加载不到地图上，官方文档用的还是 target.setMap方法，但是文档上又说 2.0版本此方法已废弃
             // 这里做一个判断，若没有设置地图对象则重新使用 setMap 方法
-            if (this.target.CLASS_NAME === 'AMap.MassMarks') {
+            if (CLASS_NAME === 'AMap.MassMarks') {
               this.target.setMap && this.target.setMap(map);
             }
           } else {
