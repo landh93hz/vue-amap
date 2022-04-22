@@ -5,12 +5,11 @@
 </template>
 <script>
 import { amapLoader } from '../util/apiloader';
-import EventMixin from '../mixins/events';
 import ElementMixin from '../mixins/element';
 
 export default {
   name: 'amap-labels-layer',
-  mixins: [ElementMixin, EventMixin],
+  mixins: [ElementMixin],
   render() {
     return this.$slots.default;
   },
@@ -33,17 +32,6 @@ export default {
       AMap: null,
       options: {},
       target: null,
-      events: [
-        'complete',
-        'click',
-        'mouseover',
-        'mousemove',
-        'mouseout',
-        'mouseup',
-        'mousedown',
-        'touchstart',
-        'touchend'
-      ]
     };
   },
   provide() {
@@ -54,6 +42,7 @@ export default {
       this.AMap = AMap;
       this.target = new AMap.LabelsLayer(this.options);
       this.visible || this.target.hide();
+      this.complete();
     });
   },
   methods: {
@@ -63,6 +52,9 @@ export default {
       } else {
         setTimeout(() => this.getLabelsLayer(getter), 50);
       }
+    },
+    complete() {
+      this.$emit('complete', this.target);
     }
   },
   beforeDestroy() {
