@@ -1,11 +1,10 @@
 import { amapLoader } from '../util/apiloader';
 import EventMixin from '../mixins/events';
-import ElementMixin from '../mixins/element';
 import { getVersion } from '../util/loca.js';
 
 export default {
   name: 'amap-label-marker',
-  mixins: [ElementMixin, EventMixin],
+  mixins: [EventMixin],
   render() {
     return this.$slots.default;
   },
