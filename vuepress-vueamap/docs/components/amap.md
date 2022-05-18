@@ -49,9 +49,36 @@ export default {
 ```
 
 # 同步加载
-若 `public/index.html` 中同步加载 `<script src="https://webapi.amap.com/maps?v=1.4.15&key=您申请的key值""></script>`，可直接在组件直接使用 `AMap`对象。
+1. 第一步，在 `public/index.html` 中引入
+   ```javascript
+   <script src="https://webapi.amap.com/maps?v=1.4.15&key=您申请的key值""></script>
+   ```
+2. 第二步：更改你的 webpack 配置
+- 如果是用vue-cli3搭建的项目 那么你在你的vue.config.js里面加上配置
+```javascript
+  module.exports = {
+      configureWebpack: config => {
+        const externals = {
+          AMap: 'window.AMap',
+          Loca: 'window.Loca'
+        };
+        config.externals = { ...config.externals, ...externals };
+      },
+  }
+```
+- 如果是用 webpack 搭建项目，那么在 webpack.config.js 里加上配置
+```javascript
+  module.exports = {
+      externals: {
+        AMap: 'window.AMap',
+        Loca: 'window.Loca'
+      },
+}
+```
+3. 第三步：在组件中引入高德对象
 ``` vue
 <script>
+import AMap from 'AMap'
 export default {
   mounted(){
     var map = new AMap.Map('container', {
